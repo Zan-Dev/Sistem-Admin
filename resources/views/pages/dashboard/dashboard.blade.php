@@ -33,7 +33,7 @@
           </div>
           
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">SURAT PENGANTAR</h5>
   
@@ -48,7 +48,7 @@
           </div>
           
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">F1.01</h5>                
   
@@ -63,7 +63,7 @@
           </div>
   
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">F2.01 (SURAT KETERANGAN LAHIR)</h5>
   
@@ -78,7 +78,7 @@
           </div>
   
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">SURAT PERNYATAAN PERUBAHAN ELEMEN DATA KEPENDUDUKAN</h5>
   
@@ -93,7 +93,7 @@
           </div>
   
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">PENDAFTARAN PERPINDAHAN PENDUDUK</h5>
   
@@ -108,7 +108,7 @@
           </div>
   
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">SPTJM KELAHIRAN</h5>
   
@@ -123,7 +123,7 @@
           </div>
   
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">SPTJM KELAHIRAN</h5>
   
@@ -138,7 +138,7 @@
           </div>
   
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">SPTJM PASUTRI</h5>
   
@@ -153,7 +153,7 @@
           </div>
   
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">SURAT KETERANGAN KEMATIAN</h5>
   
@@ -168,7 +168,7 @@
           </div>
   
           <div class="col-xxl-4 col-xl-12">
-            <div class="card info-card revenue-card">                
+            <div class="card info-card revenue-card height-card">                
               <div class="card-body">
                 <h5 class="card-title">SURAT PERNYATAAN MENGGUNAKAN ALAMAT RUMAH MILIK SENDIRI (SPMARMS)</h5>
   
@@ -181,29 +181,6 @@
   
             </div>
           </div>
-  
-          <!-- Customers Card -->
-          <div class="col-xxl-4 col-xl-12">
-  
-            <div class="card info-card customers-card">                
-              <div class="card-body">
-                <h5 class="card-title">Customers <span>| This Year</span></h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>1244</h6>
-                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-  
-                  </div>
-                </div>
-  
-              </div>
-            </div>
-  
-          </div><!-- End Customers Card -->
   
         </div>
       </div>
