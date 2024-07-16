@@ -22,7 +22,12 @@
   <link href="{{ asset("assets/vendor/quill/quill.snow.css") }}" rel="stylesheet">
   <link href="{{ asset("assets/vendor/quill/quill.bubble.css") }}" rel="stylesheet">
   <link href="{{ asset("assets/vendor/remixicon/remixicon.css") }}" rel="stylesheet">
-  <link href="{{ asset("assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">
+  <link href="{{ asset("assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">  
+  <link rel="stylesheet" type="text/css" href="{{ asset("https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css") }}">  
+  <link rel="stylesheet" type="text/css" href="{{ asset("https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css") }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset("https://cdn.datatables.net/fixedcolumns/4.1.0/css/fixedColumns.dataTables.css") }}">
+</head>
+<body>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -47,10 +52,10 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>Manggungmangu</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      Designed by <a href="https://bootstrapmade.com/">KKN UNNES Giat 9</a>
     </div>
   </footer>
   <!-- End Footer -->
@@ -65,7 +70,11 @@
   <script src="{{ asset("assets/vendor/quill/quill.js") }}"></script>
   <script src="{{ asset("assets/vendor/simple-datatables/simple-datatables.js") }}"></script>
   <script src="{{ asset("assets/vendor/tinymce/tinymce.min.js") }}"></script>
-  <script src="{{ asset("assets/vendor/php-email-form/validate.js") }}"></script>
+  <script src="{{ asset("assets/vendor/php-email-form/validate.js") }}"></script>  
+  <script src="{{ asset("https://code.jquery.com/jquery-3.5.1.js") }}"></script>  
+  <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js") }}"></script>
+  <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js") }}"></script>
+  <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.js") }}"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

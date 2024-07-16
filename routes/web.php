@@ -10,6 +10,10 @@ Route::get('/sourcedata', function () {
     return view('pages/source data/source-data');
 });
 
+Route::get('/tambahdata', function () {
+    return view('pages/source data/tambah-data');
+});
+
 Route::get('/myprofile', function () {
     return view('pages/profile/my-profile');
 });

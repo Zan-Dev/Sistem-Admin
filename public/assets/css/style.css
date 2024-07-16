@@ -256,6 +256,12 @@ h6 {
 }
 
 /* Close Button */
+
+.btn-small {
+  padding: 6px 12px; /* Adjust padding for smaller buttons */
+  font-size: 14px;  /* Adjust font size for smaller buttons */
+}
+
 .btn-close {
   background-size: 25%;
 }
@@ -937,6 +943,8 @@ h6 {
   padding: 0 0 10px 0;
 }
 
+
+
 .dashboard .recent-sales .dataTable-bottom {
   padding: 10px 0 0 0;
 }
@@ -949,6 +957,32 @@ h6 {
 .dashboard .top-selling .table thead {
   background: #f6f6fe;
 }
+
+.table-font{
+  font-size: 15px;
+}
+
+.table-container{
+  overflow-x: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.datatable th, .datatable td {
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* .datatable th:nth-child(1), .datatable td:nth-child(1) { width: 150px; } NIK */
+/* .datatable th:nth-child(2), .datatable td:nth-child(2) { width: 100px; } Nama */
+/* .datatable th:nth-child(3), .datatable td:nth-child(3) { width: 150px; } No KK */
+/* .datatable th:nth-child(4), .datatable td:nth-child(4) { width: 100px; } Tempat Lahir */
+/* .datatable th:nth-child(5), .datatable td:nth-child(5) { width: 150px; } Tanggal Lahir */
+/* .datatable th:nth-child(6), .datatable td:nth-child(6) { width: 50px; } Status Perkawinan */
+/* .datatable th:nth-child(7), .datatable td:nth-child(7) { width: 50px; } Jenis Kelamin */
+/* .datatable th:nth-child(8), .datatable td:nth-child(8) { width: 200px; } Alamat */
+/* .datatable th:nth-child(9), .datatable td:nth-child(9) { width: 50px; }  RT */
+/* .datatable th:nth-child(10), .datatable td:nth-child(10) { width: 50px; } RW */
 
 .dashboard .top-selling .table thead th {
   border: 0;
@@ -998,6 +1032,12 @@ h6 {
   white-space: nowrap;
   color: #666;
 }
+
+/*--------------------------------------------------------------
+# Tambah Data Page
+--------------------------------------------------------------*/
+
+
 
 /*--------------------------------------------------------------
 # Profie Page
