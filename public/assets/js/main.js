@@ -102,6 +102,7 @@
     onscroll(document, toggleBacktotop)
   }
 
+
   /**
    * Initiate tooltips
    */
@@ -321,3 +322,7 @@
   }
 
 })();
+
+function navigateTo(url) {
+  window.location.href = url;
+}
