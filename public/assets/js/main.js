@@ -326,3 +326,43 @@
 function navigateTo(url) {
   window.location.href = url;
 }
+
+function setRW() {
+  const alamatDropdown = document.getElementById("alamat");
+  const rwDropdown = document.getElementById("rw");
+  const rtDropdowns = document.getElementById("rt");
+
+  if (alamatDropdown.value === "Manggungmangu") {    
+
+    rwDropdown.querySelectorAll("option").forEach((option) => {
+      option.selected = option.value == "1";
+      option.hidden = option.value !== "1";
+    });
+
+    rtDropdowns.querySelectorAll("option").forEach(
+      rtOption => rtOption.hidden = ["21", "20", "19"].includes(rtOption.value)
+    );
+
+  } else if (alamatDropdown.value === "Parakan") {
+
+    rwDropdown.querySelectorAll("option").forEach((option) => {
+      option.selected = option.value == "2";
+      option.hidden = option.value !== "2";
+    });
+
+    rtDropdowns.querySelectorAll("option").forEach(
+      rtOption => rtOption.hidden = ["21", "20", "19"].includes(rtOption.value)
+    );
+
+  } else if (alamatDropdown.value === "Tambirejo") {
+    rwDropdown.querySelectorAll("option").forEach((option) => {
+      option.selected = option.value == "3";
+      option.hidden = option.value !== "3";
+    });
+
+    rtDropdowns.querySelectorAll("option").forEach((rtOption) => {
+      rtOption.hidden = rtOption.value !== "21";
+      rtOption.selected = rtOption.value == "21";
+    });
+  }
+}

@@ -10,6 +10,7 @@
   <title>Management Manggungmangu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">  
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -30,7 +31,7 @@
 <body>
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="{{ asset("assets/css/style.css") }}" rel="stylesheet">
 </head>
 
 <body>
@@ -77,7 +78,7 @@
   <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.js") }}"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="{{ asset("assets/js/main.js") }}"></script>
 
 </body>
 

@@ -9,7 +9,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="{{ request()->is('sourcedata') ? 'nav-link' : 'nav-link collapsed' }}" href="/sourcedata">
+        <a class="{{ request()->is('datapenduduk') ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('data-penduduk') }}">
           <i class="bi bi-menu-button-wide"></i>
           <span>Source Data</span>
         </a>        

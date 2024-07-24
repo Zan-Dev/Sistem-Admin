@@ -1136,6 +1136,11 @@ select {
   pointer-events: none;
 }
 
+.label-form-radio{
+  width: 200px;
+  margin-right: 5px;  
+}
+
 .form-radio {
   display: flex;
   align-items: center;

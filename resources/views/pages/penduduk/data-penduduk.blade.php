@@ -16,7 +16,7 @@
           <div class="card"> 
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>              
-              <a href="/tambahwarga" type="button" class="btn btn-primary btn-small"><i class="bx bxs-plus-square"></i> Tambah Data</a>
+              <a href="{{ route('tambah-penduduk') }}" type="button" class="btn btn-primary btn-small"><i class="bx bxs-plus-square"></i> Tambah Data</a>
               <div class="table-container">
                 <!-- Table with stripped rows -->
                 <table id="example" class="display nowrap table datatable table-font" style="width:100%">
@@ -36,19 +36,23 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($residents as $resident)
+                    @foreach ($penduduk as $data)
                       <tr>
-                        <td>{{ $resident['nik'] }}</td>
-                        <td>{{ $resident['nama'] }}</td>
-                        <td>{{ $resident['noKK'] }}</td>
-                        <td>{{ $resident['tempatLahir'] }}</td>
-                        <td>{{ $resident['ttl'] }}</td>
-                        <td>{{ $resident['statusPerkawinan'] }}</td>                      
-                        <td>{{ $resident['jenisKelamin'] }}</td>
-                        <td>{{ $resident['alamat'] }}</td>
-                        <td>{{ $resident['rt'] }}</td>
-                        <td>{{ $resident['rw'] }}</td>
-                        <td><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button> | <button type="button" class="btn btn-danger btn-small"><i class="bx bxs-trash-alt"></i></button></td>
+                        <td>{{ $data['nik'] }}</td>
+                        <td>{{ $data['nama'] }}</td>
+                        <td>{{ $data['noKK'] }}</td>
+                        <td>{{ $data['tempatLahir'] }}</td>
+                        <td>{{ $data['ttl'] }}</td>
+                        <td>{{ $data['statusPerkawinan'] }}</td>                      
+                        <td>{{ $data['jenisKelamin'] }}</td>
+                        <td>{{ $data['alamat'] }}</td>
+                        <td>{{ $data['rt'] }}</td>
+                        <td>{{ $data['rw'] }}</td>
+                        <td>
+                          <a href="{{ route('datapenduduk.edit', $data->id) }}"><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button></a> 
+                          | 
+                          <a href="{{ route('datapenduduk.delete', $data->id) }}" class=""><button type="button" class="btn btn-danger btn-small"><i class="bx bxs-trash-alt"></i></button></a>
+                        </td>
                       </tr>
                     @endforeach                    
                   </tbody>
