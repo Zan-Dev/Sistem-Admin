@@ -2,7 +2,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logos.png" alt="">
+        <img src="{{ asset("assets/img/logos.png") }}" alt="">
         <span class="d-none d-lg-block">Manggungmangu</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -38,18 +38,12 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="/myprofile">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
+            
             <li>
               <hr class="dropdown-divider">
             </li>          
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>

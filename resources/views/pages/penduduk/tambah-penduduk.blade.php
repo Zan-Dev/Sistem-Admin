@@ -14,7 +14,7 @@
     <div class="container-form">
       <div class="signup-content">                
         <div class="signup-form">
-          <form action="{{ route('datapenduduk.submit') }}" method="POST" class="register-form" id="register-form">   
+          <form action="{{ route('dataPenduduk.submit') }}" method="POST" class="register-form" id="register-form">   
             @csrf
             <h2>Tambah Data Warga</h2>                          
             <div class="form-group-full">

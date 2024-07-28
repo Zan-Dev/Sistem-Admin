@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+ 
 class PendudukController extends Controller
 {
-    function tampil(){
+    function dataPenduduk(){
         $penduduk = Penduduk::get();
         return view('pages.penduduk.data-penduduk', compact('penduduk'));
     }
 
-    function tambah(){
+    function add(){
         return view('pages.penduduk.tambah-penduduk');
     }
 
@@ -24,7 +24,7 @@ class PendudukController extends Controller
     function delete($id){
         $penduduk = Penduduk::find($id);
         $penduduk->delete();
-        return redirect()->route('data-penduduk');
+        return redirect()->route('dataPenduduk');
     }
 
     function update(Request $request, $id){
@@ -41,7 +41,7 @@ class PendudukController extends Controller
         $penduduk->rw = $request->rw;
         $penduduk->save();
 
-        return redirect()->route('data-penduduk');
+        return redirect()->route('dataPenduduk');
     }
 
     function submit(Request $request){        
@@ -58,7 +58,7 @@ class PendudukController extends Controller
         $penduduk->rw = $request->rw;
         $penduduk->save();
 
-        return redirect()->route('data-penduduk');
+        return redirect()->route('dataPenduduk');
         // return redirect()->back()->with('success', 'Form submitted successfully!');
     }
 }

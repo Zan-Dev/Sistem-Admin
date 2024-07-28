@@ -21,6 +21,13 @@
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
+      
+      <li class="nav-item">
+        <a class="{{ request()->is('users') ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('users') }}">
+          <i class="bi bi-people"></i>
+          <span>Users</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
     </ul>
 
   </aside>

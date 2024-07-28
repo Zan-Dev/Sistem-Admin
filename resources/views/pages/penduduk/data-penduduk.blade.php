@@ -16,7 +16,7 @@
           <div class="card"> 
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>              
-              <a href="{{ route('tambah-penduduk') }}" type="button" class="btn btn-primary btn-small"><i class="bx bxs-plus-square"></i> Tambah Data</a>
+              <a href="{{ route('tambahPenduduk') }}" type="button" class="btn btn-primary btn-small"><i class="bx bxs-plus-square"></i> Tambah Data</a>
               <div class="table-container">
                 <!-- Table with stripped rows -->
                 <table id="example" class="display nowrap table datatable table-font" style="width:100%">
@@ -49,9 +49,9 @@
                         <td>{{ $data['rt'] }}</td>
                         <td>{{ $data['rw'] }}</td>
                         <td>
-                          <a href="{{ route('datapenduduk.edit', $data->id) }}"><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button></a> 
+                          <a href="{{ route('dataPenduduk.edit', $data->id) }}"><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button></a> 
                           | 
-                          <a href="{{ route('datapenduduk.delete', $data->id) }}" class=""><button type="button" class="btn btn-danger btn-small"><i class="bx bxs-trash-alt"></i></button></a>
+                          <a href="{{ route('dataPenduduk.delete', $data->id) }}" class=""><button type="button" class="btn btn-danger btn-small"><i class="bx bxs-trash-alt"></i></button></a>
                         </td>
                       </tr>
                     @endforeach                    

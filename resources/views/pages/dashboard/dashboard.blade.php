@@ -20,13 +20,15 @@
             <div class="card info-card sales-card height-card">          
   
               <div class="card-body align-items-center">
-                <h5 class="card-title">SURAT KETERANGAN USAHA</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
-                    <i class="bi bi-cart"></i>
-                  </div>                  
-                </div>
+                <a href="/sku" class="">
+                  <h5 class="card-title">SURAT KETERANGAN USAHA</h5>
+    
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
+                      <i class="bi bi-cart"></i>
+                    </div>                  
+                  </div>
+                </a>
               </div>
   
             </div>
