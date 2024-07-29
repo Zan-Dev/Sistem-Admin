@@ -37,13 +37,15 @@
           <div class="col-xxl-4 col-md-6">
             <div class="card info-card revenue-card height-card">                
               <div class="card-body">
-                <h5 class="card-title">SURAT PENGANTAR</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                  
-                </div>
+                <a href="{{ route('SKU-Download') }}" class="">
+                  <h5 class="card-title">SURAT PENGANTAR</h5>
+    
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                  
+                  </div>
+                </a>
               </div>
   
             </div>

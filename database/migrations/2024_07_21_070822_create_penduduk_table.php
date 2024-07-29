@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('ttl');            
             $table->string('statusPerkawinan');
             $table->string('jenisKelamin');
+            $table->string('pekerjaan');
+            $table->string('agama');
             $table->string('alamat');            
             $table->integer('rt');
             $table->integer('rw');

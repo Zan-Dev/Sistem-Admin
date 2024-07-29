@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\DashboardController;
 
 Route::group(['middleware' => 'Admin'], function(){    
 });
@@ -36,6 +38,7 @@ Route::get('/myprofile', function () {
     return view('pages/profile/my-profile');
 });
 
-Route::get('/sku', function () {
-    return view('pages/dashboard/SKU');
-});
+Route::get('/sku', [DashboardController::class, 'showFormSKU'])->name('sku');
+
+// try & test
+Route::post('SKU-Download', [PdfController::class, 'generatePDF'])->name('SKU-Download');
