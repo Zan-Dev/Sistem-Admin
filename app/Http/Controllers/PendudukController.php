@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Penduduk;
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Carbon\Carbon;
  
 class PendudukController extends Controller
 {
@@ -13,12 +15,14 @@ class PendudukController extends Controller
     }
 
     function add(){
-        return view('pages.penduduk.tambah-penduduk');
+        $pekerjaan = Pekerjaan::all();
+        return view('pages.penduduk.tambah-penduduk', compact('pekerjaan'));
     }
 
     function edit($id){
         $penduduk = Penduduk::find($id);
-        return view('pages.penduduk.edit-penduduk', compact('penduduk'));
+        $pekerjaan = Pekerjaan::all();
+        return view('pages.penduduk.edit-penduduk', compact('penduduk', 'pekerjaan'));
     }
 
     function delete($id){
@@ -33,9 +37,12 @@ class PendudukController extends Controller
         $penduduk->nama = $request->nama;
         $penduduk->noKK = $request->noKK;
         $penduduk->tempatLahir = $request->tempatLahir;
-        $penduduk->ttl = $request->ttl;
+        $penduduk->tanggalLahir = $request->tanggalLahir;
         $penduduk->statusPerkawinan = $request->statusPerkawinan;
         $penduduk->jenisKelamin = $request->jenisKelamin;
+        $penduduk->kewarganegaraan = $request->kewarganegaraan;
+        $penduduk->pekerjaan_id = $request->pekerjaan;
+        $penduduk->agama = $request->agama;
         $penduduk->alamat = $request->alamat;
         $penduduk->rt = $request->rt;
         $penduduk->rw = $request->rw;
@@ -44,15 +51,28 @@ class PendudukController extends Controller
         return redirect()->route('dataPenduduk');
     }
 
-    function submit(Request $request){        
-        $penduduk = new Penduduk();
+    function submit(Request $request){         
+
+        $customMessages = [            
+            'nik.unique' => 'NIK sudah ada',
+            // tambahkan pesan kesalahan kustom lainnya jika perlu
+        ];
+
+        $request->validate([
+            'nik' => 'required|unique:penduduk,nik',            
+        ], $customMessages);
+
+        $penduduk = new Penduduk();        
         $penduduk->nik = $request->nik;
         $penduduk->nama = $request->nama;
         $penduduk->noKK = $request->noKK;
         $penduduk->tempatLahir = $request->tempatLahir;
-        $penduduk->ttl = $request->ttl;
+        $penduduk->tanggalLahir = $request->tanggalLahir;
         $penduduk->statusPerkawinan = $request->statusPerkawinan;
         $penduduk->jenisKelamin = $request->jenisKelamin;
+        $penduduk->kewarganegaraan = $request->kewarganegaraan;
+        $penduduk->pekerjaan_id = $request->pekerjaan;
+        $penduduk->agama = $request->agama;
         $penduduk->alamat = $request->alamat;
         $penduduk->rt = $request->rt;
         $penduduk->rw = $request->rw;

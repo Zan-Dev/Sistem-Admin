@@ -4,7 +4,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>          
-        <li class="breadcrumb-item active"><a href="/datapenduduk">Source Data</a></li>
+        <li class="breadcrumb-item active"><a href="/dataPenduduk">Source Data</a></li>
         <li class="breadcrumb-item active">Edit Data Warga</li>
       </ol>
     </nav>
@@ -19,7 +19,7 @@
             <h2>Edit Data Warga</h2>                          
             <div class="form-group-full">
                 <label for="nik">NIK</label>
-                <input type="text" name="nik" id="nik" value="{{ $penduduk->nik }}" required/>
+                <input style="background-color: rgb(228, 226, 226)" type="text" name="nik" id="nik" value="{{ $penduduk->nik }}" readonly>
             </div>                                                  
             <div class="form-group-full">
                 <label for="nama">Nama</label>
@@ -33,12 +33,29 @@
                 <label for="tempat-lahir">Tempat Lahir</label>
                 <input type="text" name="tempatLahir" id="tempat-lahir" value="{{ $penduduk->tempatLahir }}" required/>
             </div>
-            <div class="form-group">
+            <div class="form-row">
+              <div class="form-group">
                 <label for="ttl">Tanggal Lahir</label>
                 <div class="col-sm-10">
-                    <input type="date" name="ttl" class="form-control" value="{{ $penduduk->ttl }}" required>
+                    <input type="date" name="tanggalLahir" class="form-control" value="{{ $penduduk->tanggalLahir }}" required>
                 </div>
-            </div>
+              </div>
+              <div class="form-group">
+                <label for="agama">Agama</label>
+                <div class="form-select">
+                    <select name="agama" id="agama" required>
+                        <option value=""></option>
+                        <option value="Islam" {{ $penduduk->agama === 'Islam' ? 'selected' : '' }}>Islam</option>
+                        <option value="Hindu" {{ $penduduk->agama === 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                        <option value="Budha" {{ $penduduk->agama === 'Budha' ? 'selected' : '' }}>Budha</option>
+                        <option value="Kristen" {{ $penduduk->agama === 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                        <option value="Katholik" {{ $penduduk->agama === 'Katholik' ? 'selected' : '' }}>Katholik</option>
+                        <option value="Konghucu" {{ $penduduk->agama === 'Konghucu' ? 'selected' : '' }}>Konghucu</option>                                            
+                    </select>
+                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                </div>
+              </div>
+            </div>              
             <div class="form-radio">
                 <div class="label-form-radio">
                   <label for="gender" class="radio-label">Jenis Kelamin</label>
@@ -79,6 +96,28 @@
                     </label>
                   </div>                                                
             </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pekerjaan">Pekerjaan</label>
+                <div class="form-select">
+                    <select name="pekerjaan" id="pekerjaan" required>
+                        @foreach($pekerjaan as $kerja)
+                            <option value="{{ $kerja->id }}" {{ $kerja->id === $penduduk->pekerjaan_id ? 'selected' : '' }}>{{ $kerja->pekerjaan }}</option>
+                        @endforeach
+                    </select>
+                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="kewarganegaraan">Kewarganegaraan</label>
+                <div class="form-select">
+                  <select name="kewarganegaraan" id="kewarganegaraan" required>                    
+                      <option id="idn" value="Indonesia" {{ $penduduk->kewarganegaraan === 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
+                      <option id="wna" value="WNA" {{ $penduduk->kewarganegaraan === 'WNA' ? 'selected' : '' }}>WNA</option>                    
+                  </select>                  
+                </div>
+              </div>              
+            </div>            
             <div class="form-row">
                 <div class="form-group">
                     <label for="alamat">Alamat</label>

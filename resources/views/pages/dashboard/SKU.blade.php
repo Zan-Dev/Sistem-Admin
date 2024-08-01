@@ -19,13 +19,18 @@
                     <div class="container-flex">
                       <div class="signup-content">                
                         <div class="signup-form">
-                          <form action="{{ route('SKU-Download') }}" method="POST" class="register-form" id="register-form">   
+                          <form action="{{ route('skuDownload') }}" method="POST" class="register-form" id="register-form">   
                             @csrf
                             <h2>Buat Surat Keterangan Usaha</h2>                          
                             <div class="form-group-full">
-                                <label for="nik">NIK</label>
-                                <input type="text" name="nik" id="nik" required/>
-                            </div>                                                  
+                              <label for="nik">NIK</label>
+                              <select name="nik" id="nik" onchange="auto_fill()" required>
+                                  <option value=""></option>
+                                @foreach($penduduk as $data)
+                                  <option value="{{ $data->nik }}">{{ $data->nik }}</option>
+                                @endforeach
+                              </select>
+                            </div>
                             <div class="form-group-full">
                                 <label for="nama">Nama</label>
                                 <input type="text" name="nama" id="nama" required/>
@@ -37,7 +42,7 @@
                             <div class="form-group">
                                 <label for="tanggaLahir">Tanggal Lahir</label>
                                 <div class="col-sm-10">
-                                    <input type="date" name="tanggalLahir" class="form-control" required>
+                                    <input type="date" name="tanggalLahir" id="tanggalLahir" class="form-control" required>
                                 </div>
                             </div>         
                             <div class="form-row">
@@ -111,21 +116,19 @@
                                         </select>
                                         <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                                     </div>
-                                </div>                                
-                            </div>      
-                            <div class="form-row">
+                                </div> 
                                 <div class="form-group">
-                                    <label for="alamat">Pekerjaan</label>
-                                    <div class="form-select">
-                                        <select name="alamat" id="alamat" required>
-                                            @foreach($pekerjaan as $kerja)
-                                                <option value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                                    </div>
-                                </div>                                
-                            </div>                                                                                                       
+                                  <label for="pekerjaan">Pekerjaan</label>
+                                  <div class="form-select">
+                                      <select name="pekerjaan" id="pekerjaan" required>
+                                          @foreach($pekerjaan as $kerja)
+                                              <option value="{{ $kerja->id }}" id="pekerjaan">{{ $kerja->pekerjaan }}</option>
+                                          @endforeach
+                                      </select>
+                                      <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                  </div>
+                              </div>                                     
+                            </div>                                                                                                                                        
                             <div class="form-group-full">
                                 <label for="tempatLahir">Usaha</label>
                                 <input type="text" name="usaha" id="usaha" required/>

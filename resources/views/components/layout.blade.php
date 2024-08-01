@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -74,13 +73,16 @@
   <script src="{{ asset("assets/vendor/quill/quill.js") }}"></script>
   <script src="{{ asset("assets/vendor/simple-datatables/simple-datatables.js") }}"></script>
   <script src="{{ asset("assets/vendor/tinymce/tinymce.min.js") }}"></script>
-  <script src="{{ asset("assets/vendor/php-email-form/validate.js") }}"></script>  
-  <script src="{{ asset("https://code.jquery.com/jquery-3.5.1.js") }}"></script>  
+  <script src="{{ asset("assets/vendor/php-email-form/validate.js") }}"></script>
+  <script src="{{ asset("https://code.jquery.com/jquery-3.5.1.js") }}"></script> 
   <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js") }}"></script>
   <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js") }}"></script>
   <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.js") }}"></script>
   <script src="{{ asset("https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js") }}"></script>
   <script src="{{ asset("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js") }}"></script>
+  <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css') }}">
+  <script src="{{ asset('https://code.jquery.com/jquery-3.6.0.min.js') }}"></script>
+  <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset("assets/js/main.js") }}"></script>

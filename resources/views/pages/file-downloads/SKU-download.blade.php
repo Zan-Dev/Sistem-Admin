@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Surat Keterangan Usaha</title>
+    <title>Surat Keterangan Usaha {{ $nama }}</title>
     <link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}">
     <style>
         body {
@@ -112,7 +112,7 @@
                 <tr>
                     <td>Tempat/Tgl. Lahir</td>
                     <td style="text-align: right; width: 50px;">:</td>
-                    <td>{{ $tempatLahir }}/{{ $tanggalLahir }}</td>
+                    <td>{{ $tempatLahir }} / {{ $tanggalLahir }}</td>
                 </tr>
                 <tr>
                     <td>Agama</td>
@@ -127,7 +127,7 @@
                 <tr>
                     <td style="vertical-align: top;">Alamat</td>
                     <td style="vertical-align: top; text-align: right; width: 50px;">:</td>
-                    <td>Dusun {{ $alamat }} RT 00{{ $rt }} RW 00{{ $rw }} Desa Manggungmangu Kecamatan Plantungan Kabupaten Kendal</td>
+                    <td>Dusun {{ $alamat }} RT 0{{ $rt }} RW 0{{ $rw }} Desa Manggungmangu Kecamatan Plantungan Kabupaten Kendal</td>
                 </tr>
             </table>   
             <p></p>

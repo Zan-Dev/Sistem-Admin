@@ -8,18 +8,17 @@
             font-family: 'Times New Roman', Times, serif;
         }
         .header {
-            text-align: center;
-            margin-bottom: 50px; 
+            text-align: center;            
             margin-top: 10px;              
         }           
 
-        .header p{
+        .header b{
             margin-bottom: 2px;
             clear: right;
         }
 
         .header table{
-            float: inline-end;            
+            float: right;            
             border: 1px solid black;
             margin-right: 20px;                      
         }
@@ -35,12 +34,13 @@
         .content{
             margin-left: 70px;
             margin-right: 50px;
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: justify;
         }
 
         .table-content{
             margin-left: 20px;
+            margin-bottom: 10px
         }
 
         .table-content tr td{
@@ -49,16 +49,16 @@
         
         .cell-kolon{
             text-align: center; 
-            width: 50px;
+            width: 30px;
         }
 
         .cell-title{
-            width: 300px;
+            width: 150px;
         }
 
         .footer{                  
             margin-right: 80px;
-            margin-top: 20px
+            margin-top: 10px
         }
 
         .table-footer{          
@@ -80,14 +80,14 @@
 <body>
     <div class="header">
         <table>
-            <tr><td style="padding-left: 10px; padding-right: 10px;"><p><b>F-2.03</b></p></td></tr>
+            <tr><td style="padding-left: 10px; padding-right: 10px;"><b>F-2.03</b></td></tr>
         </table>
-        <p><b>SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK (SPTJM)</b></p>                   
-        <p><b>KEBENARAN DATA KELAHIRAN</b></p>                           
+        <b>SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK (SPTJM)</b>
+        <b>KEBENARAN DATA KELAHIRAN</b>            
     </div>
     <div>       
         <div class="content">
-            <p>Saya yang bertanda tangan di bawah ini :</p>
+            Saya yang bertanda tangan di bawah ini :
             <table class="table-content">
                 <tr>
                     <td class="cell-title">Nama</td>
@@ -102,9 +102,7 @@
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>Kendal</td>
-                    <td>/</td>
-                    <td>17 Agustus 1945</td>
+                    <td>Kendal</td>                    
                 </tr>                
                 <tr>
                     <td>Pekerjaan</td>
@@ -114,11 +112,11 @@
                 <tr>
                     <td>Alamat</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
+                    <td colspan="3">Buruh</td>
                 </tr>                
             </table> 
 
-            <p>Menyatakan bahwa :</p>
+            Menyatakan bahwa :
             <table class="table-content">
                 <tr>
                     <td class="cell-title">Nama</td>
@@ -133,9 +131,7 @@
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>Kendal</td>
-                    <td>/</td>
-                    <td>17 Agustus 1945</td>
+                    <td>Kendal</td>                    
                 </tr>                
                 <tr>
                     <td>Anak Ke</td>
@@ -150,11 +146,11 @@
                 <tr>
                     <td>Alamat</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
+                    <td colspan="3">Buruh</td>
                 </tr>                
             </table> 
 
-            <p>Adalah <b>Anak Kandung</b> dari :</p>
+            Adalah <b>Anak Kandung</b> dari :
             <table class="table-content">
                 <tr>
                     <td class="cell-title">Nama</td>
@@ -169,9 +165,7 @@
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>Kendal</td>
-                    <td>/</td>
-                    <td>17 Agustus 1945</td>
+                    <td>Kendal</td>                    
                 </tr>                
                 <tr>
                     <td>Pekerjaan</td>
@@ -181,7 +175,7 @@
                 <tr>
                     <td>Alamat</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
+                    <td colspan="3">Buruh</td>
                 </tr>                
             </table>             
             <p>Demikian surat pernyataan ini saya buat dengan sebenar-benarnya dan apabila dikemudian hari 
@@ -194,20 +188,20 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td style="text-align: center;"><p>Kendal, 29 Juni 2024</p></td>                
+                <td style="text-align: center;">Kendal, 29 Juni 2024</td>                
             </tr>    
             <tr>
-                <td style="text-align: center; padding-bottom: 60px;"><p>Saksi I</p></td>
+                <td style="text-align: center; padding-bottom: 60px;">Saksi I</td>
                 <td></td>
-                <td style="text-align: center; padding-bottom: 60px;"><p>Saya Yang Menyatakan,</p></td>
+                <td style="text-align: center; padding-bottom: 60px;">Saya Yang Menyatakan,</td>
             </tr>            
             <tr>
-                <td style="text-align: center; padding-bottom: 10px;"><p><b><u>MISRONDI</u></b></p></td>
+                <td style="text-align: center; padding-bottom: 10px;"><b><u>MISRONDI</u></b></td>
                 <td></td>
-                <td style="text-align: center; padding-bottom: 10px;"><p><b><u>IRFIYANTI</u></b></p></td>
+                <td style="text-align: center; padding-bottom: 10px;"><b><u>IRFIYANTI</u></b></td>
             </tr>   
             <tr>
-                <td style="text-align: center; padding-bottom: 60px;"><p>SAKSI II</p></td>                
+                <td style="text-align: center; padding-bottom: 60px;"><p>Saksi II</p></td>                
             </tr>
             <tr>
                 <td style="text-align: center;"><p><b><u>SARYONO</u></b></p></td>                

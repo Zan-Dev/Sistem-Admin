@@ -38,7 +38,16 @@ Route::get('/myprofile', function () {
     return view('pages/profile/my-profile');
 });
 
-Route::get('/sku', [DashboardController::class, 'showFormSKU'])->name('sku');
+Route::get('/surat-keterangan-usaha', [DashboardController::class, 'showFormSKU'])->name('sku');
+Route::get('/surat-pengantar', [DashboardController::class, 'showFormSP'])->name('sp');
+Route::get('/sptjm-pasutri', [DashboardController::class, 'showFormSPTJMPasutri'])->name('sptjmPasutri');
+
+// Generate PDF
+Route::post('/SKU-download', [PdfController::class, 'generateSKU'])->name('skuDownload');
+Route::post('/surat-pengantar-download', [PdfController::class, 'generateSP'])->name('SuratPengantarDownload');
+Route::post('/sptjm-pasutri-download', [PdfController::class, 'generateSPTJM'])->name('SPTJMDownload');
+
 
 // try & test
-Route::post('SKU-Download', [PdfController::class, 'generatePDF'])->name('SKU-Download');
+Route::get('/surat-pengantar-view', [PdfController::class, 'generatePDF'])->name('surat-pengantar');
+Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])->name('autofill');

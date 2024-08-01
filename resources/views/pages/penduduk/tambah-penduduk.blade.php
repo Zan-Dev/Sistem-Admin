@@ -20,6 +20,9 @@
             <div class="form-group-full">
                 <label for="nik">NIK</label>
                 <input type="text" name="nik" id="nik" required/>
+                @if ($errors->has('nik'))
+                  <span class="text-danger">{{ $errors->first('nik') }}</span>
+                @endif
             </div>                                                  
             <div class="form-group-full">
                 <label for="nama">Nama</label>
@@ -33,12 +36,28 @@
                 <label for="tempat-lahir">Tempat Lahir</label>
                 <input type="text" name="tempatLahir" id="tempat-lahir" required/>
             </div>
-            <div class="form-group">
-                <label for="ttl">Tanggal Lahir</label>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tanggalLahir">Tanggal Lahir</label>
                 <div class="col-sm-10">
-                    <input type="date" name="ttl" class="form-control" required>
+                    <input type="date" name="tanggalLahir" class="form-control" required>
                 </div>
-            </div>
+              </div>
+              <div class="form-group">
+                <label for="agama">Agama</label>
+                <div class="form-select">
+                    <select name="agama" id="agama" required>                        
+                        <option value="Islam">Islam</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Katholik">Katholik</option>
+                        <option value="Konghucu">Konghucu</option>                                            
+                    </select>
+                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                </div>
+              </div>
+            </div>            
             <div class="form-radio">
                 <div class="label-form-radio">
                   <label for="gender" class="radio-label">Jenis Kelamin</label>
@@ -55,7 +74,7 @@
                       Perempuan
                     </label>
                   </div>                                  
-            </div>
+            </div>              
             <div class="form-radio">
                 <div class="label-form-radio">
                   <label for="status-perkawinan" class="radio-label">Status Perkawinan</label>
@@ -78,7 +97,29 @@
                       Pernah
                     </label>
                   </div>                                                
-            </div>
+            </div>         
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pekerjaan">Pekerjaan</label>
+                <div class="form-select">
+                    <select name="pekerjaan" id="pekerjaan" required>
+                        @foreach($pekerjaan as $kerja)
+                            <option value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
+                        @endforeach
+                    </select>
+                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="kewarganegaraan">Kewarganegaraan</label>
+                  <div class="form-select">
+                    <select name="kewarganegaraan" id="kewarganegaraan" required>                    
+                        <option id="idn" value="Indonesia">Indonesia</option>
+                        <option id="wna" value="WNA">WNA</option>                    
+                    </select>                  
+                  </div>
+              </div>
+            </div>               
             <div class="form-row">
                 <div class="form-group">
                     <label for="alamat">Alamat</label>

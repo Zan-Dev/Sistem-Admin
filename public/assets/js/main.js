@@ -366,3 +366,108 @@ function setRW() {
     });
   }
 }
+
+function auto_fill() {
+  var nik = $("#nik").val();
+  $.ajax({
+      url: '/get-penduduk',  // URL menuju rute Laravel
+      type: 'GET',
+      data: { nik: nik },
+      success: function (data) {
+          $('#nama').val(data.nama);
+          $('#noKK').val(data.noKK);
+          $('#tempatLahir').val(data.tempatLahir);
+          $('#tanggalLahir').val(data.tanggalLahir);
+          $('#alamat').val(data.alamat);
+          $('#rt').val(data.rt);
+          $('#rw').val(data.rw);
+          $('#agama').val(data.agama);
+          $('#pekerjaan').val(data.pekerjaan_id); 
+          $('#kewarganegaraan').val(data.kewarganegaraan);
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log('Error: ' + textStatus + ' - ' + errorThrown);
+      }
+  });
+}
+
+function auto_fill_form_istri() {
+  var nik = $("#nikIstri").val();
+  $.ajax({
+      url: '/get-penduduk',  // URL menuju rute Laravel
+      type: 'GET',
+      data: { nik: nik },
+      success: function (data) {
+          $('#namaIstri').val(data.nama);
+          $('#noKKIstri').val(data.noKK);
+          $('#tempatLahirIstri').val(data.tempatLahir);
+          $('#tanggalLahirIstri').val(data.tanggalLahir);
+          $('#alamatIstri').val(data.alamat);
+          $('#rtIstri').val(data.rt);
+          $('#rwIstri').val(data.rw);
+          $('#agamaIstri').val(data.agama);
+          $('#pekerjaanIstri').val(data.pekerjaan_id); 
+          $('#kewarganegaraanIstri').val(data.kewarganegaraan);
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log('Error: ' + textStatus + ' - ' + errorThrown);
+      }
+  });
+}
+
+function auto_fill_form_suami() {
+  var nik = $("#nikSuami").val();
+  $.ajax({
+      url: '/get-penduduk',  // URL menuju rute Laravel
+      type: 'GET',
+      data: { nik: nik },
+      success: function (data) {
+          $('#namaSuami').val(data.nama);
+          $('#noKKSuami').val(data.noKK);
+          $('#tempatLahirSuami').val(data.tempatLahir);
+          $('#tanggalLahirSuami').val(data.tanggalLahir);
+          $('#alamatSuami').val(data.alamat);
+          $('#rtSuami').val(data.rt);
+          $('#rwSuami').val(data.rw);
+          $('#agamaSuami').val(data.agama);
+          $('#pekerjaanSuami').val(data.pekerjaan_id); 
+          $('#kewarganegaraanSuami').val(data.kewarganegaraan);
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log('Error: ' + textStatus + ' - ' + errorThrown);
+      }
+  });
+}
+
+function showPage(pageId) {
+  const currentActive = document.querySelector('.page.active');
+  const nextPage = document.getElementById(pageId);
+  
+
+  if (currentActive) {
+      currentActive.classList.remove('active');
+      currentActive.classList.add('hidden');
+      
+      // Set direction of current page transition
+      if (nextPage.id === 'istri' || nextPage.id === 'suami') {
+          currentActive.classList.add('right');
+      } else {
+          currentActive.classList.add('left');
+      }
+  }
+
+  // Show the next page
+  nextPage.classList.remove('hidden', 'left', 'right');
+  nextPage.classList.add('active');
+}
+
+// Menampilkan halaman pertama secara default
+document.addEventListener('DOMContentLoaded', () => {
+  showPage('yang-menyatakan');
+});
+
+
+

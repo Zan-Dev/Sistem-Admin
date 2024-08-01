@@ -18,51 +18,47 @@
           
           <div class="col-xxl-4 col-md-6">
             <div class="card info-card sales-card height-card">          
-  
-              <div class="card-body align-items-center">
-                <a href="/sku" class="">
-                  <h5 class="card-title">SURAT KETERANGAN USAHA</h5>
-    
-                  <div class="d-flex align-items-center justify-content-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
-                      <i class="bi bi-cart"></i>
+              <a href="{{ route('sku') }}" class="">
+                <div class="card-body align-items-center">                
+                    <h5 class="card-title">SURAT KETERANGAN USAHA</h5>
+                    <div class="d-flex align-items-center justify-content-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
+                        <i class="bi bi-cart"></i>
+                      </div>                  
                     </div>                  
-                  </div>
-                </a>
-              </div>
-  
+                </div>
+              </a>
             </div>
           </div>
           
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <a href="{{ route('SKU-Download') }}" class="">
-                  <h5 class="card-title">SURAT PENGANTAR</h5>
+            <a href="{{ route('sp') }}" class="">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">                
+                    <h5 class="card-title">SURAT PENGANTAR</h5>
+                    <div class="d-flex align-items-center justify-content-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
+                        <i class="bi bi-currency-dollar"></i>
+                      </div>                  
+                    </div>                  
+                </div>
+              </div>
+            </a>
+          </div>
+          
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card height-card">   
+              <a href="{{ route('surat-pengantar') }}" class="">
+                <div class="card-body">
+                  <h5 class="card-title">F1.01</h5>                
     
                   <div class="d-flex align-items-center justify-content-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-currency-dollar"></i>
                     </div>                  
                   </div>
-                </a>
-              </div>
-  
-            </div>
-          </div>
-          
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">F1.01</h5>                
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                  
                 </div>
-              </div>
-  
+              </a>                           
             </div>
           </div>
   
@@ -125,35 +121,20 @@
   
             </div>
           </div>
-  
+      
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">SPTJM KELAHIRAN</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                  
+            <a href="{{ route('sptjmPasutri') }}" >
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">SPTJM PASUTRI</h5>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                
+                  </div>
                 </div>
               </div>
-  
-            </div>
-          </div>
-  
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">SPTJM PASUTRI</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                
-                </div>
-              </div>
-  
-            </div>
+           </a>
           </div>
   
           <div class="col-xxl-4 col-md-6">

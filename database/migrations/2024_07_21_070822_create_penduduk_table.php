@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('nama');
             $table->bigInteger('noKK');
             $table->string('tempatLahir');
-            $table->date('ttl');            
+            $table->date('tanggalLahir');            
             $table->string('statusPerkawinan');
             $table->string('jenisKelamin');
-            $table->string('pekerjaan');
+            $table->string('kewarganegaraan');
+            $table->bigInteger('pekerjaan_id');
             $table->string('agama');
             $table->string('alamat');            
             $table->integer('rt');

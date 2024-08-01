@@ -1,3 +1,7 @@
+@php
+  use Carbon\Carbon;
+  Carbon::setLocale('id');
+@endphp
 <x-layout>
     <div class="pagetitle">
       <h1>Source Data</h1>
@@ -29,22 +33,28 @@
                       <th>Tanggal Lahir</th>
                       <th>Status Perkawinan</th>
                       <th>Jenis Kelamin</th>
+                      <th>Kewarganegaraan</th>
+                      <th>Agama</th>
+                      <th>Pekerjaan</th>
                       <th>Alamat</th>
                       <th>RT</th>
                       <th>RW</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody>                    
                     @foreach ($penduduk as $data)
                       <tr>
                         <td>{{ $data['nik'] }}</td>
                         <td>{{ $data['nama'] }}</td>
                         <td>{{ $data['noKK'] }}</td>
                         <td>{{ $data['tempatLahir'] }}</td>
-                        <td>{{ $data['ttl'] }}</td>
+                        <td>{{ Carbon::parse($data['tanggalLahir'])->translatedFormat('d F Y') }}</td>
                         <td>{{ $data['statusPerkawinan'] }}</td>                      
                         <td>{{ $data['jenisKelamin'] }}</td>
+                        <td>{{ $data['kewarganegaraan'] }}</td>
+                        <td>{{ $data['agama'] }}</td>
+                        <td>{{ $data->pekerjaan->pekerjaan }}</td>
                         <td>{{ $data['alamat'] }}</td>
                         <td>{{ $data['rt'] }}</td>
                         <td>{{ $data['rw'] }}</td>

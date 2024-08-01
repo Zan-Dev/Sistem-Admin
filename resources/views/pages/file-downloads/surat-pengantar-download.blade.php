@@ -47,8 +47,8 @@
         }
 
         .content{
-            margin-left: 70px;
-            margin-right: 50px;
+            margin-left: 50px;
+            margin-right: 20px;
             margin-top: 30px;
             text-align: justify;
         }
@@ -63,11 +63,11 @@
         
         .cell-kolon{
             text-align: center; 
-            width: 50px;
+            width: 20px;
         }
 
         .cell-title{
-            width: 300px;
+            width: 200px;
         }
 
         .footer{                  
@@ -110,7 +110,7 @@
     <div>
         <div class="title-letter">
             <h6><b><u>SURAT PENGANTAR KETERANGAN</u></b></h6>
-            <p><b>No. 472 / 44 / MG / 2024</b></p>
+            <p><b>No. 472 / 44 / MG / {{ $year }}</b></p>
         </div>        
 
         <div class="content">
@@ -119,56 +119,56 @@
                 <tr>
                     <td class="cell-title">Nama</td>
                     <td class="cell-kolon">:</td>
-                    <td>IBNU HOLIFAH</td>
+                    <td>{{ $nama }}</td>
                 </tr>
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>Kendal</td>
-                    <td>/</td>
-                    <td>17 Agustus 1945</td>
+                    <td>{{ $tempatLahir }} / {{ $tanggalLahir }}</td>                  
                 </tr>
                 <tr>
                     <td>Kewarganegaraan & Agama</td>
                     <td class="cell-kolon">:</td>
-                    <td>Indonesia</td>
+                    <td>{{ $kewarganegaraan }}</td>
                     <td>/</td>
-                    <td>Islam</td>
+                    <td>{{ $agama }}</td>
                 </tr>
                 <tr>
                     <td>Pekerjaan</td>
                     <td class="cell-kolon">:</td>
-                    <td>Islam</td>
+                    <td>{{ $pekerjaan }}</td>
                 </tr>
                 <tr>
                     <td>Alamat Tempat Tinggal</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
+                    <td colspan="4">Dusun {{ $alamat }} RT 0{{ $rt }} RW 0{{ $rw }} Kecamatan Plantungan Kabupaten Kendal</td>
                 </tr>
                 <tr>
                     <td>Surat Bukti Diri (NIK/NKK)</td>
                     <td class="cell-kolon">:</td>
-                    <td>3302087377388277772</td>
-                    <td>/</td>
-                    <td>3302087377388277772</td>
+                    <td>{{ $nik }}</td>
+                    <td style="padding-left: 5px; padding-right: 5px;">/</td>
+                    <td>{{ $noKK }}</td>
                 </tr>
                 <tr>
                     <td>Keperluan</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
+                    <td>{{ $keperluan }}</td>
                 </tr>
                 <tr>
                     <td>Berlaku Mulai</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
-                    <td>s.d</td>
-                    <td>selesai</td>
+                    <td>{{ $date }} s.d Selesai</td>                    
                 </tr>
                 <tr>
                     <td>Keterangan lain-lain</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
-                </tr>                
+                    <td colspan="4">Yang bersangkutan benar-benar warga Desa Manggungmangu</td>
+                </tr>  
+                <tr>
+                    <td></td><td></td>
+                    <td>{{ $keterangan }}</td>
+                </tr>              
             </table>                           
         </div>        
     </div>
@@ -177,7 +177,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td style="text-align: center;"><p>Manggungmangu, 29 Juni 2024</p></td>                
+                <td style="text-align: center;"><p>Manggungmangu, {{ $date }}</p></td>                
             </tr>    
             <tr>
                 <td><p>Mengetahui</p></td>
@@ -192,7 +192,7 @@
             <tr>
                 <td style="text-align: center;"><p><b><u>SUJARMONO</u></b></p></td>
                 <td></td>
-                <td style="text-align: center;"><p>SARYONO</p></td>
+                <td style="text-align: center;"><p>{{ $nama }}</p></td>
             </tr>   
             <tr>
                 <td></td>
