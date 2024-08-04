@@ -16,21 +16,24 @@
       <div class="col-lg-8">
         <div class="row">
           
+
+          {{-- SKU --}}
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card height-card">          
-              <a href="{{ route('sku') }}" class="">
-                <div class="card-body align-items-center">                
-                    <h5 class="card-title">SURAT KETERANGAN USAHA</h5>
-                    <div class="d-flex align-items-center justify-content-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
-                        <i class="bi bi-cart"></i>
+            <a href="{{ route('sku') }}" class="">
+              <div class="card info-card sales-card height-card">                        
+                  <div class="card-body align-items-center">                
+                      <h5 class="card-title">SURAT KETERANGAN USAHA</h5>
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
+                          <i class="bi bi-cart"></i>
+                        </div>                  
                       </div>                  
-                    </div>                  
-                </div>
-              </a>
-            </div>
+                  </div>              
+              </div>
+            </a>
           </div>
           
+          {{-- Surat Pengantar --}}
           <div class="col-xxl-4 col-md-6">
             <a href="{{ route('sp') }}" class="">
               <div class="card info-card revenue-card height-card">                
@@ -46,6 +49,8 @@
             </a>
           </div>
           
+
+          {{-- F1.01 --}}
           <div class="col-xxl-4 col-md-6">
             <div class="card info-card revenue-card height-card">   
               <a href="{{ route('surat-pengantar') }}" class="">
@@ -62,6 +67,7 @@
             </div>
           </div>
   
+          {{-- F2.01 --}}
           <div class="col-xxl-4 col-md-6">
             <div class="card info-card revenue-card height-card">                
               <div class="card-body">
@@ -77,51 +83,55 @@
             </div>
           </div>
   
+          {{-- Surat Pernyataan Perubahan Eleman Data Kependudukan --}}
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">SURAT PERNYATAAN PERUBAHAN ELEMEN DATA KEPENDUDUKAN</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                
+            <a href="{{ route('perubahanElemen') }}">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">SURAT PERNYATAAN PERUBAHAN ELEMEN DATA KEPENDUDUKAN</h5>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                
+                  </div>
                 </div>
               </div>
-  
-            </div>
+            </a>
           </div>
   
+          {{-- Pendaftaran Perpindahan Penduduk --}}
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">PENDAFTARAN PERPINDAHAN PENDUDUK</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                 
-                </div>
+            <a href="#">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">PENDAFTARAN PERPINDAHAN PENDUDUK</h5>  
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                 
+                  </div>
+                </div>  
               </div>
-  
-            </div>
+            </a>
           </div>
   
+          {{-- SPTJM Kelahiran --}}
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">SPTJM KELAHIRAN</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                  
+            <a href="{{ route('sptjmKelahiran') }}">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">SPTJM KELAHIRAN</h5>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                  
+                  </div>
                 </div>
               </div>
-  
-            </div>
+            </a>
           </div>
       
+          {{-- SPTJM Pasutri --}}
           <div class="col-xxl-4 col-md-6">
             <a href="{{ route('sptjmPasutri') }}" >
               <div class="card info-card revenue-card height-card">                
@@ -137,34 +147,52 @@
            </a>
           </div>
   
+          {{-- Surat Keterangan Kematian --}}
           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">SURAT KETERANGAN KEMATIAN</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                  
+            <a href="">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">SURAT KETERANGAN KEMATIAN</h5>  
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                  
+                  </div>
+                </div>  
+              </div>
+            </a>
+          </div>  
+
+          {{-- Pendaftaran Akta --}}
+          <div class="col-xxl-4 col-md-6">
+            <a href="{{ route('pendaftaranAkta') }}" class="">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">PENDAFTARAN AKTA KELAHIRAN</h5>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                  
+                  </div>
                 </div>
               </div>
-  
-            </div>
+            </a>
           </div>
   
+          {{-- Surat Pernyataan Menggunakan Alamat Rumah Milik Sendiri --}}
           <div class="col-xxl-4 col-xl-12">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">SURAT PERNYATAAN MENGGUNAKAN ALAMAT RUMAH MILIK SENDIRI (SPMARMS)</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                  
+            <a href="{{ route('spmarms') }}" class="">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">SURAT PERNYATAAN MENGGUNAKAN ALAMAT RUMAH MILIK SENDIRI (SPMARMS)</h5>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>                  
+                  </div>
                 </div>
               </div>
-  
-            </div>
+            </a>  
           </div>
   
         </div>

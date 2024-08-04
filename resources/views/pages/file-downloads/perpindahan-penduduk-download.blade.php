@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
-            font-size: xx-small;
+            font-size: xx-small;object-fit: 
         }
         .header {
             text-align: center;

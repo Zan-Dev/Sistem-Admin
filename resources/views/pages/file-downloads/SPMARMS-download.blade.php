@@ -14,7 +14,7 @@
         }           
 
         .header p{
-            margin-bottom: 2px;
+            margin-bottom: 10px;
         }
         .icon-letter{
             width: 1%;            
@@ -24,29 +24,28 @@
             width: 130px;
         }    
                   
-
         .content{
-            margin-left: 70px;
-            margin-right: 50px;
-            margin-top: 30px;
+            margin-left: 50px;
+            margin-right: 50px;            
             text-align: justify;
         }
 
         .table-content{
             margin-left: 20px;
+            margin-bottom: 10px;
         }
 
         .table-content tr td{
             /* border: 1px solid black; */
         }
-        
+
         .cell-kolon{
             text-align: center; 
             width: 50px;
         }
 
         .cell-title{
-            width: 300px;
+            width: 150px;
         }
 
         .footer{                  
@@ -72,39 +71,37 @@
 </head>
 <body>
     <div class="header">
-        <p><b>SURAT PERNYATAAN MENGGUNAKAN ALAMAT RUMAH MILIK SENDIRI</b></p>                   
+        <b>SURAT PERNYATAAN MENGGUNAKAN ALAMAT RUMAH MILIK SENDIRI</b>
         <p><i>(SE No. 471.12-18749-DUKCAPIL Tgl. 10-10-2018)</i></p>
     </div>
-    <div>       
+    <div>
         <div class="content">
-            <p>Saya yang bertanda tangan di bawah ini :</p>
+            Saya yang bertanda tangan di bawah ini :
             <table class="table-content">
                 <tr>
                     <td class="cell-title">Nama</td>
                     <td class="cell-kolon">:</td>
-                    <td>IBNU HOLIFAH</td>
+                    <td>{{ $nama }}</td>
                 </tr>
                 <tr>
                     <td class="cell-title">NIK</td>
                     <td class="cell-kolon">:</td>
-                    <td>IBNU HOLIFAH</td>
+                    <td>{{ $nik }}</td>
                 </tr>
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>Kendal</td>
-                    <td>/</td>
-                    <td>17 Agustus 1945</td>
-                </tr>                
+                    <td>{{ $tempatLahir }} / {{ $tanggalLahir }}</td>                    
+                </tr>      
                 <tr>
                     <td>Pekerjaan</td>
                     <td class="cell-kolon">:</td>
-                    <td>Islam</td>
+                    <td>{{ $pekerjaan }}</td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
                     <td class="cell-kolon">:</td>
-                    <td>Buruh</td>
+                    <td>Dusun {{ $alamat }} Desa Manggungmangu RT 0{{ $rt }} RW 0{{ $rw }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
                 </tr>                
             </table> 
             <p>Dengan ini menyatakan bahwa alamat yang dipergunakan dalam dokumen kependudukan sesuai alamat kepindahan adalah milik sendiri</p>
@@ -116,7 +113,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td style="text-align: center;"><p>Manggungmangu, 29 Juni 2024</p></td>                
+                <td style="text-align: center;"><p>Manggungmangu, {{ $date }}</p></td>                
             </tr>    
             <tr>
                 <td style="text-align: center;"><p>Mengetahui</p></td>
@@ -129,17 +126,17 @@
                 <td style="text-align: center; padding-bottom: 60px;"><p></p></td>
             </tr>
             <tr>
-                <td style="text-align: center; padding-bottom: 10px;"><p><b><u>PARIO</u></b></p></td>
+                <td style="text-align: center; padding-bottom: 10px;"><p><b><u>{{ $ketuaRT }}</u></b></p></td>
                 <td></td>
-                <td style="text-align: center; padding-bottom: 10px;"><p><b><u>SARYONO</u></b></p></td>
+                <td style="text-align: center; padding-bottom: 10px;"><p><b><u>{{ $nama }}</u></b></p></td>
             </tr>   
             <tr>
-                <td style="text-align: center; padding-bottom: 60px;"><p>Ketua RW</p></td>
+                <td style="text-align: center; padding-bottom: 60px; padding-top: 10px;"><p>Ketua RW</p></td>
                 <td></td>
-                <td style="text-align: center; padding-bottom: 60px;"><p>Kepala Desa Manggungmangu</p></td>
+                <td style="text-align: center; padding-bottom: 60px; padding-top: 10px;"><p>Kepala Desa Manggungmangu</p></td>
             </tr>
             <tr>
-                <td style="text-align: center;"><p><b><u>WITO</u></b></p></td>
+                <td style="text-align: center;"><p><b><u>{{ $ketuaRW }}</u></b></p></td>
                 <td></td>
                 <td style="text-align: center;"><p><b><u>SUJARMONO</u></b></p></td>
             </tr>

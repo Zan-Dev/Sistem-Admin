@@ -1,10 +1,10 @@
 <x-layout>
     <div class="pagetitle">
-      <h1>Surat Keterangan Usaha</h1>
+      <h1>SPTJM Pasutri</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Surat Keterangan Usaha</li>
+          <li class="breadcrumb-item active">SPTJM Pasutri</li>
         </ol>
       </nav>
     </div>
@@ -18,11 +18,11 @@
                     <div class="container-flex">
                       <div class="signup-content">                
                         <div class="signup-form">
-                          <form action="{{ route('SPTJMDownload') }}" method="POST" class="register-form" id="register-form">   
+                          <form action="{{ route('SPTJMPasutriDownload') }}" method="POST" class="register-form" id="register-form">   
                             @csrf
                             <h2>SPTJM Pasutri</h2> 
                             {{-- Form Data Yang Menyatakan --}}
-                            <div class="page" id="yang-menyatakan"> 
+                            <div class="page" id="1"> 
                               <div style="width: 100%; display: flex; justify-content: start;">
                                 <div class="title-container-page">
                                   <h6 style="text-align: center; margin-top:5px;">Yang Menyatakan</h6>
@@ -30,8 +30,8 @@
                               </div>                                                                                                                  
                               <div class="container-page">
                                 <div class="form-group-full">
-                                  <label for="nik">NIK</label>
-                                  <select name="nik" id="nik" onchange="auto_fill()" required>
+                                  <label for="nik_1">NIK</label>
+                                  <select name="nik_1" id="nik_1" onchange="auto_fill_1()" required>
                                       <option value=""></option>
                                     @foreach($penduduk as $data)
                                       <option value="{{ $data->nik }}">{{ $data->nik }}</option>
@@ -39,26 +39,26 @@
                                   </select>
                                 </div>                           
                                 <div class="form-group-full">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" name="nama" id="nama" required/>
+                                    <label for="nama_1">Nama</label>
+                                    <input type="text" name="nama_1" id="nama_1" required/>
                                 </div>                       
                                 <div class="form-group-full">
-                                    <label for="tempatLahir">Tempat Lahir</label>
-                                    <input type="text" name="tempatLahir" id="tempatLahir" required/>
+                                    <label for="tempatLahir_1">Tempat Lahir</label>
+                                    <input type="text" name="tempatLahir_1" id="tempatLahir_1" required/>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="tanggaLahir">Tanggal Lahir</label>
+                                        <label for="tanggaLahir_1">Tanggal Lahir</label>
                                         <div class="col-sm-10">
-                                            <input type="date" name="tanggalLahir" id="tanggalLahir" class="form-control" required>
+                                            <input type="date" name="tanggalLahir_1" id="tanggalLahir_1" class="form-control" required>
                                         </div>
                                     </div>       
                                     <div class="form-group">
-                                        <label for="pekerjaan">Pekerjaan</label>
+                                        <label for="pekerjaan_1">Pekerjaan</label>
                                         <div class="form-select">
-                                            <select name="pekerjaan" id="pekerjaan" required>
+                                            <select name="pekerjaan_1" id="pekerjaan_1" required>
                                                 @foreach($pekerjaan as $kerja)
-                                                    <option id="pekerjaan" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
+                                                    <option id="pekerjaan_1" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
@@ -67,9 +67,9 @@
                                 </div>                              
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="alamat">Alamat</label>
+                                        <label for="alamat_1">Alamat</label>
                                         <div class="form-select">
-                                            <select name="alamat" id="alamat" onchange="setRW()" required>
+                                            <select name="alamat_1" id="alamat_1" onchange="setRW()" required>
                                                 <option value=""></option>
                                                 <option value="Manggungmangu">Manggungmangu</option>
                                                 <option value="Parakan">Parakan</option>
@@ -79,9 +79,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group-rw">
-                                        <label for="rw">RW</label>
+                                        <label for="rw_1">RW</label>
                                         <div class="form-select">
-                                            <select name="rw" id="rw" required>
+                                            <select name="rw_1" id="rw_1" required>
                                                 <option value=""></option>
                                                 <option id="rw1" value="1">1</option>
                                                 <option id="rw2" value="2">2</option>
@@ -91,9 +91,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group-rt" >
-                                        <label for="rt">RT</label>
+                                        <label for="rt_1">RT</label>
                                         <div class="form-select">
-                                            <select name="rt" id="rt" required>
+                                            <select name="rt_1" id="rt_1" required>
                                                 <option value=""></option>
                                                 <option id="rt1" value="1">1</option>
                                                 <option id="rt2" value="2">2</option>
@@ -120,15 +120,15 @@
                                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                                         </div>
                                     </div>
-                                </div>                                                                               
+                                </div>                                                                                                             
                                 <div class="form-submit">                                                             
-                                  <button class="submit" type="button" onclick="showPage('istri')">Selanjutnya</button>                                                                                                                   
+                                  <button class="submit" type="button" onclick="showPage('2')">Selanjutnya</button>                                                                                                                   
                                 </div>
                               </div>                              
                             </div>
 
                             {{-- Form Data Istri --}}
-                            <div class="page hidden" id="istri" >         
+                            <div class="page hidden" id="2" >         
                               <div style="width: 100%; display: flex; justify-content: center;">
                                 <div class="title-container-page">
                                   <h6 style="vertical-align: middle; margin-top:5px;">Data Istri</h6>
@@ -136,8 +136,8 @@
                               </div>                                                                                                       
                               <div class="container-page">
                                 <div class="form-group-full">
-                                  <label for="nik">NIK</label>
-                                  <select name="nikIstri" id="nikIstri" onchange="auto_fill_form_istri()" required>
+                                  <label for="nik_2">NIK Istri</label>
+                                  <select name="nik_2" id="nik_2" onchange="auto_fill_2()" required>
                                       <option value=""></option>
                                     @foreach($penduduk as $data)
                                       <option value="{{ $data->nik }}">{{ $data->nik }}</option>
@@ -145,26 +145,26 @@
                                   </select>
                                 </div>                           
                                 <div class="form-group-full">
-                                    <label for="namaIstri">Nama</label>
-                                    <input type="text" name="namaIstri" id="namaIstri" required/>
+                                    <label for="nama_2">Nama Istri</label>
+                                    <input type="text" name="nama_2" id="nama_2" required/>
                                 </div>                       
                                 <div class="form-group-full">
-                                    <label for="tempatLahirIstri">Tempat Lahir</label>
-                                    <input type="text" name="tempatLahirIstri" id="tempatLahirIstri" required/>
+                                    <label for="tempatLahir_2">Tempat Lahir Istri</label>
+                                    <input type="text" name="tempatLahir_2" id="tempatLahir_2" required/>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="tanggaLahirIstri">Tanggal Lahir</label>
+                                        <label for="tanggaLahir_2">Tanggal Lahir Istri</label>
                                         <div class="col-sm-10">
-                                            <input type="date" name="tanggalLahirIstri" id="tanggalLahirIstri" class="form-control" required>
+                                            <input type="date" name="tanggalLahir_2" id="tanggalLahir_2" class="form-control" required>
                                         </div>
                                     </div>       
                                     <div class="form-group">
-                                        <label for="pekerjaanIstri">Pekerjaan</label>
+                                        <label for="pekerjaan_2">Pekerjaan Istri</label>
                                         <div class="form-select">
-                                            <select name="pekerjaanIstri" id="pekerjaanIstri" required>
+                                            <select name="pekerjaan_2" id="pekerjaan_2" required>
                                                 @foreach($pekerjaan as $kerja)
-                                                    <option id="pekerjaanIstri" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
+                                                    <option id="pekerjaan_2" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
@@ -173,9 +173,9 @@
                                 </div>                              
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="alamatIstri">Alamat</label>
+                                        <label for="alamat_2">Alamat Istri</label>
                                         <div class="form-select">
-                                            <select name="alamatIstri" id="alamatIstri" onchange="setRW()" required>
+                                            <select name="alamat_2" id="alamat_2" onchange="setRW()" required>
                                                 <option value=""></option>
                                                 <option value="Manggungmangu">Manggungmangu</option>
                                                 <option value="Parakan">Parakan</option>
@@ -185,9 +185,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group-rw">
-                                        <label for="rwIstri">RW</label>
+                                        <label for="rw_2">RW</label>
                                         <div class="form-select">
-                                            <select name="rwIstri" id="rwIstri" required>
+                                            <select name="rw_2" id="rw_2" required>
                                                 <option value=""></option>
                                                 <option id="rw1" value="1">1</option>
                                                 <option id="rw2" value="2">2</option>
@@ -197,9 +197,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group-rt" >
-                                        <label for="rtIstri">RT</label>
+                                        <label for="rt_2">RT</label>
                                         <div class="form-select">
-                                            <select name="rtIstri" id="rtIstri" required>
+                                            <select name="rt_2" id="rt_2" required>
                                                 <option value=""></option>
                                                 <option id="rt1" value="1">1</option>
                                                 <option id="rt2" value="2">2</option>
@@ -228,14 +228,14 @@
                                     </div>
                                 </div>                                                                               
                                 <div class="form-submit">    
-                                  <button class="submit" type="button" onclick="showPage('yang-menyatakan')">Kembali</button>                                                         
-                                  <button class="submit" type="button" onclick="showPage('suami')">Selanjutnya</button>                                                           
+                                  <button class="submit" type="button" onclick="showPage('1')">Kembali</button>                                                         
+                                  <button class="submit" type="button" onclick="showPage('3')">Selanjutnya</button>                                                           
                                 </div>
                               </div>
                             </div>
 
                             {{-- Form Data Suami --}}
-                            <div class="page hidden" id="suami"> 
+                            <div class="page hidden" id="3"> 
                               <div style="width: 100%; display: flex; justify-content: end;">
                                 <div class="title-container-page">
                                   <h6 style="text-align: center; margin-top:5px;">Data Suami</h6>
@@ -243,8 +243,8 @@
                               </div>                                                                                                         
                               <div class="container-page">
                                 <div class="form-group-full">
-                                  <label for="nikSuami">NIK</label>
-                                  <select name="nikSuami" id="nikSuami" onchange="auto_fill_form_suami()" required>
+                                  <label for="nik_3">NIK Suami</label>
+                                  <select name="nik_3" id="nik_3" onchange="auto_fill_3()" required>
                                       <option value=""></option>
                                     @foreach($penduduk as $data)
                                       <option value="{{ $data->nik }}">{{ $data->nik }}</option>
@@ -252,26 +252,26 @@
                                   </select>
                                 </div>                           
                                 <div class="form-group-full">
-                                    <label for="namaSuami">Nama</label>
-                                    <input type="text" name="namaSuami" id="namaSuami" required/>
+                                    <label for="nama_3">Nama Suami</label>
+                                    <input type="text" name="nama_3" id="nama_3" required/>
                                 </div>                       
                                 <div class="form-group-full">
-                                    <label for="tempatLahirSuami">Tempat Lahir</label>
-                                    <input type="text" name="tempatLahirSuami" id="tempatLahirSuami" required/>
+                                    <label for="tempatLahir_3">Tempat Lahir Suami</label>
+                                    <input type="text" name="tempatLahir_3" id="tempatLahir_3" required/>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="tanggaLahirSuami">Tanggal Lahir</label>
+                                        <label for="tanggaLahir_3">Tanggal Lahir Suami</label>
                                         <div class="col-sm-10">
-                                            <input type="date" name="tanggalLahirSuami" id="tanggalLahirSuami" class="form-control" required>
+                                            <input type="date" name="tanggalLahir_3" id="tanggalLahir_3" class="form-control" required>
                                         </div>
                                     </div>       
                                     <div class="form-group">
-                                        <label for="pekerjaanSuami">Pekerjaan</label>
+                                        <label for="pekerjaan_3">Pekerjaan Suami</label>
                                         <div class="form-select">
-                                            <select name="pekerjaanSuami" id="pekerjaanSuami" required>
+                                            <select name="pekerjaan_3" id="pekerjaan_3" required>
                                                 @foreach($pekerjaan as $kerja)
-                                                    <option id="pekerjaanSuami" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
+                                                    <option id="pekerjaan_3" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
@@ -280,9 +280,9 @@
                                 </div>                              
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="alamatSuami">Alamat</label>
+                                        <label for="alamat_3">Alamat Suami</label>
                                         <div class="form-select">
-                                            <select name="alamatSuami" id="alamatSuami" onchange="setRW()" required>
+                                            <select name="alamat_3" id="alamat_3" onchange="setRW()" required>
                                                 <option value=""></option>
                                                 <option value="Manggungmangu">Manggungmangu</option>
                                                 <option value="Parakan">Parakan</option>
@@ -292,9 +292,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group-rw">
-                                        <label for="rwSuami">RW</label>
+                                        <label for="rw_3">RW</label>
                                         <div class="form-select">
-                                            <select name="rwSuami" id="rwSuami" required>
+                                            <select name="rw_3" id="rw_3" required>
                                                 <option value=""></option>
                                                 <option id="rw1" value="1">1</option>
                                                 <option id="rw2" value="2">2</option>
@@ -304,9 +304,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group-rt" >
-                                        <label for="rtSuami">RT</label>
+                                        <label for="rt_3">RT</label>
                                         <div class="form-select">
-                                            <select name="rtSuami" id="rtSuami" required>
+                                            <select name="rt_3" id="rt_3" required>
                                                 <option value=""></option>
                                                 <option id="rt1" value="1">1</option>
                                                 <option id="rt2" value="2">2</option>
@@ -333,9 +333,17 @@
                                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                                         </div>
                                     </div>
-                                </div>                                                                               
+                                </div>           
+                                <div class="form-group-full">
+                                  <label for="noKK">No KK Keluarga</label>
+                                  <select name="noKK" id="noKK" required>
+                                    @foreach($penduduk as $penduduk)
+                                        <option id="noKK" value="{{ $penduduk->noKK }}">{{ $penduduk->noKK }}</option>
+                                    @endforeach
+                                </select>
+                                </div>                                                                     
                                 <div class="form-submit">  
-                                  <button class="submit" type="button" onclick="showPage('istri')">Kembali</button>                                                            
+                                  <button class="submit" type="button" onclick="showPage('2')">Kembali</button>                                                            
                                   <button class="submit" id="submit">Buat</button>                                                                                    
                                 </div>
                               </div>

@@ -9,7 +9,7 @@
         }
         .header {
             text-align: center;
-            margin-bottom: 20px;                       
+            margin-bottom: 10px;                       
         }           
 
         .header b{
@@ -17,10 +17,12 @@
             clear: right;
         }
 
-        .header table{
+        .header .tipe-doc{
             float: right;            
             border: 1px solid black;
             margin-right: 20px;                      
+            padding-left: 10px; 
+            padding-right: 10px;
         }
         .icon-letter{
             width: 1%;            
@@ -28,18 +30,16 @@
 
         .logo-letter{
             width: 130px;
-        }    
-                  
+        }                 
 
         .content{
             margin-left: 30px;
             margin-right: 20px;            
             text-align: justify;
-        }
-        
-        .content p {
-            margin-bottom: 1px;
-            margin-top: 15px;
+        }     
+
+        .content p{
+            margin-top: 5px;
         }
 
         .table-content{
@@ -82,98 +82,98 @@
 </head>
 <body>
     <div class="header">
-        <table>
-            <tr><td style="padding-left: 10px; padding-right: 10px;"><b>F-2.04</b></td></tr>
-        </table>
+        <div style="width: 100%; text-align:right">
+            <b class="tipe-doc">F-2.04</b>
+        </div>        
         <b>SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK (SPTJM)</b>                  
         <b>KEBENARAN SEBAGAI PASANGAN SUAMI ISTERI</b>                          
     </div>
     <div>       
         <div class="content">
-            <p>Saya yang bertanda tangan di bawah ini :</p>
+            Saya yang bertanda tangan di bawah ini :
             <table class="table-content">
                 <tr>
                     <td class="cell-title">Nama</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $nama }}</td>
+                    <td>{{ $nama_1 }}</td>
                 </tr>
                 <tr>
                     <td class="cell-title">NIK</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $nik }}</td>
+                    <td>{{ $nik_1 }}</td>
                 </tr>
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $tempatLahir }} / {{ $tanggalLahir }}</td>                   
+                    <td>{{ $tempatLahir_1 }} / {{ $tanggalLahir_1 }}</td>                   
                 </tr>                
                 <tr>
                     <td>Pekerjaan</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $pekerjaan }}</td>
+                    <td>{{ $pekerjaan_1 }}</td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
                     <td class="cell-kolon">:</td>
-                    <td colspan="3">Dusun {{ $alamat }} Desa Manggungmangu RT 0{{ $rt }} RW 0{{ $rw }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
+                    <td colspan="3">Dusun {{ $alamat_1 }} Desa Manggungmangu RT 0{{ $rt_1 }} RW 0{{ $rw_1 }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
                 </tr>                
             </table> 
 
-            <p>Menyatakan bahwa :</p>
+            Menyatakan bahwa :
             <table class="table-content">
                 <tr>
                     <td class="cell-title">Nama</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $namaIstri }}</td>
+                    <td>{{ $nama_2 }}</td>
                 </tr>
                 <tr>
                     <td class="cell-title">NIK</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $nikIstri }}</td>
+                    <td>{{ $nik_2 }}</td>
                 </tr>
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $tempatLahirIstri }} / {{ $tanggalLahirIstri }}</td>                   
+                    <td>{{ $tempatLahir_2 }} / {{ $tanggalLahir_2 }}</td>                   
                 </tr>                
                 <tr>
                     <td>Pekerjaan</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $pekerjaanIstri }}</td>
+                    <td>{{ $pekerjaan_2 }}</td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
                     <td class="cell-kolon">:</td>
-                    <td colspan="3">Dusun {{ $alamatIstri }} Desa Manggungmangu RT 0{{ $rtIstri }} RW 0{{ $rwIstri }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
+                    <td colspan="3">Dusun {{ $alamat_2 }} Desa Manggungmangu RT 0{{ $rt_2 }} RW 0{{ $rw_2 }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
                 </tr>                
             </table> 
 
-            <p>Adalah <b>ISTRI</b> dari :</p>
+            Adalah <b>ISTRI</b> dari :
             <table class="table-content">
                 <tr>
                     <td class="cell-title">Nama</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $namaSuami }}</td>
+                    <td>{{ $nama_3 }}</td>
                 </tr>
                 <tr>
                     <td class="cell-title">NIK</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $nikSuami }}</td>
+                    <td>{{ $nik_3 }}</td>
                 </tr>
                 <tr>
                     <td>Tempat & tanggal lahir</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $tempatLahirSuami }} / {{ $tempatLahirSuami }}</td>                  
+                    <td>{{ $tempatLahir_3 }} / {{ $tempatLahir_3 }}</td>                  
                 </tr>                
                 <tr>
                     <td>Pekerjaan</td>
                     <td class="cell-kolon">:</td>
-                    <td>{{ $pekerjaanSuami }}</td>
+                    <td>{{ $pekerjaan_3 }}</td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
                     <td class="cell-kolon">:</td>
-                    <td colspan="3">Dusun {{ $alamatSuami }} Desa Manggungmangu RT 0{{ $rtSuami }} RW 0{{ $rwSuami }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
+                    <td colspan="3">Dusun {{ $alamat_3 }} Desa Manggungmangu RT 0{{ $rt_3 }} RW 0{{ $rw_3 }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
                 </tr>                
             </table> 
             <p>Sebagaimana tercantum dalam Kartu Keluarga (KK) Nomor : {{ $noKK }}</p>
@@ -197,7 +197,7 @@
             <tr>
                 <td style="text-align: center;"><b><u>MISRONDI</u></b></td>
                 <td></td>
-                <td style="text-align: center;"><b><u>{{ $nama }}</u></b></td>
+                <td style="text-align: center;"><b><u>{{ $nama_1 }}</u></b></td>
             </tr>   
             <tr>
                 <td style="text-align: center; padding-bottom: 60px;"><p>Saksi II</p></td>                

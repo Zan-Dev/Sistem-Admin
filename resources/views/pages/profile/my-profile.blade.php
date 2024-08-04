@@ -10,6 +10,28 @@
   </div><!-- End Page Title -->
 
     <section class="section profile">
+      @if (session('success'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session('success') }}              
+          </div>          
+      @endif
+
+      @if ($errors->has('password') || $errors->has('newpassword') || $errors->has('renewpassword'))
+          <div class="alert alert-danger">
+              <ul>
+                  @if ($errors->has('password'))
+                      <li>{{ $errors->first('password') }}</li>
+                  @endif
+                  @if ($errors->has('newpassword'))
+                      <li>{{ $errors->first('newpassword') }}</li>
+                  @endif
+                  @if ($errors->has('renewpassword'))
+                      <li>{{ $errors->first('renewpassword') }}</li>
+                  @endif
+              </ul>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      @endif
       <div class="row">       
         <div class="col-xl-12">
 
@@ -39,65 +61,46 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama</div>
-                    <div class="col-lg-9 col-md-8">?</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->name }}</div>
                   </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Jabatan</div>
-                    <div class="col-lg-9 col-md-8">?</div>
-                  </div>
-
+          
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Hak Akses</div>
-                    <div class="col-lg-9 col-md-8">Web Designer</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->role }}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">USA</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->email }}</div>
                   </div>                
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
-                    <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                      <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                        </div>
-                      </div>
-                    </div>
-
+                  <form action="{{ route('user.update', auth()->user()->id) }}" method="POST">
+                    @csrf                    
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="name" type="text" class="form-control" id="Name" value="">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">Jabatan</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="jabatan" type="text" class="form-control" id="Jabatan" value="">
+                        <input name="name" type="text" class="form-control" id="Name" value="{{ auth()->user()->name }}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Hak Akses</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="hakakses" type="text" class="form-control" id="HakAkses" value="">
+                      <div class="col-md-8 col-lg-9">                        
+                        <select id="role" name="role">
+                          <option value="Admin" {{ auth()->user()->role == 'Admin' ? 'selected' : '' }}>Admin</option>
+                          <option value="User" {{ auth()->user()->role == 'User' ? 'selected' : '' }}>User</option>
+                        </select> 
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="text" class="form-control" id="Email" value="">
+                        <input name="email" type="email" class="form-control" id="Email" value="{{ auth()->user()->email }}">
                       </div>
                     </div>
 
@@ -110,27 +113,37 @@
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
+                  <form action="{{ route('changePassword', auth()->user()->id) }}" method="POST">
+                    @csrf
 
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
+                        <input name="password" type="password" class="form-control" id="currentPassword" required>
                       </div>
+                      @if ($errors->has('password'))
+                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                      @endif
                     </div>
 
                     <div class="row mb-3">
                       <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                        <input name="newpassword" type="password" class="form-control" id="newPassword" required>
                       </div>
+                      @if ($errors->has('newpassword'))
+                          <span class="text-danger">{{ $errors->first('newpassword') }}</span>
+                      @endif
                     </div>
 
                     <div class="row mb-3">
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                        <input name="renewpassword" type="password" class="form-control" id="renewPassword" required>
                       </div>
+                      @if ($errors->has('renewpassword'))
+                          <span class="text-danger">{{ $errors->first('renewpassword') }}</span>
+                      @endif
                     </div>
 
                     <div class="text-center">

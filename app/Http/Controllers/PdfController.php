@@ -31,6 +31,7 @@ class PdfController extends Controller
     {
         // $penduduk = Penduduk::find($id);        
         
+        $pekerjaan = Pekerjaan::find($request->pekerjaan_1);
         Carbon::setLocale('id');
         $path = public_path('assets/img/logo.jpg');
         $base64Image = $this->base64Image($path);
@@ -38,15 +39,15 @@ class PdfController extends Controller
         $currentDate = Carbon::now()->translatedFormat('d F Y');
 
         $data = [
-            'nik' => $request->nik,
-            'nama' => $request->nama,
-            'tempatLahir' => $request->tempatLahir,    
-            'tanggalLahir' => Carbon::parse($request->tanggalLahir)->translatedFormat('d F Y'),
-            'pekerjaan' => $request->pekerjaan,
-            'agama' => $request->agama,
-            'alamat' => $request->alamat,
-            'rw' => $request->rw,
-            'rt' => $request->rt,
+            'nik' => $request->nik_1,
+            'nama' => $request->nama_1,
+            'tempatLahir' => $request->tempatLahir_1,    
+            'tanggalLahir' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
+            'pekerjaan' => $pekerjaan->pekerjaan,
+            'agama' => $request->agama_1,
+            'alamat' => $request->alamat_1,
+            'rw' => $request->rw_1,
+            'rt' => $request->rt_1,
             'usaha' => $request->usaha,
             'base64Image' => $base64Image,
             'date' => $currentDate, 
@@ -56,7 +57,34 @@ class PdfController extends Controller
         $pdf = PDF::loadView('pages.file-downloads.SKU-download', $data);
        
         return $pdf->stream('SKU_' . $request->nama . '.pdf');
-    }    
+    }  
+    
+    public function generateSPMARMS(Request $request)
+    {                       
+        Carbon::setLocale('id');
+        $path = public_path('assets/img/logo.jpg');
+        $base64Image = $this->base64Image($path);
+        $currentYear = Carbon::now()->year;
+        $currentDate = Carbon::now()->translatedFormat('d F Y');
+
+        $data = [
+            'nik' => $request->nik_1,
+            'nama' => $request->nama_1,
+            'tempatLahir' => $request->tempatLahir_1,    
+            'tanggalLahir' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
+            'pekerjaan' => $request->pekerjaan_1,            
+            'alamat' => $request->alamat_1,
+            'rw' => $request->rw_1,
+            'rt' => $request->rt_1,            
+            'base64Image' => $base64Image,
+            'date' => $currentDate, 
+            'year' => $currentYear,
+        ]; 
+              
+        $pdf = PDF::loadView('pages.file-downloads.SPMARMS-download', $data);
+       
+        return $pdf->stream('SKU_' . $request->nama . '.pdf');
+    }  
 
     public function generateSP(Request $request)
     {
@@ -65,23 +93,23 @@ class PdfController extends Controller
         Carbon::setLocale('id');
         $path = public_path('assets/img/logo.jpg');
         $base64Image = $this->base64Image($path);
-        $pekerjaan = Pekerjaan::find($request->pekerjaan);
-        $penduduk = Penduduk::where('nik', $request->nik)->first();
+        $pekerjaan = Pekerjaan::find($request->pekerjaan_1);
+        $penduduk = Penduduk::where('nik', $request->nik_1)->first();
         $currentYear = Carbon::now()->year;
         $currentDate = Carbon::now()->translatedFormat('d F Y');
 
         $data = [
-            'nik' => $request->nik,
-            'noKK' => $request->noKK,
-            'nama' => $request->nama,
-            'tempatLahir' => $request->tempatLahir,    
-            'tanggalLahir' => Carbon::parse($request->tanggalLahir)->translatedFormat('d F Y'),
+            'nik' => $request->nik_1,
+            'noKK' => $request->noKK_1,
+            'nama' => $request->nama_1,
+            'tempatLahir' => $request->tempatLahir_1,    
+            'tanggalLahir' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
             'pekerjaan' => $pekerjaan->pekerjaan,
             'kewarganegaraan' => $penduduk->kewarganegaraan,
-            'agama' => $request->agama,
-            'alamat' => $request->alamat,
-            'rw' => $request->rw,
-            'rt' => $request->rt,
+            'agama' => $request->agama_1,
+            'alamat' => $request->alamat_1,
+            'rw' => $request->rw_1,
+            'rt' => $request->rt_1,
             'keperluan' => $request->keperluan,
             'keterangan' => $request->keterangan,
             'base64Image' => $base64Image,
@@ -94,47 +122,144 @@ class PdfController extends Controller
         return $pdf->stream('Surat_Pengantar_' . $request->nama . '.pdf');
     }   
 
-    public function generateSPTJM(Request $request)
+    public function generatePendaftaranAkta(Request $request)
+    {
+        $penduduk_2 = Penduduk::where('nik', $request->nik_2)->first();            
+        $penduduk_3 = Penduduk::where('nik', $request->nik_3)->first();            
+
+        $saksi_1 = Penduduk::where('nik', $request->nik_saksi_1)->first();
+        $saksi_2 = Penduduk::where('nik', $request->nik_saksi_2)->first();
+
+        $pekerjaan_saksi_1 = $saksi_1->pekerjaan;    
+        $pekerjaan_saksi_2 = $saksi_2->pekerjaan;        
+        
+        Carbon::setLocale('id');
+        $path = public_path('assets/img/logo.jpg');
+        $base64Image = $this->base64Image($path);
+        $pekerjaan = Pekerjaan::find($request->pekerjaan_4);
+        $pekerjaan_saksi_1 = Pekerjaan::find($saksi_1->id);    
+        $pekerjaan_saksi_2 = Pekerjaan::find($saksi_2->id);              
+        
+        $currentYear = Carbon::now()->year;
+        $currentDate = Carbon::now()->translatedFormat('d F Y');
+
+        $data = [
+            'nik_1' => $request->nik_1,
+            'noKK' => $request->noKK,
+            'nama_1' => $request->nama_1,
+            'tempatLahir_1' => $request->tempatLahir_1,    
+            'tanggalLahir_1' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
+            'jenisKelamin_1' => $request->jenisKelamin,                          
+            'anakKe'=> $request->anakKe,
+            'agama' => $request->agama,
+            'tempatDilahirkan' => $request->tempatDilahirkan,
+            'penolongKelahiran' => $request->penolongKelahiran,
+
+            'nik_2' => $request->nik_2,            
+            'nama_2' => $request->nama_2,
+            'jenisKelamin_2' => $penduduk_2->jenisKelamin,
+            'tempatLahir_2' => $request->tempatLahir_2,    
+            'tanggalLahir_2' => Carbon::parse($request->tanggalLahir_2)->translatedFormat('d F Y'),                          
+            'alamat_2' => $request->alamat_2,
+            'rw_2' => $request->rw_2,
+            'rt_2' => $request->rt_2, 
+            'kebangsaan_2' => $penduduk_2->kewarganegaraan,
+
+            'nik_3' => $request->nik_3,            
+            'nama_3' => $request->nama_3,
+            'jenisKelamin_3' => $penduduk_3->jenisKelamin,
+            'tempatLahir_3' => $request->tempatLahir_3,    
+            'tanggalLahir_3' => Carbon::parse($request->tanggalLahir_3)->translatedFormat('d F Y'),                          
+            'alamat_3' => $request->alamat_3,
+            'rw_3' => $request->rw_3,
+            'rt_3' => $request->rt_3, 
+            'kebangsaan_3' => $penduduk_3->kewarganegaraan,
+
+            'nik_4' => $request->nik_4,            
+            'nama_4' => $request->nama_4,
+            'tempatLahir_4' => $request->tempatLahir_4,    
+            'tanggalLahir_4' => Carbon::parse($request->tanggalLahir_4)->translatedFormat('d F Y'),
+            'pekerjaan_4' => $pekerjaan->pekerjaan,           
+            'alamat_4' => $request->alamat_4,
+            'rw_4' => $request->rw_4,
+            'rt_4' => $request->rt_4,
+            'hubungan' => $request->hubungan,
+            'kodePos' => $request->kodePos,
+
+            'nap' => $request->nap,
+            'tap' => Carbon::parse($request->tap)->translatedFormat('d F Y'),
+            'perkawinanSah' => $request->perkawinanSah,
+            'penerbit' => $request->penerbit,
+            
+            'nik_saksi_1' => $request->nik_saksi_1,
+            'nama_saksi_1' => $request->nama_saksi_1,
+            'tempatLahir_saksi_1' => $request->tempatLahir_saksi_1,
+            'tanggalLahir_saksi_1' => Carbon::parse($request->tanggalLahir_saksi_1)->translatedFormat('d F Y'),
+            'alamat_saksi_1' => $request->alamat_saksi_1,
+            'rw_saksi_1' => $request->rw_saksi_1,
+            'rt_saksi_1' => $request->rt_saksi_1,
+            'pekerjaan_saksi_1' => $pekerjaan_saksi_1->pekerjaan,
+
+            'nik_saksi_2' => $request->nik_saksi_2,
+            'nama_saksi_2' => $request->nama_saksi_2,
+            'tempatLahir_saksi_2' => $request->tempatLahir_saksi_2,
+            'tanggalLahir_saksi_2' => Carbon::parse($request->tanggalLahir_saksi_2)->translatedFormat('d F Y'),
+            'alamat_saksi_2' => $request->alamat_saksi_2,
+            'rw_saksi_2' => $request->rw_saksi_2,
+            'rt_saksi_2' => $request->rt_saksi_2,
+            'pekerjaan_saksi_2' => $saksi_2->pekerjaan->pekerjaan,
+            
+            'base64Image' => $base64Image,
+            'date' => $currentDate, 
+            'year' => $currentYear,
+        ]; 
+              
+        $pdf = PDF::loadView('pages.file-downloads.pendaftaran-aktakelahiran-download', $data);
+       
+        return $pdf->stream('Pendaftaran_Akta_Kelahiran_' . $request->nama . '.pdf');
+    }   
+
+    public function generateSPTJMPasutri(Request $request)
     {
         // $penduduk = Penduduk::find($id);            
         
         Carbon::setLocale('id');
         $path = public_path('assets/img/logo.jpg');
         $base64Image = $this->base64Image($path);
-        $pekerjaan = Pekerjaan::find($request->pekerjaan);    
-        $pekerjaanIstri = Pekerjaan::find($request->pekerjaanIstri);
-        $pekerjaanSuami = Pekerjaan::find($request->pekerjaanSuami);
+        $pekerjaan_1 = Pekerjaan::find($request->pekerjaan_1);    
+        $pekerjaan_2 = Pekerjaan::find($request->pekerjaan_2);
+        $pekerjaan_3 = Pekerjaan::find($request->pekerjaan_3);
         $currentYear = Carbon::now()->year;
         $currentDate = Carbon::now()->translatedFormat('d F Y');
 
         $data = [
-            'nik' => $request->nik,
+            'nik_1' => $request->nik_1,
             'noKK' => $request->noKK,
-            'nama' => $request->nama,
-            'tempatLahir' => $request->tempatLahir,    
-            'tanggalLahir' => Carbon::parse($request->tanggalLahir)->translatedFormat('d F Y'),
-            'pekerjaan' => $pekerjaan->pekerjaan,               
-            'alamat' => $request->alamat,
-            'rw' => $request->rw,
-            'rt' => $request->rt,     
+            'nama_1' => $request->nama_1,
+            'tempatLahir_1' => $request->tempatLahir_1,    
+            'tanggalLahir_1' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
+            'pekerjaan_1' => $pekerjaan_1->pekerjaan,               
+            'alamat_1' => $request->alamat_1,
+            'rw_1' => $request->rw_1,
+            'rt_1' => $request->rt_1,     
 
-            'nikIstri' => $request->nikIstri,            
-            'namaIstri' => $request->namaIstri,
-            'tempatLahirIstri' => $request->tempatLahirIstri,    
-            'tanggalLahirIstri' => Carbon::parse($request->tanggalLahirIstri)->translatedFormat('d F Y'),
-            'pekerjaanIstri' => $pekerjaanIstri->pekerjaan,               
-            'alamatIstri' => $request->alamatIstri,
-            'rwIstri' => $request->rwIstri,
-            'rtIstri' => $request->rtIstri, 
+            'nik_2' => $request->nik_2,            
+            'nama_2' => $request->nama_2,
+            'tempatLahir_2' => $request->tempatLahir_2,    
+            'tanggalLahir_2' => Carbon::parse($request->tanggalLahir_2)->translatedFormat('d F Y'),
+            'pekerjaan_2' => $pekerjaan_2->pekerjaan,               
+            'alamat_2' => $request->alamat_2,
+            'rw_2' => $request->rw_2,
+            'rt_2' => $request->rt_2, 
 
-            'nikSuami' => $request->nikSuami,            
-            'namaSuami' => $request->namaSuami,
-            'tempatLahirSuami' => $request->tempatLahirSuami,    
-            'tanggalLahirSuami' => Carbon::parse($request->tanggalLahirSuami)->translatedFormat('d F Y'),
-            'pekerjaanSuami' => $pekerjaanSuami->pekerjaan,               
-            'alamatSuami' => $request->alamatSuami,
-            'rwSuami' => $request->rwSuami,
-            'rtSuami' => $request->rtSuami,   
+            'nik_3' => $request->nik_3,            
+            'nama_3' => $request->nama_3,
+            'tempatLahir_3' => $request->tempatLahir_3,    
+            'tanggalLahir_3' => Carbon::parse($request->tanggalLahir_3)->translatedFormat('d F Y'),
+            'pekerjaan_3' => $pekerjaan_3->pekerjaan,               
+            'alamat_3' => $request->alamat_3,
+            'rw_3' => $request->rw_3,
+            'rt_3' => $request->rt_3,   
 
             'base64Image' => $base64Image,
             'date' => $currentDate, 
@@ -146,12 +271,66 @@ class PdfController extends Controller
         return $pdf->stream('SPTJM_PASUTRI_' . $request->nama . '.pdf');
     }   
 
+    public function generateSPTJMKelahiran(Request $request)
+    {
+        // $penduduk = Penduduk::find($id);            
+        
+        Carbon::setLocale('id');
+        $path = public_path('assets/img/logo.jpg');
+        $base64Image = $this->base64Image($path);
+        $pekerjaan_1 = Pekerjaan::find($request->pekerjaan_1);    
+        $pekerjaan_2 = Pekerjaan::find($request->pekerjaan_2);
+        $pekerjaan_3 = Pekerjaan::find($request->pekerjaan_3);
+        $currentYear = Carbon::now()->year;
+        $currentDate = Carbon::now()->translatedFormat('d F Y');
+
+        $data = [
+            'nik_1' => $request->nik_1,
+            'noKK' => $request->noKK,
+            'nama_1' => $request->nama_1,
+            'anakKe' => $request->anakKe,
+            'jenisKelahiran' => $request->jenisKelahiran,
+            'tempatLahir_1' => $request->tempatLahir_1,    
+            'tanggalLahir_1' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
+            'pekerjaan_1' => $pekerjaan_1->pekerjaan,               
+            'alamat_1' => $request->alamat_1,
+            'rw_1' => $request->rw_1,
+            'rt_1' => $request->rt_1,           
+
+            'nik_2' => $request->nik_2,            
+            'nama_2' => $request->nama_2,
+            'tempatLahir_2' => $request->tempatLahir_2,    
+            'tanggalLahir_2' => Carbon::parse($request->tanggalLahir_2)->translatedFormat('d F Y'),
+            'pekerjaan_2' => $pekerjaan_2->pekerjaan,               
+            'alamat_2' => $request->alamat_2,
+            'rw_2' => $request->rw_2,
+            'rt_2' => $request->rt_2, 
+
+            'nik_3' => $request->nik_3,            
+            'nama_3' => $request->nama_3,
+            'tempatLahir_3' => $request->tempatLahir_3,    
+            'tanggalLahir_3' => Carbon::parse($request->tanggalLahir_3)->translatedFormat('d F Y'),
+            'pekerjaan_3' => $pekerjaan_3->pekerjaan,               
+            'alamat_3' => $request->alamat_3,
+            'rw_3' => $request->rw_3,
+            'rt_3' => $request->rt_3,   
+
+            'base64Image' => $base64Image,
+            'date' => $currentDate, 
+            'year' => $currentYear,
+        ]; 
+              
+        $pdf = PDF::loadView('pages.file-downloads.sptjm-kelahiran-download', $data);
+       
+        return $pdf->stream('SPTJM_KELAHIRAN_' . $request->nama . '.pdf');
+    }   
+
     public function generatePDF(){
         $path = public_path('assets/img/logo.jpg');
         $base64Image = $this->base64Image($path);
         $data = ['base64Image' => $base64Image,];
 
-        $pdf = PDF::loadView('pages.file-downloads.sptjm-kelahiran-download', $data);
+        $pdf = PDF::loadView('pages.file-downloads.perpindahan-penduduk-download', $data);
         return $pdf->stream('SP.pdf');
 
     }

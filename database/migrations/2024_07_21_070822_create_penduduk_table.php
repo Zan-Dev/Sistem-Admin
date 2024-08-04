@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('tempatLahir');
             $table->date('tanggalLahir');            
             $table->string('statusPerkawinan');
+            $table->string('shdk');
             $table->string('jenisKelamin');
             $table->string('kewarganegaraan');
             $table->bigInteger('pekerjaan_id');

@@ -43,7 +43,7 @@
   <!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  <x-navbar-admin></x-navbar-admin>
+  <x-navbar></x-navbar  >
   <!-- End Sidebar-->
   
   <!-- ======= Main Content ======= -->

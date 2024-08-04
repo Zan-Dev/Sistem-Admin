@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class SessionController extends Controller
 {
@@ -11,17 +12,30 @@ class SessionController extends Controller
         return view("sessions.login");
     }
 
-    function authenticate(Request $request){        
-        $remember = !empty($request->remember) ? true : false;
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)){
-            return redirect('/');
-        } else {
-            return redirect()->back()->with('error', 'Masukkan Email dan Password Yang Benar');            
-        }    
+    function authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('/');
+        }
+
+        return back()->with('loginError', 'Login Gagal!');
     }
 
-    function logout(){
+    function logout(Request $request): RedirectResponse
+    {
         Auth::logout();
-        return redirect('login');
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('login');       
     }        
 }

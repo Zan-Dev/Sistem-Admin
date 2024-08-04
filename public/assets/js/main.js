@@ -367,23 +367,23 @@ function setRW() {
   }
 }
 
-function auto_fill() {
-  var nik = $("#nik").val();
+function auto_fill_1() {
+  var nik = $("#nik_1").val();
   $.ajax({
       url: '/get-penduduk',  // URL menuju rute Laravel
       type: 'GET',
       data: { nik: nik },
       success: function (data) {
-          $('#nama').val(data.nama);
-          $('#noKK').val(data.noKK);
-          $('#tempatLahir').val(data.tempatLahir);
-          $('#tanggalLahir').val(data.tanggalLahir);
-          $('#alamat').val(data.alamat);
-          $('#rt').val(data.rt);
-          $('#rw').val(data.rw);
-          $('#agama').val(data.agama);
-          $('#pekerjaan').val(data.pekerjaan_id); 
-          $('#kewarganegaraan').val(data.kewarganegaraan);
+          $('#nama_1').val(data.nama);
+          $('#noKK_1').val(data.noKK);
+          $('#tempatLahir_1').val(data.tempatLahir);
+          $('#tanggalLahir_1').val(data.tanggalLahir);
+          $('#alamat_1').val(data.alamat);
+          $('#rt_1').val(data.rt);
+          $('#rw_1').val(data.rw);
+          $('#agama_1').val(data.agama);
+          $('#pekerjaan_1').val(data.pekerjaan_id); 
+          $('#kewarganegaraan_1').val(data.kewarganegaraan);
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -392,23 +392,24 @@ function auto_fill() {
   });
 }
 
-function auto_fill_form_istri() {
-  var nik = $("#nikIstri").val();
+function auto_fill_2() { 
+  var nik = $("#nik_2").val();
   $.ajax({
       url: '/get-penduduk',  // URL menuju rute Laravel
       type: 'GET',
       data: { nik: nik },
       success: function (data) {
-          $('#namaIstri').val(data.nama);
-          $('#noKKIstri').val(data.noKK);
-          $('#tempatLahirIstri').val(data.tempatLahir);
-          $('#tanggalLahirIstri').val(data.tanggalLahir);
-          $('#alamatIstri').val(data.alamat);
-          $('#rtIstri').val(data.rt);
-          $('#rwIstri').val(data.rw);
-          $('#agamaIstri').val(data.agama);
-          $('#pekerjaanIstri').val(data.pekerjaan_id); 
-          $('#kewarganegaraanIstri').val(data.kewarganegaraan);
+          $('#nama_2').val(data.nama);
+          $('#noKK_2').val(data.noKK);
+          $('#tempatLahir_2').val(data.tempatLahir);
+          $('#tanggalLahir_2').val(data.tanggalLahir);
+          $('#alamat_2').val(data.alamat);
+          $('#rt_2').val(data.rt);
+          $('#rw_2').val(data.rw);
+          $('#agama_2').val(data.agama);
+          $('#pekerjaan_2').val(data.pekerjaan_id); 
+          $('#kewarganegaraan_2').val(data.kewarganegaraan);
+          $('#shdk_2').val(data.shdk);
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -417,23 +418,23 @@ function auto_fill_form_istri() {
   });
 }
 
-function auto_fill_form_suami() {
-  var nik = $("#nikSuami").val();
+function auto_fill_3() {
+  var nik = $("#nik_3").val();
   $.ajax({
       url: '/get-penduduk',  // URL menuju rute Laravel
       type: 'GET',
       data: { nik: nik },
       success: function (data) {
-          $('#namaSuami').val(data.nama);
-          $('#noKKSuami').val(data.noKK);
-          $('#tempatLahirSuami').val(data.tempatLahir);
-          $('#tanggalLahirSuami').val(data.tanggalLahir);
-          $('#alamatSuami').val(data.alamat);
-          $('#rtSuami').val(data.rt);
-          $('#rwSuami').val(data.rw);
-          $('#agamaSuami').val(data.agama);
-          $('#pekerjaanSuami').val(data.pekerjaan_id); 
-          $('#kewarganegaraanSuami').val(data.kewarganegaraan);
+          $('#nama_3').val(data.nama);
+          $('#noKK_3').val(data.noKK);
+          $('#tempatLahir_3').val(data.tempatLahir);
+          $('#tanggalLahir_3').val(data.tanggalLahir);
+          $('#alamat_3').val(data.alamat);
+          $('#rt_3').val(data.rt);
+          $('#rw_3').val(data.rw);
+          $('#agama_3').val(data.agama);
+          $('#pekerjaan_3').val(data.pekerjaan_id); 
+          $('#kewarganegaraan_3').val(data.kewarganegaraan);
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -441,18 +442,92 @@ function auto_fill_form_suami() {
       }
   });
 }
+
+function auto_fill_4() {
+  var nik = $("#nik_4").val();
+  $.ajax({
+      url: '/get-penduduk',  // URL menuju rute Laravel
+      type: 'GET',
+      data: { nik: nik },
+      success: function (data) {
+          $('#nama_4').val(data.nama);
+          $('#noKK_4').val(data.noKK);
+          $('#tempatLahir_4').val(data.tempatLahir);
+          $('#tanggalLahir_4').val(data.tanggalLahir);
+          $('#alamat_4').val(data.alamat);
+          $('#rt_4').val(data.rt);
+          $('#rw_4').val(data.rw);
+          $('#agama_4').val(data.agama);
+          $('#pekerjaan_4').val(data.pekerjaan_id);           
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log('Error: ' + textStatus + ' - ' + errorThrown);
+      }
+  });
+}
+
+function auto_fill_saksi_1() {
+  var nik = $("#nik_saksi_1").val();  
+  $.ajax({
+      url: '/get-penduduk',  // URL menuju rute Laravel
+      type: 'GET',
+      data: { nik: nik },      
+      success: function (data) {
+          $('#nama_saksi_1').val(data.nama);
+          $('#noKK_saksi_1').val(data.noKK);
+          $('#tempatLahir_saksi_1').val(data.tempatLahir);
+          $('#tanggalLahir_saksi_1').val(data.tanggalLahir);
+          $('#alamat_saksi_1').val(data.alamat);
+          $('#rt_saksi_1').val(data.rt);
+          $('#rw_saksi_1').val(data.rw);
+          $('#agama_saksi_1').val(data.agama);
+          $('#pekerjaan_saksi_1').val(data.pekerjaan_id);           
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log('Error: ' + textStatus + ' - ' + errorThrown);
+      }
+  });
+}
+
+function auto_fill_saksi_2() {
+  var nik = $("#nik_saksi_2").val();  
+  $.ajax({
+      url: '/get-penduduk',  // URL menuju rute Laravel
+      type: 'GET',
+      data: { nik: nik },      
+      success: function (data) {
+          $('#nama_saksi_2').val(data.nama);
+          $('#noKK_saksi_2').val(data.noKK);
+          $('#tempatLahir_saksi_2').val(data.tempatLahir);
+          $('#tanggalLahir_saksi_2').val(data.tanggalLahir);
+          $('#alamat_saksi_2').val(data.alamat);
+          $('#rt_saksi_2').val(data.rt);
+          $('#rw_saksi_2').val(data.rw);
+          $('#agama_saksi_2').val(data.agama);
+          $('#pekerjaan_saksi_2').val(data.pekerjaan_id);           
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log('Error: ' + textStatus + ' - ' + errorThrown);
+      }
+  });
+}
+
+
+
 
 function showPage(pageId) {
   const currentActive = document.querySelector('.page.active');
   const nextPage = document.getElementById(pageId);
   
-
   if (currentActive) {
       currentActive.classList.remove('active');
       currentActive.classList.add('hidden');
       
       // Set direction of current page transition
-      if (nextPage.id === 'istri' || nextPage.id === 'suami') {
+      if (nextPage.id === '2' || nextPage.id === '3' || nextPage.id === '4' || nextPage.id === '5' || nextPage.id === '6') {
           currentActive.classList.add('right');
       } else {
           currentActive.classList.add('left');
@@ -466,8 +541,55 @@ function showPage(pageId) {
 
 // Menampilkan halaman pertama secara default
 document.addEventListener('DOMContentLoaded', () => {
-  showPage('yang-menyatakan');
+  showPage('1');
 });
+
+
+// Add Form
+  let rowCount = 1;
+
+  function addRow() {
+    const container = document.getElementById('register-form');
+    const newRow = document.createElement('div');
+    newRow.className = 'form-row';
+    newRow.id = `row-${rowCount}`;
+
+    newRow.innerHTML = `
+      <div class="form-group">
+        <label for="nik_${rowCount}">NIK</label>
+        <select name="nik_${rowCount}" id="nik_${rowCount}" onchange="auto_fill(${rowCount})" required>
+          <option value=""></option>
+          @foreach($penduduk as $data)
+            <option value="{{ $data->nik }}">{{ $data->nik }}</option>
+          @endforeach
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="nama_${rowCount}">Nama</label>
+        <input type="text" name="nama_${rowCount}" id="nama_${rowCount}" required/>
+      </div>
+      <div class="form-group">
+        <label for="shdk_${rowCount}">Status</label>
+        <input type="text" name="shdk_${rowCount}" id="shdk_${rowCount}" required/>
+      </div>
+       <button type="button" onclick="removeRow('row-${rowCount}')">Hapus</button>
+    `;
+
+    container.appendChild(newRow);
+    rowCount++;
+  }
+
+  function removeRow(rowId) {
+    const row = document.getElementById(rowId);
+    if (row) {
+      row.parentNode.removeChild(row);
+    }
+  }
+
+  function auto_fill(rowId) {
+    // Implement your auto_fill logic here
+    // For example, you might use AJAX to fetch data based on selected NIK
+  }
 
 
 

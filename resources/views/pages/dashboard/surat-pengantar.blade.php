@@ -23,8 +23,8 @@
                             @csrf
                             <h2>Buat Surat Pengantar</h2>                          
                             <div class="form-group-full">
-                              <label for="nik">NIK</label>
-                              <select name="nik" id="nik" onchange="auto_fill()" required>
+                              <label for="nik_1">NIK</label>
+                              <select name="nik_1" id="nik_1" onchange="auto_fill_1()" required>
                                   <option value=""></option>
                                 @foreach($penduduk as $data)
                                   <option value="{{ $data->nik }}">{{ $data->nik }}</option>
@@ -32,28 +32,28 @@
                               </select>
                             </div>
                             <div class="form-group-full">
-                                <label for="noKK">No KK</label>
-                                <input type="text" name="noKK" id="noKK" required/>
+                                <label for="noKK_1">No KK</label>
+                                <input type="text" name="noKK_1" id="noKK_1" required/>
                             </div>
                             <div class="form-group-full">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" id="nama" required/>
+                                <label for="nama_1">Nama</label>
+                                <input type="text" name="nama_1" id="nama_1" required/>
                             </div>                       
                             <div class="form-group-full">
-                                <label for="tempatLahir">Tempat Lahir</label>
-                                <input type="text" name="tempatLahir" id="tempatLahir" required/>
+                                <label for="tempatLahir_1">Tempat Lahir</label>
+                                <input type="text" name="tempatLahir_1" id="tempatLahir_1" required/>
                             </div>
                             <div class="form-group">
-                                <label for="tanggaLahir">Tanggal Lahir</label>
+                                <label for="tanggaLahir_1">Tanggal Lahir</label>
                                 <div class="col-sm-10">
-                                    <input type="date" name="tanggalLahir" id="tanggalLahir" class="form-control" required>
+                                    <input type="date" name="tanggalLahir_1" id="tanggalLahir_1" class="form-control" required>
                                 </div>
                             </div>         
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="alamat">Alamat</label>
+                                    <label for="alamat_1">Alamat</label>
                                     <div class="form-select">
-                                        <select name="alamat" id="alamat" onchange="setRW()" required>
+                                        <select name="alamat_1" id="alamat_1" onchange="setRW()" required>
                                             <option value=""></option>
                                             <option value="Manggungmangu">Manggungmangu</option>
                                             <option value="Parakan">Parakan</option>
@@ -63,9 +63,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group-rw">
-                                    <label for="rw">RW</label>
+                                    <label for="rw_1">RW</label>
                                     <div class="form-select">
-                                        <select name="rw" id="rw" required>
+                                        <select name="rw_1" id="rw_1" required>
                                             <option value=""></option>
                                             <option id="rw1" value="1">1</option>
                                             <option id="rw2" value="2">2</option>
@@ -75,9 +75,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group-rt" >
-                                    <label for="rt">RT</label>
+                                    <label for="rt_1">RT</label>
                                     <div class="form-select">
-                                        <select name="rt" id="rt" required>
+                                        <select name="rt_1" id="rt_1" required>
                                             <option value=""></option>
                                             <option id="rt1" value="1">1</option>
                                             <option id="rt2" value="2">2</option>
@@ -107,9 +107,9 @@
                             </div>                     
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="agama">Agama</label>
+                                    <label for="agama_1">Agama</label>
                                     <div class="form-select">
-                                        <select name="agama" id="agama" required>
+                                        <select name="agama_1" id="agama_1" required>
                                             <option value=""></option>
                                             <option value="Islam">Islam</option>
                                             <option value="Hindu">Hindu</option>
@@ -122,11 +122,11 @@
                                     </div>
                                 </div> 
                                 <div class="form-group">
-                                  <label for="pekerjaan">Pekerjaan</label>
+                                  <label for="pekerjaan_1">Pekerjaan</label>
                                   <div class="form-select">
-                                      <select name="pekerjaan" id="pekerjaan" required>
+                                      <select name="pekerjaan_1" id="pekerjaan_1" required>
                                           @foreach($pekerjaan as $kerja)
-                                              <option id="pekerjaan" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
+                                              <option id="pekerjaan_1" value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
                                           @endforeach
                                       </select>
                                       <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>

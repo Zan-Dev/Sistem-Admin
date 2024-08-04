@@ -21,6 +21,15 @@
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
+      
+      @if (Auth::user()->role == 'Admin')
+        <li class="nav-item">
+          <a class="{{ request()->is('users') ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('users') }}">
+            <i class="bi bi-people"></i>
+            <span>Users</span>
+          </a>
+        </li><!-- End Profile Page Nav -->
+      @endif      
     </ul>
 
   </aside>

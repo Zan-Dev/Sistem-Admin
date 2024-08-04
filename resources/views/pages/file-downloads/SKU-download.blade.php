@@ -100,7 +100,7 @@
             <p>Kepala Desa Manggungmangu Kecamatan Plantungan Kabupaten Kendal, dengan ini menerangkan bahwa :</p>
             <table class="table-content">
                 <tr>
-                    <td style="width: 20px;">Nama</td>
+                    <td style="width: 50px;">Nama</td>
                     <td style="text-align: right; width: 50px;">:</td>
                     <td>{{ $nama }}</td>
                 </tr>
