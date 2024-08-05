@@ -35,12 +35,18 @@ Route::middleware('auth')->group(function(){
     Route::post('/pendaftaran-akta-download', [PdfController::class, 'generatePendaftaranAkta'])->name('PendaftaranAktaDownload');
     Route::post('/perubahan-elemen-download', [PdfController::class, 'generatePerubahanElemen'])->name('PerubahanElemenDownload');
 
-    Route::get('/users', [UserController::class, 'users'])->name('users')->middleware('auth', 'Admin');
-    Route::get('/users/tambah', [UserController::class, 'add'])->name('user.tambah');
-    Route::post('/users/submit', [UserController::class, 'submit'])->name('user.submit');
-    Route::post('/users/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::post('/users/changePassword/{id}', [UserController::class, 'changePassword'])->name('changePassword');
-    Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    Route::get('/users', [UserController::class, 'users'])
+        ->name('users')->middleware('Admin');
+    Route::get('/users/tambah', [UserController::class, 'add'])
+        ->name('user.tambah')->middleware('Admin');;
+    Route::post('/users/submit', [UserController::class, 'submit'])
+        ->name('user.submit')->middleware('Admin');;
+    Route::post('/users/update/{id}', [UserController::class, 'update'])
+        ->name('user.update')->middleware('Admin');;
+    Route::post('/users/changePassword/{id}', [UserController::class, 'changePassword'])
+        ->name('changePassword')->middleware('Admin');;
+    Route::get('/users/delete/{id}', [UserController::class, 'delete'])
+        ->name('user.delete')->middleware('Admin');;
     Route::get('/myprofile', [UserController::class, 'profile'])->name('profile');
 
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');

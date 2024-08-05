@@ -3,8 +3,8 @@
     <h1>Tambah Data Warga</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>          
-        <li class="breadcrumb-item active"><a href="/datapenduduk">Source Data</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>          
+        <li class="breadcrumb-item active"><a href="{{ route('dataPenduduk') }}">Source Data</a></li>
         <li class="breadcrumb-item active">Tambah Data Warga</li>
       </ol>
     </nav>

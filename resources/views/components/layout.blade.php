@@ -36,7 +36,7 @@
   <link href="{{ asset("assets/css/style.css") }}" rel="stylesheet">
 </head>
 
-<body>
+<body background="public\assets\img\main-background.jpg">
 
   <!-- ======= Header ======= -->
   <x-header></x-header>
@@ -47,7 +47,7 @@
   <!-- End Sidebar-->
   
   <!-- ======= Main Content ======= -->
-  <main id="main" class="main">
+  <main id="main" class="main" style="background-image: url('public\assets\img\main-background.jpg');">
     {{ $slot }}
   </main>
   <!-- End Sidebar-->

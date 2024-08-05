@@ -7,7 +7,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  background: #f6f9ff;  
   color: #444444;
 }
 
@@ -38,7 +38,7 @@ h6 {
 #main {
   margin-top: 60px;
   padding: 20px 30px;
-  transition: all 0.3s;
+  transition: all 0.3s;  
 }
 
 @media (max-width: 1199px) {
@@ -238,9 +238,6 @@ h6 {
   color: #899bbd;
   font-size: 14px;
   font-weight: 400;
-}
-
-.card-body {  
 }
 
 .card-img-overlay {
@@ -969,6 +966,7 @@ h6 {
   font-size: 15px;
 }
 
+
 .datatable th, .datatable td {
   white-space: nowrap; /* Prevent text wrapping */
 }
@@ -1483,10 +1481,26 @@ input[type="radio"] {
 }
 
 .login {
+  position: relative;
   display: flex;
   align-items: center;
   min-height: 100vh;  
-  padding-bottom: 2rem;
+  height: 300px;
+  padding-bottom: 2rem;  
+  overflow: hidden;
+}
+
+.login::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/main-background.jpg');  
+  background-size: cover;
+  opacity: 0.3;
+  z-index: -1;
 }
 
 @media (min-width: 768px) {
@@ -1507,23 +1521,28 @@ input[type="radio"] {
     height: 37px; }
 
 .login-card {
+  background-color: white;
   border: 0;
   border-radius: 27.5px;
   box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
   overflow: hidden; }
   .login-card-img {
-    border-radius: 0;
-    position: absolute;
     width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover; }
+    vertical-align: middle;
+    border-radius: 0;  
+    height: 100%;    
+    object-fit: cover; }
   .login-card .card-body {
     padding: 20px 60px 20px; }
     @media (max-width: 422px) {
       .login-card .card-body {
         padding: 35px 24px; } }
-  .login-card-description {
+  .login-card-description {    
+    font-family: 'Arial', sans-serif;
+      font-size: 1.5em;      
+      text-align: center;      
+      padding: 15px;            
+      transition: transform 0.3s, box-shadow 0.3s;
     font-size: 25px;
     color: #000;
     font-weight: normal;
@@ -1575,7 +1594,42 @@ input[type="radio"] {
   .login-card-footer-nav a {
     font-size: 14px;
     color: #919aa3; }
+  
 
+  .login-card-description:hover {
+      transform: scale(1.05);      
+  }
+
+/*--------------------------------------------------------------
+# Slide Show Image
+--------------------------------------------------------------*/
+.slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mySlides {
+  display: none;
+}
+
+.login-card-img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
 
 /*--------------------------------------------------------------
 # Footer
@@ -1600,3 +1654,12 @@ input[type="radio"] {
 }
 
 
+
+/*--------------------------------------------------------------
+# Other
+--------------------------------------------------------------*/
+.centered-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+}

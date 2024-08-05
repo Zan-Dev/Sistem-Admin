@@ -2,7 +2,7 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-        <a class="{{ request()->is('/') ? 'nav-link' : 'nav-link collapsed' }}" href="/">
+        <a class="{{ request()->is('dashboard') ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('dashboard') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -16,7 +16,7 @@
       </li><!-- End Source Data Nav -->  
       
       <li class="nav-item">
-        <a class="{{ request()->is('myprofile') ? 'nav-link' : 'nav-link collapsed' }}" href="/myprofile">
+        <a class="{{ request()->is('profile') ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('profile') }}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>

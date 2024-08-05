@@ -3,8 +3,8 @@
     <h1>Edit Data Warga</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>          
-        <li class="breadcrumb-item active"><a href="/dataPenduduk">Source Data</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>          
+        <li class="breadcrumb-item active"><a href="{{ route('dataPenduduk') }}">Source Data</a></li>
         <li class="breadcrumb-item active">Edit Data Warga</li>
       </ol>
     </nav>
