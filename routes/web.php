@@ -49,10 +49,13 @@ Route::middleware('auth')->group(function(){
 Route::get('/login', [SessionController::class, 'loginForm'])->name('login')->middleware('guest');
 Route::post('/login', [SessionController::class, 'authenticate']);
 
+Route::get('/', function(){
+    return view('sessions.login');
+});
 
 
 
 
 // try & test
-Route::get('/surat-pengantar-view', [PdfController::class, 'generatePDF'])->name('surat-pengantar');
-Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])->name('autofill');
+// Route::get('/surat-pengantar-view', [PdfController::class, 'generatePDF'])->name('surat-pengantar');
+// Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])->name('autofill');
