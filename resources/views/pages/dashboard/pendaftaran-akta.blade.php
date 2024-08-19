@@ -629,7 +629,7 @@
           <!-- End Left side columns -->
       
           <!-- Right side columns -->
-          <div class="col-md-12 mt-10">
+          {{-- <div class="col-md-12 mt-10">
       
             <!-- Recent Activity -->
             <div class="card">
@@ -705,7 +705,7 @@
             </div>
             <!-- End Recent Activity --> 
       
-          </div>
+          </div> --}}
           <!-- End Right side columns -->
 
           <div class="col-md-12 mb-9"></div>        

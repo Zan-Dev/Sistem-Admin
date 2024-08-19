@@ -335,10 +335,11 @@
                                     </div>
                                 </div>           
                                 <div class="form-group-full">
-                                  <label for="noKK">No KK Keluarga</label>
-                                  <select name="noKK" id="noKK" required>
+                                  <label for="noKK_3">No KK Keluarga</label>
+                                  <select name="noKK_3" id="noKK_3" required>
+                                        <option id="noKK_3" value=""></option>
                                     @foreach($penduduk as $penduduk)
-                                        <option id="noKK" value="{{ $penduduk->noKK }}">{{ $penduduk->noKK }}</option>
+                                        <option id="noKK_3" value="{{ $penduduk->noKK }}">{{ $penduduk->noKK }}</option>
                                     @endforeach
                                 </select>
                                 </div>                                                                     
@@ -357,7 +358,7 @@
           <!-- End Left side columns -->
       
           <!-- Right side columns -->
-          <div class="col-lg-4">
+          {{-- <div class="col-lg-4">
       
             <!-- Recent Activity -->
             <div class="card">
@@ -433,7 +434,7 @@
             </div>
             <!-- End Recent Activity --> 
       
-          </div>
+          </div> --}}
           <!-- End Right side columns -->
       
         </div>

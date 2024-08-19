@@ -176,7 +176,7 @@
                     <td colspan="3">Dusun {{ $alamat_3 }} Desa Manggungmangu RT 0{{ $rt_3 }} RW 0{{ $rw_3 }} Kecamatan Plantungan Kabupaten Kendal Jawa Tengah</td>
                 </tr>                
             </table> 
-            <p>Sebagaimana tercantum dalam Kartu Keluarga (KK) Nomor : {{ $noKK }}</p>
+            <p>Sebagaimana tercantum dalam Kartu Keluarga (KK) Nomor : {{ $noKK_3 }}</p>
             <p>Demikian surat pernyataan ini saya buat dengan sebenar-benarnya dan apabila dikemudian hari 
                 ternyata pernyataan saya ini tidak benar, maka saya bersedia diproses secara hukum sesuai dengan 
                 peraturan perundang-undangan dan dokumen yang diterbitkan dari pernyataan ini menjadi tidak sah.</p>

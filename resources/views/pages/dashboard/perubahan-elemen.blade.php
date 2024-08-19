@@ -260,7 +260,7 @@
           <!-- End Left side columns -->
       
           <!-- Right side columns -->
-          <div class="col-lg-4">
+          {{-- <div class="col-lg-4">
       
             <!-- Recent Activity -->
             <div class="card">
@@ -336,7 +336,7 @@
             </div>
             <!-- End Recent Activity --> 
       
-          </div>
+          </div> --}}
           <!-- End Right side columns -->
       
         </div>

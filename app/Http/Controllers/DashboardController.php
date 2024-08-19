@@ -5,25 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pekerjaan;
 use App\Models\Penduduk;
+use App\Models\Pegawai;
 
 class DashboardController extends Controller
 {
 
     public function showDashboard(){
-        return view('pages.dashboard.dahshboard');
+        return view('pages.dashboard.dashboard');
     }
     public function showFormSKU()
     {
         $pekerjaan = Pekerjaan::all();
         $penduduk = Penduduk::all();
-        return view('pages.dashboard.sku', compact('pekerjaan', 'penduduk'));
+        $pegawai = Pegawai::all();
+        return view('pages.dashboard.sku', compact('pekerjaan', 'penduduk', 'pegawai'));
     }
 
     public function showFormSP()
     {
         $pekerjaan = Pekerjaan::all();
         $penduduk = Penduduk::all();
-        return view('pages.dashboard.surat-pengantar', compact('pekerjaan', 'penduduk'));
+        $pegawai = Pegawai::all();
+        return view('pages.dashboard.surat-pengantar', compact('pekerjaan', 'penduduk', 'pegawai'));
     }
 
     public function showFormSPMARMS()

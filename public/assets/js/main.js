@@ -383,8 +383,7 @@ function auto_fill_1() {
           $('#rw_1').val(data.rw);
           $('#agama_1').val(data.agama);
           $('#pekerjaan_1').val(data.pekerjaan_id); 
-          $('#kewarganegaraan_1').val(data.kewarganegaraan);
-
+          $('#kewarganegaraan_1').val(data.kewarganegaraan);          
       },
       error: function (jqXHR, textStatus, errorThrown) {
           console.log('Error: ' + textStatus + ' - ' + errorThrown);

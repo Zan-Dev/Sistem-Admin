@@ -167,7 +167,7 @@
                 </tr>  
                 <tr>
                     <td></td><td></td>
-                    <td>{{ $keterangan }}</td>
+                    <td colspan="4">{{ $keterangan }}</td>
                 </tr>              
             </table>                           
         </div>        
@@ -185,12 +185,12 @@
                 <td></td>
             </tr>
             <tr>
-                <td style="text-align: center; padding-bottom: 60px;"><p>Kepala Desa Manggungmangu</p></td>
+                <td style="text-align: center; padding-bottom: 60px;"><p>{{ $jabatanPerangkat }}</p></td>
                 <td></td>
                 <td style="text-align: center; padding-bottom: 60px;"><p>Nama Pemohon</p></td>
             </tr>
             <tr>
-                <td style="text-align: center;"><p><b><u>SUJARMONO</u></b></p></td>
+                <td style="text-align: center;"><p><b><u>{{ $namaPerangkat }}</u></b></p></td>
                 <td></td>
                 <td style="text-align: center;"><p>{{ $nama }}</p></td>
             </tr>   

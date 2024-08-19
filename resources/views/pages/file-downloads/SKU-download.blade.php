@@ -151,8 +151,8 @@
             <tr>
                 <td>
                     <div class="signature">
-                        <p>Kepala Desa Manggungmangu</p>
-                        <p><b><u>SUJARMONO</u></b></p>
+                        <p>{{ $jabatanPerangkat }}</p>
+                        <p><b><u>{{ $namaPerangkat }}</u></b></p>
                     </div>
                 </td>
             </tr>        

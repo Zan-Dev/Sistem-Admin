@@ -24,12 +24,12 @@
                             <h2>Buat Surat Keterangan Usaha</h2>                          
                             <div class="form-group-full">
                               <label for="nik_1">NIK</label>
-                              <select name="nik_1" id="nik_1" onchange="auto_fill_1()" required>
-                                  <option value=""></option>
+                              <input type="text" name="nik_1" id="nik_1" list="NIKList" onchange="auto_fill_1()" required/>
+                              <datalist id="NIKList">
                                 @foreach($penduduk as $data)
-                                  <option value="{{ $data->nik }}">{{ $data->nik }}</option>
+                                <option value="{{ $data->nik }}">{{ $data->nik }}</option>
                                 @endforeach
-                              </select>
+                              </datalist>
                             </div>
                             <div class="form-group-full">
                                 <label for="nama_1">Nama</label>
@@ -133,6 +133,17 @@
                                 <label for="usaha">Usaha</label>
                                 <input type="text" name="usaha" id="usaha" required/>
                             </div>   
+                            <div class="form-group-full">
+                              <label for="ttd">TTD Perangkat Desa</label>
+                              <div class="form-select">
+                                  <select name="ttdPerangkat" id="ttdPerangkat" required>
+                                      @foreach($pegawai as $pegawai)
+                                          <option id="ttdPerangkat" value="{{ $pegawai->nik }}">{{ $pegawai->jabatan }}</option>
+                                      @endforeach
+                                  </select>
+                                  <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                              </div>
+                            </div> 
                             <div class="form-submit">                                                             
                               <button class="submit" id="submit">Buat</button>                                                                                    
                             </div>
@@ -145,7 +156,7 @@
           <!-- End Left side columns -->
       
           <!-- Right side columns -->
-          <div class="col-lg-4">
+          {{-- <div class="col-lg-4">
       
             <!-- Recent Activity -->
             <div class="card">
@@ -221,7 +232,7 @@
             </div>
             <!-- End Recent Activity --> 
       
-          </div>
+          </div> --}}
           <!-- End Right side columns -->
       
         </div>

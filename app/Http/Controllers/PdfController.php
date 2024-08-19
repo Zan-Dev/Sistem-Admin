@@ -7,6 +7,9 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Penduduk;
 use App\Models\Pekerjaan;
+use App\Models\Pegawai;
+use App\Models\RW;
+use App\Models\RT;
 use Carbon\Carbon;
 
     
@@ -29,8 +32,11 @@ class PdfController extends Controller
      */
     public function generateSKU(Request $request)
     {
-        // $penduduk = Penduduk::find($id);        
-        
+        // $penduduk = Penduduk::find($id);     
+
+        $nikPerangkat = $request->ttdPerangkat;        
+        $perangkat = Pegawai::where('nik',$nikPerangkat)->first(); 
+        $namaPerangkat = Penduduk::where('nik',$nikPerangkat)->first();
         $pekerjaan = Pekerjaan::find($request->pekerjaan_1);
         Carbon::setLocale('id');
         $path = public_path('assets/img/logo.jpg');
@@ -48,6 +54,8 @@ class PdfController extends Controller
             'alamat' => $request->alamat_1,
             'rw' => $request->rw_1,
             'rt' => $request->rt_1,
+            'jabatanPerangkat' => $perangkat->jabatan,
+            'namaPerangkat' => $namaPerangkat->nama,
             'usaha' => $request->usaha,
             'base64Image' => $base64Image,
             'date' => $currentDate, 
@@ -66,16 +74,21 @@ class PdfController extends Controller
         $base64Image = $this->base64Image($path);
         $currentYear = Carbon::now()->year;
         $currentDate = Carbon::now()->translatedFormat('d F Y');
+        $rw = RW::where('id', $request->rw_1)->first();    
+        $rt = RT::where('id', $request->rt_1)->first();
+        $pekerjaan = Pekerjaan::where('id', $request->pekerjaan_1)->first();
 
         $data = [
             'nik' => $request->nik_1,
             'nama' => $request->nama_1,
             'tempatLahir' => $request->tempatLahir_1,    
             'tanggalLahir' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
-            'pekerjaan' => $request->pekerjaan_1,            
+            'pekerjaan' => $pekerjaan->pekerjaan,            
             'alamat' => $request->alamat_1,
             'rw' => $request->rw_1,
-            'rt' => $request->rt_1,            
+            'rt' => $request->rt_1,   
+            'ketuaRW' => $rw->ketua_rw,
+            'ketuaRT' => $rt->ketua_rt,
             'base64Image' => $base64Image,
             'date' => $currentDate, 
             'year' => $currentYear,
@@ -95,6 +108,9 @@ class PdfController extends Controller
         $base64Image = $this->base64Image($path);
         $pekerjaan = Pekerjaan::find($request->pekerjaan_1);
         $penduduk = Penduduk::where('nik', $request->nik_1)->first();
+        $nikPerangkat = $request->ttdPerangkat;        
+        $perangkat = Pegawai::where('nik',$nikPerangkat)->first(); 
+        $namaPerangkat = Penduduk::where('nik',$nikPerangkat)->first();     
         $currentYear = Carbon::now()->year;
         $currentDate = Carbon::now()->translatedFormat('d F Y');
 
@@ -110,6 +126,8 @@ class PdfController extends Controller
             'alamat' => $request->alamat_1,
             'rw' => $request->rw_1,
             'rt' => $request->rt_1,
+            'jabatanPerangkat' => $perangkat->jabatan,
+            'namaPerangkat' => $namaPerangkat->nama,
             'keperluan' => $request->keperluan,
             'keterangan' => $request->keterangan,
             'base64Image' => $base64Image,
@@ -117,6 +135,7 @@ class PdfController extends Controller
             'year' => $currentYear,
         ]; 
               
+        // dd($data);
         $pdf = PDF::loadView('pages.file-downloads.surat-pengantar-download', $data);
        
         return $pdf->stream('Surat_Pengantar_' . $request->nama . '.pdf');
@@ -233,8 +252,7 @@ class PdfController extends Controller
         $currentDate = Carbon::now()->translatedFormat('d F Y');
 
         $data = [
-            'nik_1' => $request->nik_1,
-            'noKK' => $request->noKK,
+            'nik_1' => $request->nik_1,            
             'nama_1' => $request->nama_1,
             'tempatLahir_1' => $request->tempatLahir_1,    
             'tanggalLahir_1' => Carbon::parse($request->tanggalLahir_1)->translatedFormat('d F Y'),
@@ -252,7 +270,8 @@ class PdfController extends Controller
             'rw_2' => $request->rw_2,
             'rt_2' => $request->rt_2, 
 
-            'nik_3' => $request->nik_3,            
+            'nik_3' => $request->nik_3,
+            'noKK_3' => $request->noKK_3,            
             'nama_3' => $request->nama_3,
             'tempatLahir_3' => $request->tempatLahir_3,    
             'tanggalLahir_3' => Carbon::parse($request->tanggalLahir_3)->translatedFormat('d F Y'),

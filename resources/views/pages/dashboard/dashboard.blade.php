@@ -20,12 +20,12 @@
           {{-- SKU --}}
           <div class="col-xxl-4 col-md-6">
             <a href="{{ route('sku') }}" class="">
-              <div class="card info-card sales-card height-card">                        
+              <div class="card info-card revenue-card height-card">                        
                   <div class="card-body align-items-center">                
                       <h5 class="card-title">SURAT KETERANGAN USAHA</h5>
-                      <div class="d-flex align-items-center justify-content-center">
+                      <div class="icon-container d-flex align-items-center justify-content-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
-                          <i class="bi bi-cart"></i>
+                          <i class="ri-file-list-3-line"></i>
                         </div>                  
                       </div>                  
                   </div>              
@@ -39,9 +39,9 @@
               <div class="card info-card revenue-card height-card">                
                 <div class="card-body">                
                     <h5 class="card-title">SURAT PENGANTAR</h5>
-                    <div class="d-flex align-items-center justify-content-center">
+                    <div class="icon-container d-flex align-items-center justify-content-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
-                        <i class="bi bi-currency-dollar"></i>
+                        <i class="ri-file-list-line"></i>
                       </div>                  
                     </div>                  
                 </div>
@@ -49,81 +49,15 @@
             </a>
           </div>
           
-
-          {{-- F1.01 --}}
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">   
-              <a href="{{ route('surat-pengantar') }}" class="">
-                <div class="card-body">
-                  <h5 class="card-title">F1.01</h5>                
-    
-                  <div class="d-flex align-items-center justify-content-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>                  
-                  </div>
-                </div>
-              </a>                           
-            </div>
-          </div>
-  
-          {{-- F2.01 --}}
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card height-card">                
-              <div class="card-body">
-                <h5 class="card-title">F2.01 (SURAT KETERANGAN LAHIR)</h5>
-  
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>                  
-                </div>
-              </div>
-  
-            </div>
-          </div>
-  
-          {{-- Surat Pernyataan Perubahan Eleman Data Kependudukan --}}
-          <div class="col-xxl-4 col-md-6">
-            <a href="{{ route('perubahanElemen') }}">
-              <div class="card info-card revenue-card height-card">                
-                <div class="card-body">
-                  <h5 class="card-title">SURAT PERNYATAAN PERUBAHAN ELEMEN DATA KEPENDUDUKAN</h5>
-                  <div class="d-flex align-items-center justify-content-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>                
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-  
-          {{-- Pendaftaran Perpindahan Penduduk --}}
-          <div class="col-xxl-4 col-md-6">
-            <a href="#">
-              <div class="card info-card revenue-card height-card">                
-                <div class="card-body">
-                  <h5 class="card-title">PENDAFTARAN PERPINDAHAN PENDUDUK</h5>  
-                  <div class="d-flex align-items-center justify-content-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>                 
-                  </div>
-                </div>  
-              </div>
-            </a>
-          </div>
-  
           {{-- SPTJM Kelahiran --}}
           <div class="col-xxl-4 col-md-6">
             <a href="{{ route('sptjmKelahiran') }}">
               <div class="card info-card revenue-card height-card">                
                 <div class="card-body">
                   <h5 class="card-title">SPTJM KELAHIRAN</h5>
-                  <div class="d-flex align-items-center justify-content-center">
+                  <div class="icon-container d-flex align-items-center justify-content-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="ri-file-shield-line"></i>
                     </div>                  
                   </div>
                 </div>
@@ -137,15 +71,81 @@
               <div class="card info-card revenue-card height-card">                
                 <div class="card-body">
                   <h5 class="card-title">SPTJM PASUTRI</h5>
-                  <div class="d-flex align-items-center justify-content-center">
+                  <div class="icon-container d-flex align-items-center justify-content-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="ri-group-2-line"></i>
                     </div>                
                   </div>
                 </div>
               </div>
            </a>
           </div>
+
+          {{-- F1.01 --}}
+          <div class="col-xxl-4 col-md-6">
+            {{-- <a href="{{ route('surat-pengantar') }}" class=""> --}}
+              <a href="#" class="">
+              <div class="card info-card revenue-card height-card">                 
+                  <div class="card-body">
+                    <h5 class="card-title">F1.01</h5>                  
+                    <div class="icon-container d-flex align-items-center justify-content-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh">
+                        <i class="bi bi-file-ruled"></i>
+                      </div>                  
+                    </div>
+                  </div>                                       
+              </div>
+            </a>  
+          </div>
+  
+          {{-- F2.01 --}}
+          <div class="col-xxl-4 col-md-6">
+            {{-- <a href="/pages/ocr"> --}}
+            <a href="#">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">F2.01 (SURAT KETERANGAN LAHIR)</h5>
+                  <div class="icon-container d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center fixed-icon-heigh" >
+                      <i class="bi bi-file-ruled"></i>
+                    </div>                  
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+  
+          {{-- Surat Pernyataan Perubahan Eleman Data Kependudukan --}}
+          <div class="col-xxl-4 col-md-6">
+            <a href="{{ route('perubahanElemen') }}">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">SURAT PERNYATAAN PERUBAHAN ELEMEN DATA KEPENDUDUKAN</h5>
+                  <div class="icon-container d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="ri-database-line"></i>
+                    </div>                
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+  
+          {{-- Pendaftaran Perpindahan Penduduk --}}
+          <div class="col-xxl-4 col-md-6">
+            <a href="#">
+              <div class="card info-card revenue-card height-card">                
+                <div class="card-body">
+                  <h5 class="card-title">PENDAFTARAN PERPINDAHAN PENDUDUK</h5>  
+                  <div class="icon-container d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bx bxs-user-account"></i>
+                    </div>                 
+                  </div>
+                </div>  
+              </div>
+            </a>
+          </div>          
   
           {{-- Surat Keterangan Kematian --}}
           <div class="col-xxl-4 col-md-6">
@@ -153,9 +153,9 @@
               <div class="card info-card revenue-card height-card">                
                 <div class="card-body">
                   <h5 class="card-title">SURAT KETERANGAN KEMATIAN</h5>  
-                  <div class="d-flex align-items-center justify-content-center">
+                  <div class="icon-container d-flex align-items-center justify-content-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="bx bx-user-x"></i>
                     </div>                  
                   </div>
                 </div>  
@@ -169,9 +169,9 @@
               <div class="card info-card revenue-card height-card">                
                 <div class="card-body">
                   <h5 class="card-title">PENDAFTARAN AKTA KELAHIRAN</h5>
-                  <div class="d-flex align-items-center justify-content-center">
+                  <div class="icon-container d-flex align-items-center justify-content-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="ri-contacts-book-line"></i>
                     </div>                  
                   </div>
                 </div>
@@ -185,9 +185,9 @@
               <div class="card info-card revenue-card height-card">                
                 <div class="card-body">
                   <h5 class="card-title">SURAT PERNYATAAN MENGGUNAKAN ALAMAT RUMAH MILIK SENDIRI (SPMARMS)</h5>
-                  <div class="d-flex align-items-center justify-content-center">
+                  <div class="icon-container d-flex align-items-center justify-content-center" >
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="ri-home-6-line"></i>
                     </div>                  
                   </div>
                 </div>
@@ -200,7 +200,7 @@
       <!-- End Left side columns -->
   
       <!-- Right side columns -->
-      <div class="col-lg-4">
+      {{-- <div class="col-lg-4">
   
         <!-- Recent Activity -->
         <div class="card">
@@ -276,7 +276,7 @@
         </div>
         <!-- End Recent Activity --> 
   
-      </div>
+      </div> --}}
       <!-- End Right side columns -->
   
     </div>

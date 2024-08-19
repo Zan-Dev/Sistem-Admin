@@ -10,7 +10,7 @@
     </div>
 
     <!-- End Page Title -->    
-    <section class="section dashboard" style="background-image: url('assets/img/main-background.jpg')" >
+    <section class="section dashboard" >
         <div class="row">
       
           <!-- Left side columns -->
@@ -23,13 +23,13 @@
                             @csrf
                             <h2>Buat Surat Pengantar</h2>                          
                             <div class="form-group-full">
-                              <label for="nik_1">NIK</label>
-                              <select name="nik_1" id="nik_1" onchange="auto_fill_1()" required>
-                                  <option value=""></option>
+                              <label for="nik_1">NIK</label>                              
+                              <input type="text" name="nik_1" id="nik_1" list="NIKList" onchange="auto_fill_1()" required/>
+                              <datalist id="NIKList">
                                 @foreach($penduduk as $data)
-                                  <option value="{{ $data->nik }}">{{ $data->nik }}</option>
+                                <option value="{{ $data->nik }}">{{ $data->nik }}</option>
                                 @endforeach
-                              </select>
+                              </datalist>
                             </div>
                             <div class="form-group-full">
                                 <label for="noKK_1">No KK</label>
@@ -143,10 +143,10 @@
                                     <option value="Mengurus Akta Kematian">
                                     <option value="Mengurus Akta Pernikahan">
                                 </datalist>
-                            </div>  
+                            </div>                                 
                             <div class="form-group-full">
                                 <label for="keterangan">Keterangan</label>
-                                <input type="text" name="keperluan" id="keperluan" list="keteranganList" required/>
+                                <input type="text" name="keterangan" id="keterangan" list="keteranganList" required/>
                                 <datalist id="keteranganList">
                                     <option value="Mengajukan permohonan penerbitan SKCK dari Kepolisian">
                                     <option value="Melaporkan telah kehilangan Kartu Keluarga (KK)">
@@ -165,6 +165,17 @@
                                     <option value="Mengajukan permohonan cetak ulang E-KTP">
                                 </datalist>
                             </div>    
+                            <div class="form-group-full">
+                              <label for="ttd">TTD Perangkat Desa</label>
+                              <div class="form-select">
+                                  <select name="ttdPerangkat" id="ttdPerangkat" required>
+                                      @foreach($pegawai as $pegawai)
+                                          <option id="ttdPerangkat" value="{{ $pegawai->nik }}">{{ $pegawai->jabatan }}</option>
+                                      @endforeach
+                                  </select>
+                                  <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                              </div>
+                            </div> 
                             <div class="form-submit">                                                             
                               <button class="submit" id="submit">Buat</button>                                                                                    
                             </div>
@@ -180,7 +191,7 @@
           <div class="col-lg-4">
       
             <!-- Recent Activity -->
-            <div class="card">
+            {{-- <div class="card">
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -250,7 +261,7 @@
                 </div>
       
               </div>
-            </div>
+            </div> --}}
             <!-- End Recent Activity --> 
       
           </div>

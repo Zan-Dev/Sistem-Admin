@@ -47,6 +47,24 @@ h6 {
   }
 }
 
+.main{
+  position: relative;
+}
+
+.main::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/main-background.jpg');  
+  background-repeat: repeat;
+  background-position: 0 0;
+  opacity: 0.3;
+  z-index: -1;
+}
+
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/
@@ -212,7 +230,7 @@ h6 {
 
 /* Card */
 .card {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
@@ -226,18 +244,22 @@ h6 {
   padding: 15px;
 }
 
-.card-title {
-  padding: 20px 0 15px 0;
+.card-title {  
+  display: flex;
+  height: 70px;
   font-size: 18px;
   font-weight: 500;
   color: #012970;
   font-family: "Poppins", sans-serif;
+  text-align: center;  
+  align-items: center;  
+  justify-content: center;
 }
 
 .card-title span {
   color: #899bbd;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 400;  
 }
 
 .card-img-overlay {
@@ -357,22 +379,37 @@ h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+.logo-header{
+  line-height: 1;
+}
+
 .logo {
   line-height: 1;
-  width: 280px;
+  width: 200px;  
+  transition: transform 0.3s
+}
+
+.logo:hover{
+  transform: scale(1.05);   
 }
 
 @media (max-width: 422) {
   .logo {
     width: 100px;
   }
+
+  .logo-header{
+    width: 100px;
+  }
 }
 
+.logo-header img,
 .logo img {
   max-height: 50px;
   margin-right: 6px;
 }
 
+.logo-header span,
 .logo span {
   font-size: 26px;
   font-weight: 700;
@@ -779,6 +816,10 @@ h6 {
   font-size: 16px;
 }
 
+.icon-container{
+  height: 100%;
+}
+
 .dashboard .filter .icon:hover,
 .dashboard .filter .icon:focus {
   color: #4154f1;
@@ -805,6 +846,16 @@ h6 {
 /* Info Cards */
 .dashboard .info-card {
   padding-bottom: 10px;
+  transition: transform 0.3s
+}
+
+.info-card:hover{
+  transform: scale(1.05);
+  background-color: #29f029;  
+}
+
+.info-card:hover .card-title {
+  color: white; /* Ganti .text-class dengan selector elemen yang sesuai */
 }
 
 .dashboard .info-card h6 {
@@ -830,7 +881,7 @@ h6 {
 }
 
 .height-card {
-  height: 200px;
+  height: auto;
 }
 
 .dashboard .revenue-card .card-icon {
@@ -1486,8 +1537,8 @@ input[type="radio"] {
   align-items: center;
   min-height: 100vh;  
   height: 300px;
-  padding-bottom: 2rem;  
-  overflow: hidden;
+  padding-bottom: 2rem;    
+  overflow: auto;
 }
 
 .login::after{
@@ -1511,8 +1562,7 @@ input[type="radio"] {
 }
 
 .row{
-  display: flex;
-  justify-content: space-between;
+  display: flex;  
 }
 
 .brand-wrapper {
@@ -1521,19 +1571,20 @@ input[type="radio"] {
     height: 37px; }
 
 .login-card {
-  background-color: white;
-  border: 0;
+  background-color: white;  
   border-radius: 27.5px;
-  box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
-  overflow: hidden; }
+  box-shadow: 0 10px 20px 0 rgba(172, 168, 168, 0.43);
+  overflow: hidden; 
+  margin: 0 auto;
+  max-width: 800px; /* Lebar maksimum kartu login */
+  margin: 20px;
+  }
   .login-card-img {
-    width: 100%;
-    vertical-align: middle;
-    border-radius: 0;  
-    height: 100%;    
-    object-fit: cover; }
+    border-radius: 0;    
+    -o-object-fit: cover;
+       object-fit: cover; }
   .login-card .card-body {
-    padding: 20px 60px 20px; }
+      width: 90%;}
     @media (max-width: 422px) {
       .login-card .card-body {
         padding: 35px 24px; } }
@@ -1541,7 +1592,7 @@ input[type="radio"] {
     font-family: 'Arial', sans-serif;
       font-size: 1.5em;      
       text-align: center;      
-      padding: 15px;            
+      margin-top: 30px;           
       transition: transform 0.3s, box-shadow 0.3s;
     font-size: 25px;
     color: #000;
@@ -1556,7 +1607,8 @@ input[type="radio"] {
     min-height: 45px;
     font-size: 13px;
     line-height: 15;
-    font-weight: normal; }
+    font-weight: normal;
+    transition: transform 0.3s; }
     .login-card .form-control::-webkit-input-placeholder {
       color: #919aa3; }
     .login-card .form-control::-moz-placeholder {
@@ -1567,6 +1619,9 @@ input[type="radio"] {
       color: #919aa3; }
     .login-card .form-control::placeholder {
       color: #919aa3; }
+    .login-card .form-control:hover{
+      transform: scale(1.05);
+    }
   .login-card .login-btn {
     padding: 13px 20px 12px;
     background-color: #000;
@@ -1600,36 +1655,27 @@ input[type="radio"] {
       transform: scale(1.05);      
   }
 
-/*--------------------------------------------------------------
-# Slide Show Image
---------------------------------------------------------------*/
-.slideshow-container {
-  max-width: 100%;
-  position: relative;
-  margin: auto;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .custom-width{
+    max-width: 100%;
+  }
+
+  .row-card{
+    display: flex; /* Gunakan flexbox untuk tata letak */    
+  }
+  
+  .col-right,
+  .col-left {
+      flex: 1; /* Membagi ruang secara merata */      
+  }
+
+  .col-left {
+    padding: 0; /* Atur padding jika diperlukan */
 }
 
-.mySlides {
-  display: none;
-}
+  .col-right {
+      text-align: center; /* Rata tengah untuk kolom kanan */
+  }
 
-.login-card-img {
-  width: 100%;
-  vertical-align: middle;
-}
-
-.fade {
-  animation-name: fade;
-  animation-duration: 2s;
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
 
 /*--------------------------------------------------------------
 # Footer
@@ -1653,7 +1699,43 @@ input[type="radio"] {
   color: #012970;
 }
 
+/*--------------------------------------------------------------
+# Slide Show Animation
+--------------------------------------------------------------*/
 
+.slideshow-container{  
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.slides img {
+  width: 100%;
+  border-radius: 10px;
+  height: auto;
+}
+
+@keyframes slideAnimation {
+  0% { transform: translateX(0%); }
+  33% { transform: translateX(0%); }
+  36% { transform: translateX(-100%); }
+  66% { transform: translateX(-100%); }
+  69% { transform: translateX(-200%); }
+  99% { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
+}
+.slideshow-container:hover .slides {
+  animation-play-state: paused;
+}
+.slides {
+  animation: slideAnimation 9s infinite;
+}
 
 /*--------------------------------------------------------------
 # Other

@@ -8,8 +8,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\DashboardController;
 
+use App\Http\Controllers\DocumentController;
+
 Route::middleware('auth')->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
     Route::get('/dataPenduduk', [PendudukController::class, 'dataPenduduk'])->name('dataPenduduk');
     Route::get('/dataPenduduk/tambah', [PendudukController::class, 'add'])->name('tambahPenduduk');
@@ -17,14 +19,15 @@ Route::middleware('auth')->group(function(){
     Route::get('/dataPenduduk/edit/{id}', [PendudukController::class, 'edit'])->name('dataPenduduk.edit');
     Route::post('/dataPenduduk/update/{id}', [PendudukController::class, 'update'])->name('dataPenduduk.update');
     Route::get('/dataPenduduk/delete/{id}', [PendudukController::class, 'delete'])->name('dataPenduduk.delete');   
+    Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])->name('autofill');
 
-    Route::get('/surat-keterangan-usaha', [DashboardController::class, 'showFormSKU'])->name('sku');
-    Route::get('/surat-pengantar', [DashboardController::class, 'showFormSP'])->name('sp');
-    Route::get('/sptjm-pasutri', [DashboardController::class, 'showFormSPTJMPasutri'])->name('sptjmPasutri');
-    Route::get('/sptjm-kelahiran', [DashboardController::class, 'showFormSPTJMKelahiran'])->name('sptjmKelahiran');
-    Route::get('/spmarms-kelahiran', [DashboardController::class, 'showFormSPMARMS'])->name('spmarms');
-    Route::get('/pendaftaran-akta', [DashboardController::class, 'showFormPendaftaranAkta'])->name('pendaftaranAkta');
-    Route::get('/perubahan-elemen', [DashboardController::class, 'showFormPerubahanElemen'])->name('perubahanElemen');
+    Route::get('/dashboard/surat-keterangan-usaha', [DashboardController::class, 'showFormSKU'])->name('sku');
+    Route::get('/dashboard/surat-pengantar', [DashboardController::class, 'showFormSP'])->name('sp');
+    Route::get('/dashboard/sptjm-pasutri', [DashboardController::class, 'showFormSPTJMPasutri'])->name('sptjmPasutri');
+    Route::get('/dashboard/sptjm-kelahiran', [DashboardController::class, 'showFormSPTJMKelahiran'])->name('sptjmKelahiran');
+    Route::get('/dashboard/spmarms-kelahiran', [DashboardController::class, 'showFormSPMARMS'])->name('spmarms');
+    Route::get('/dashboard/pendaftaran-akta', [DashboardController::class, 'showFormPendaftaranAkta'])->name('pendaftaranAkta');
+    Route::get('/dashboard/perubahan-elemen', [DashboardController::class, 'showFormPerubahanElemen'])->name('perubahanElemen');
 
     // Generate PDF
     Route::post('/SKU-download', [PdfController::class, 'generateSKU'])->name('skuDownload');
@@ -38,16 +41,16 @@ Route::middleware('auth')->group(function(){
     Route::get('/users', [UserController::class, 'users'])
         ->name('users')->middleware('Admin');
     Route::get('/users/tambah', [UserController::class, 'add'])
-        ->name('user.tambah')->middleware('Admin');;
+        ->name('user.tambah')->middleware('Admin');
     Route::post('/users/submit', [UserController::class, 'submit'])
-        ->name('user.submit')->middleware('Admin');;
+        ->name('user.submit')->middleware('Admin');
     Route::post('/users/update/{id}', [UserController::class, 'update'])
-        ->name('user.update')->middleware('Admin');;
+        ->name('user.update')->middleware('Admin');
     Route::post('/users/changePassword/{id}', [UserController::class, 'changePassword'])
-        ->name('changePassword')->middleware('Admin');;
+        ->name('changePassword')->middleware('Admin');
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])
-        ->name('user.delete')->middleware('Admin');;
-    Route::get('/myprofile', [UserController::class, 'profile'])->name('profile');
+        ->name('user.delete')->middleware('Admin');
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
 });
@@ -59,6 +62,16 @@ Route::post('/login', [SessionController::class, 'authenticate']);
 
 
 
+
 // try & test
 Route::get('/surat-pengantar-view', [PdfController::class, 'generatePDF'])->name('surat-pengantar');
-Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])->name('autofill');
+
+Route::get('/pages/ocr', function () {
+    return view('pages.ocr');
+})->name('ocr');
+
+Route::get('/document', function () {
+    return view('pages.ocr');
+})->name('document.view');
+
+Route::post('/document/read', [DocumentController::class, 'read'])->name('document.read');
