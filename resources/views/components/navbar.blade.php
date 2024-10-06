@@ -8,12 +8,14 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="{{ request()->is(['dataPenduduk', 'dataPenduduk*']) ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('dataPenduduk') }}">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Data Penduduk</span>
-        </a>        
-      </li><!-- End Source Data Nav -->  
+      @if (Auth::user()->role == 'Admin')
+        <li class="nav-item">
+          <a class="{{ request()->is(['dataPenduduk', 'dataPenduduk*']) ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('dataPenduduk') }}">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Data Penduduk</span>
+          </a>        
+        </li><!-- End Source Data Nav -->
+      @endif  
       
       <li class="nav-item">
         <a class="{{ request()->is('profile') ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('profile') }}">

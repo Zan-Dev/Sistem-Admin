@@ -152,6 +152,7 @@
             <a href="">
               <div class="card info-card revenue-card height-card">                
                 <div class="card-body">
+                  <h6 style="displa">- SOON -</h6>
                   <h5 class="card-title">SURAT KETERANGAN KEMATIAN</h5>  
                   <div class="icon-container d-flex align-items-center justify-content-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

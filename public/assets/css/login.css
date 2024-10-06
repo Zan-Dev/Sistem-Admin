@@ -1,4 +1,4 @@
-.body-login {
+/* .body-login {
   font-family: "Karla", sans-serif;
   background-color: #d0d0ce;
   min-height: 100vh; }
@@ -12,7 +12,7 @@
   border: 0;
   border-radius: 27.5px;
   box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
-  overflow: hidden; }
+  overflow: hidden; }  
   .login-card-img {
     border-radius: 0;
     position: absolute;
@@ -29,7 +29,7 @@
     font-size: 25px;
     color: #000;
     font-weight: normal;
-    margin-bottom: 23px; }
+    margin-bottom: 23px;}
   .login-card form {
     max-width: 326px; }
   .login-card .form-control {
@@ -78,4 +78,4 @@
     font-size: 14px;
     color: #919aa3; }
 
-/*# sourceMappingURL=login.css.map */
+ */

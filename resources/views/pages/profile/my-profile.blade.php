@@ -74,7 +74,8 @@
                     <div class="col-lg-9 col-md-8">{{ auth()->user()->email }}</div>
                   </div>                
                 </div>
-
+                
+                <!-- Edit Profile -->
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
@@ -89,11 +90,8 @@
 
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Hak Akses</label>
-                      <div class="col-md-8 col-lg-9">                        
-                        <select id="role" name="role">
-                          <option value="Admin" {{ auth()->user()->role == 'Admin' ? 'selected' : '' }}>Admin</option>
-                          <option value="User" {{ auth()->user()->role == 'User' ? 'selected' : '' }}>User</option>
-                        </select> 
+                      <div class="col-md-8 col-lg-9">                                               
+                        <input name="hakakses" type="text" class="form-control" id="hakAkses" value="{{ auth()->user()->role }}" readonly>                   
                       </div>
                     </div>
 
@@ -111,6 +109,7 @@
 
                 </div>                
 
+                <!-- Change Password -->
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
                   <form action="{{ route('changePassword', auth()->user()->id) }}" method="POST">

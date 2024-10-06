@@ -1,10 +1,10 @@
-<x-layout-session>
-    <div class="container" style="display: flex;; justify-content: center; align-items: center;">
-        @if (session('loginError'))
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              {{ session('loginError') }}              
-          </div>          
-        @endif
+<x-layout-session>    
+    @if (session('loginError'))
+        <div class="alert alert-danger alert-dismissible alert-position fade show " role="alert">
+            {{ session('loginError') }}              
+        </div>          
+    @endif
+    <div class="container" style="display: flex; justify-content: center; align-items: center;">       
         <div class="login-card">
             <div class="row-card">
                 <div class="col-left">                    
@@ -16,12 +16,14 @@
                         </div>
                     </div>                                        
                 </div>
-                <div class="col-right custom-width">                    
-                        <p class="login-card-description">Sistem Pelayanan Desa Manggungmangu</p>
+                <div class="col-right custom-width">         
+                        <div class="centered-div">
+                            <p class="login-card-description">Sistem Pelayanan Desa Manggungmangu</p>
+                        </div>                                   
                         <div style="width: 100%; text-align: center; margin-bottom: 20px; vertical-align: middle">
                             <img src="{{ asset('assets/img/logo.jpg') }}" alt="logo" class="logo">
                         </div>                        
-                        <div class="centered-div">
+                        <div class="centered-div">                           
                             <form action="{{ route('login') }}" method="POST" >
                                 @csrf
                                 <div class="form-group-login">                                    

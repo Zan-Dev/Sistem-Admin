@@ -13,13 +13,20 @@ use App\Http\Controllers\DocumentController;
 Route::middleware('auth')->group(function(){
     Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
-    Route::get('/dataPenduduk', [PendudukController::class, 'dataPenduduk'])->name('dataPenduduk');
-    Route::get('/dataPenduduk/tambah', [PendudukController::class, 'add'])->name('tambahPenduduk');
-    Route::post('/dataPenduduk/submit', [PendudukController::class, 'submit'])->name('dataPenduduk.submit');
-    Route::get('/dataPenduduk/edit/{id}', [PendudukController::class, 'edit'])->name('dataPenduduk.edit');
-    Route::post('/dataPenduduk/update/{id}', [PendudukController::class, 'update'])->name('dataPenduduk.update');
-    Route::get('/dataPenduduk/delete/{id}', [PendudukController::class, 'delete'])->name('dataPenduduk.delete');   
-    Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])->name('autofill');
+    Route::get('/dataPenduduk', [PendudukController::class, 'dataPenduduk'])
+        ->name('dataPenduduk')->middleware('Admin');
+    Route::get('/dataPenduduk/tambah', [PendudukController::class, 'add'])
+        ->name('tambahPenduduk')->middleware('Admin');
+    Route::post('/dataPenduduk/submit', [PendudukController::class, 'submit'])
+        ->name('dataPenduduk.submit')->middleware('Admin');
+    Route::get('/dataPenduduk/edit/{id}', [PendudukController::class, 'edit'])
+        ->name('dataPenduduk.edit')->middleware('Admin');
+    Route::post('/dataPenduduk/update/{id}', [PendudukController::class, 'update'])
+        ->name('dataPenduduk.update')->middleware('Admin');
+    Route::get('/dataPenduduk/delete/{id}', [PendudukController::class, 'delete'])
+        ->name('dataPenduduk.delete')->middleware('Admin');  
+    Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])
+        ->name('autofill')->middleware('Admin');
 
     Route::get('/dashboard/surat-keterangan-usaha', [DashboardController::class, 'showFormSKU'])->name('sku');
     Route::get('/dashboard/surat-pengantar', [DashboardController::class, 'showFormSP'])->name('sp');
