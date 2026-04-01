@@ -1,84 +1,147 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\DashboardController;
-
 use App\Http\Controllers\DocumentController;
 
-Route::middleware('auth')->group(function(){
-    Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard');
+/*
+|--------------------------------------------------------------------------
+| Guest Routes
+|--------------------------------------------------------------------------
+*/
 
-    Route::get('/dataPenduduk', [PendudukController::class, 'dataPenduduk'])
-        ->name('dataPenduduk')->middleware('Admin');
-    Route::get('/dataPenduduk/tambah', [PendudukController::class, 'add'])
-        ->name('tambahPenduduk')->middleware('Admin');
-    Route::post('/dataPenduduk/submit', [PendudukController::class, 'submit'])
-        ->name('dataPenduduk.submit')->middleware('Admin');
-    Route::get('/dataPenduduk/edit/{id}', [PendudukController::class, 'edit'])
-        ->name('dataPenduduk.edit')->middleware('Admin');
-    Route::post('/dataPenduduk/update/{id}', [PendudukController::class, 'update'])
-        ->name('dataPenduduk.update')->middleware('Admin');
-    Route::delete('/dataPenduduk/delete/{id}', [PendudukController::class, 'delete'])
-        ->name('dataPenduduk.delete')->middleware('Admin');  
-    Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])
-        ->name('autofill')->middleware('Admin');
-
-    Route::get('/dashboard/surat-keterangan-usaha', [DashboardController::class, 'showFormSKU'])->name('sku');
-    Route::get('/dashboard/surat-pengantar', [DashboardController::class, 'showFormSP'])->name('sp');
-    Route::get('/dashboard/sptjm-pasutri', [DashboardController::class, 'showFormSPTJMPasutri'])->name('sptjmPasutri');
-    Route::get('/dashboard/sptjm-kelahiran', [DashboardController::class, 'showFormSPTJMKelahiran'])->name('sptjmKelahiran');
-    Route::get('/dashboard/spmarms-kelahiran', [DashboardController::class, 'showFormSPMARMS'])->name('spmarms');
-    Route::get('/dashboard/pendaftaran-akta', [DashboardController::class, 'showFormPendaftaranAkta'])->name('pendaftaranAkta');
-    Route::get('/dashboard/perubahan-elemen', [DashboardController::class, 'showFormPerubahanElemen'])->name('perubahanElemen');
-
-    // Generate PDF
-    Route::post('/SKU-download', [PdfController::class, 'generateSKU'])->name('skuDownload');
-    Route::post('/surat-pengantar-download', [PdfController::class, 'generateSP'])->name('SuratPengantarDownload');
-    Route::post('/sptjm-pasutri-download', [PdfController::class, 'generateSPTJMPasutri'])->name('SPTJMPasutriDownload');
-    Route::post('/sptjm-Kelahiran-download', [PdfController::class, 'generateSPTJMKelahiran'])->name('SPTJMKelahiranDownload');
-    Route::post('/SPMARMS-download', [PdfController::class, 'generateSPMARMS'])->name('SPMARMSDownload');
-    Route::post('/pendaftaran-akta-download', [PdfController::class, 'generatePendaftaranAkta'])->name('PendaftaranAktaDownload');
-    Route::post('/perubahan-elemen-download', [PdfController::class, 'generatePerubahanElemen'])->name('PerubahanElemenDownload');
-
-    Route::get('/users', [UserController::class, 'users'])
-        ->name('users')->middleware('Admin');
-    Route::get('/users/tambah', [UserController::class, 'add'])
-        ->name('user.tambah')->middleware('Admin');
-    Route::post('/users/submit', [UserController::class, 'submit'])
-        ->name('user.submit')->middleware('Admin');
-    Route::post('/users/update/{id}', [UserController::class, 'update'])
-        ->name('user.update')->middleware('Admin');
-    Route::post('/users/changePassword/{id}', [UserController::class, 'changePassword'])
-        ->name('changePassword')->middleware('Admin');
-    Route::delete('/users/delete/{id}', [UserController::class, 'delete'])
-        ->name('user.delete')->middleware('Admin');
-    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-
-    Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [SessionController::class, 'loginForm'])->name('login');
+    Route::post('/login', [SessionController::class, 'authenticate']);
 });
 
-Route::get('/login', [SessionController::class, 'loginForm'])->name('login')->middleware('guest');
-Route::post('/login', [SessionController::class, 'authenticate']);
+/*
+|--------------------------------------------------------------------------
+| Authenticated Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware('Admin')->group(function () {
+
+        /*
+        | Data Penduduk
+        */
+        Route::prefix('data-penduduk')->controller(PendudukController::class)->group(function () {
+
+            Route::get('/', 'dataPenduduk')->name('dataPenduduk');
+            Route::get('/tambah', 'add')->name('tambahPenduduk');
+            Route::post('/submit', 'submit')->name('dataPenduduk.submit');
+
+            Route::get('/edit/{id}', 'edit')->name('dataPenduduk.edit');
+            Route::post('/update/{id}', 'update')->name('dataPenduduk.update');
+
+            Route::delete('/delete/{id}', 'delete')->name('dataPenduduk.delete');
+
+        });
+
+        /*
+        | Users Management
+        */
+        Route::prefix('users')->controller(UserController::class)->group(function () {
+
+            Route::get('/', 'users')->name('users');
+            Route::get('/tambah', 'add')->name('user.tambah');
+            Route::post('/submit', 'submit')->name('user.submit');
+
+            Route::post('/update/{id}', 'update')->name('user.update');
+            Route::post('/change-password/{id}', 'changePassword')->name('changePassword');
+
+            Route::delete('/delete/{id}', 'delete')->name('user.delete');
+
+        });
+
+        /*
+        | Autofill Penduduk
+        */
+        Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])
+            ->name('autofill');
+
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Forms
+    |--------------------------------------------------------------------------
+    */
+
+    Route::prefix('dashboard')->controller(DashboardController::class)->group(function () {
+
+        Route::get('/surat-keterangan-usaha', 'showFormSKU')->name('sku');
+        Route::get('/surat-pengantar', 'showFormSP')->name('sp');
+
+        Route::get('/sptjm-pasutri', 'showFormSPTJMPasutri')->name('sptjmPasutri');
+        Route::get('/sptjm-kelahiran', 'showFormSPTJMKelahiran')->name('sptjmKelahiran');
+
+        Route::get('/spmarms-kelahiran', 'showFormSPMARMS')->name('spmarms');
+        Route::get('/pendaftaran-akta', 'showFormPendaftaranAkta')->name('pendaftaranAkta');
+
+        Route::get('/perubahan-elemen', 'showFormPerubahanElemen')->name('perubahanElemen');
+
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Generate PDF
+    |--------------------------------------------------------------------------
+    */
+
+    Route::controller(PdfController::class)->group(function () {
+
+        Route::post('/sku-download', 'generateSKU')->name('skuDownload');
+        Route::post('/surat-pengantar-download', 'generateSP')->name('SuratPengantarDownload');
+
+        Route::post('/sptjm-pasutri-download', 'generateSPTJMPasutri')->name('SPTJMPasutriDownload');
+        Route::post('/sptjm-kelahiran-download', 'generateSPTJMKelahiran')->name('SPTJMKelahiranDownload');
+
+        Route::post('/spmarms-download', 'generateSPMARMS')->name('SPMARMSDownload');
+
+        Route::post('/pendaftaran-akta-download', 'generatePendaftaranAkta')->name('PendaftaranAktaDownload');
+        Route::post('/perubahan-elemen-download', 'generatePerubahanElemen')->name('PerubahanElemenDownload');
+
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Profile & Logout
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+
+});
 
 
+/*
+|--------------------------------------------------------------------------
+| Testing / Development
+|--------------------------------------------------------------------------
+*/
 
+Route::get('/surat-pengantar-view', [PdfController::class, 'generatePDF'])
+    ->name('surat-pengantar');
 
+Route::view('/pages/ocr', 'pages.ocr')->name('ocr');
+Route::view('/document', 'pages.ocr')->name('document.view');
 
-
-// try & test
-Route::get('/surat-pengantar-view', [PdfController::class, 'generatePDF'])->name('surat-pengantar');
-
-Route::get('/pages/ocr', function () {
-    return view('pages.ocr');
-})->name('ocr');
-
-Route::get('/document', function () {
-    return view('pages.ocr');
-})->name('document.view');
-
-Route::post('/document/read', [DocumentController::class, 'read'])->name('document.read');
+Route::post('/document/read', [DocumentController::class, 'read'])
+    ->name('document.read');
