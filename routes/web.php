@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function(){
         ->name('dataPenduduk.edit')->middleware('Admin');
     Route::post('/dataPenduduk/update/{id}', [PendudukController::class, 'update'])
         ->name('dataPenduduk.update')->middleware('Admin');
-    Route::get('/dataPenduduk/delete/{id}', [PendudukController::class, 'delete'])
+    Route::delete('/dataPenduduk/delete/{id}', [PendudukController::class, 'delete'])
         ->name('dataPenduduk.delete')->middleware('Admin');  
     Route::get('/get-penduduk', [DashboardController::class, 'getPendudukByNik'])
         ->name('autofill')->middleware('Admin');
@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function(){
         ->name('user.update')->middleware('Admin');
     Route::post('/users/changePassword/{id}', [UserController::class, 'changePassword'])
         ->name('changePassword')->middleware('Admin');
-    Route::get('/users/delete/{id}', [UserController::class, 'delete'])
+    Route::delete('/users/delete/{id}', [UserController::class, 'delete'])
         ->name('user.delete')->middleware('Admin');
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 

@@ -23,15 +23,13 @@
   <link href="{{ asset("assets/vendor/quill/quill.snow.css") }}" rel="stylesheet">
   <link href="{{ asset("assets/vendor/quill/quill.bubble.css") }}" rel="stylesheet">
   <link href="{{ asset("assets/vendor/remixicon/remixicon.css") }}" rel="stylesheet">
-  <link href="{{ asset("assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">  
-  <link rel="stylesheet" type="text/css" href="{{ asset("https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css") }}">  
+  <!-- <link href="{{ asset("assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">   -->
+  <!-- <link rel="stylesheet" type="text/css" href="{{ asset("https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css") }}">   -->
   <link rel="stylesheet" type="text/css" href="{{ asset("https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css") }}">
   <link rel="stylesheet" type="text/css" href="{{ asset("https://cdn.datatables.net/fixedcolumns/4.1.0/css/fixedColumns.dataTables.css") }}">
   <link rel="stylesheet" href="{{ asset("https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css") }}">
-  <link rel="stylesheet" href="{{ asset("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css") }}">
-</head>
-<body>
-
+  <!-- <link rel="stylesheet" href="{{ asset("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css") }}"> -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
   <!-- Template Main CSS File -->
   <link href="{{ asset("assets/css/style.css") }}" rel="stylesheet">
 </head>
@@ -65,27 +63,26 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="{{ asset("assets/vendor/apexcharts/apexcharts.min.js") }}"></script>
-  <script src="{{ asset("assets/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
-  <script src="{{ asset("assets/vendor/chart.js/chart.umd.js") }}"></script>
-  <script src="{{ asset("assets/vendor/echarts/echarts.min.js") }}"></script>
-  <script src="{{ asset("assets/vendor/quill/quill.js") }}"></script>
-  <script src="{{ asset("assets/vendor/simple-datatables/simple-datatables.js") }}"></script>
-  <script src="{{ asset("assets/vendor/tinymce/tinymce.min.js") }}"></script>
-  <script src="{{ asset("assets/vendor/php-email-form/validate.js") }}"></script>
-  <script src="{{ asset("https://code.jquery.com/jquery-3.5.1.js") }}"></script> 
-  <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js") }}"></script>
-  <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js") }}"></script>
-  <script type="text/javascript" charset="utf8" src="{{ asset("https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.js") }}"></script>
-  <script src="{{ asset("https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js") }}"></script>
-  <script src="{{ asset("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js") }}"></script>
-  <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css') }}">
-  <script src="{{ asset('https://code.jquery.com/jquery-3.6.0.min.js') }}"></script>
-  <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js') }}"></script>
+  <!-- Vendor JS Files -->   
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{{ asset("assets/js/main.js") }}"></script>
+  <!-- TinyMCE -->
+  <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- DataTables -->  
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Template -->
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
