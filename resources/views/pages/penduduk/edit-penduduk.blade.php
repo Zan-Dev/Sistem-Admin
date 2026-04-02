@@ -18,27 +18,39 @@
             @csrf
             @method('PUT')
             <h2>Edit Data Warga</h2>                          
-            <div class="form-group-full">
+            <div class="form-group-full required">
                 <label for="nik">NIK</label>
                 <input style="background-color: rgb(228, 226, 226)" type="text" name="nik" id="nik" value="{{ $penduduk->nik }}" readonly>
             </div>                                                  
             <div class="form-group-full">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" id="nama" value="{{ $penduduk->nama }}" required/>
+                @error('nama')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>                       
             <div class="form-group-full">
                 <label for="no-kk">No KK</label>
                 <input type="text" name="noKK" id="no-kk" value="{{ $penduduk->noKK }}" required/>
+                @error('noKK')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group-full">
                 <label for="tempat-lahir">Tempat Lahir</label>
                 <input type="text" name="tempatLahir" id="tempat-lahir" value="{{ $penduduk->tempatLahir }}" required/>
+                @error('tempatLahir')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="ttl">Tanggal Lahir</label>
                 <div class="col-sm-10">
                     <input type="date" name="tanggalLahir" class="form-control" value="{{ $penduduk->tanggalLahir }}" required>
+                    @error('tanggalLahir')
+                      <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
               </div>
               <div class="form-group">
@@ -55,6 +67,9 @@
                     </select>
                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                 </div>
+                @error('agama')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
               </div>
             </div>              
             <div class="form-radio">
@@ -73,6 +88,9 @@
                       Perempuan
                     </label>
                   </div>                                  
+                  @error('jenisKelamin')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
             </div>
             <div class="form-radio">
                 <div class="label-form-radio">
@@ -95,7 +113,10 @@
                     <label class="form-check-label" for="gridRadios2">
                       Pernah
                     </label>
-                  </div>                                                
+                  </div> 
+                @error('statusPerkawinan')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror                                               
             </div>
             <div class="form-row">
               <div class="form-group">
@@ -108,6 +129,9 @@
                     </select>
                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                 </div>
+                @error('pekerjaan')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
               </div>
               <div class="form-group">
                 <label for="kewarganegaraan">Kewarganegaraan</label>
@@ -117,6 +141,9 @@
                       <option id="wna" value="WNA" {{ $penduduk->kewarganegaraan === 'WNA' ? 'selected' : '' }}>WNA</option>                    
                   </select>                  
                 </div>
+                @error('kewarganegaraan')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
               </div>              
             </div>            
             <div class="form-row">
@@ -131,6 +158,9 @@
                         </select>
                         <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                     </div>
+                    @error('alamat')
+                      <div class="text-danger">{{ $message }}</div>
+                    @enderror 
                 </div>
                 <div class="form-group-rw">
                     <label for="rw">RW</label>
@@ -143,6 +173,9 @@
                         </select>
                         <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                     </div>
+                    @error('rw')
+                      <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group-rt" >
                     <label for="rt">RT</label>
@@ -173,6 +206,9 @@
                         </select>
                         <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                     </div>
+                    @error('rt')
+                      <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>     
             <div class="form-submit">                               

@@ -32,23 +32,31 @@ class PendudukController extends Controller
     }
 
     function update(Request $request, $id){
-        $penduduk = Penduduk::find($id);
-        $penduduk->nik = $request->nik;
-        $penduduk->nama = $request->nama;
-        $penduduk->noKK = $request->noKK;
-        $penduduk->tempatLahir = $request->tempatLahir;
-        $penduduk->tanggalLahir = $request->tanggalLahir;
-        $penduduk->statusPerkawinan = $request->statusPerkawinan;
-        $penduduk->jenisKelamin = $request->jenisKelamin;
-        $penduduk->kewarganegaraan = $request->kewarganegaraan;
-        $penduduk->pekerjaan_id = $request->pekerjaan;
-        $penduduk->agama = $request->agama;
-        $penduduk->alamat = $request->alamat;
-        $penduduk->rt = $request->rt;
-        $penduduk->rw = $request->rw;
-        $penduduk->save();
 
-        return redirect()->route('dataPenduduk');
+        $validated = $request->validate([            
+            'nama' => 'required',
+            'noKK' => 'required',
+            'tempatLahir' => 'required',
+            'tanggalLahir' => 'required|date',
+            'statusPerkawinan' => 'required',
+            'jenisKelamin' => 'required',
+            'kewarganegaraan' => 'required',
+            'pekerjaan' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
+        ], [
+            'required' => 'Field :attribute harus diisi.',
+            'date' => 'Field :attribute harus berupa tanggal yang valid.',
+        ]);
+        
+
+        $penduduk = Penduduk::findOrfail($id);
+
+        $penduduk->update($validated);
+
+        return redirect()->route('dataPenduduk')->with('success', 'Data penduduk berhasil diperbarui!');
     }
 
     function submit(Request $request){         

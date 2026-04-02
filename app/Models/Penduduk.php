@@ -12,6 +12,20 @@ class Penduduk extends Model
     use HasFactory;
 
     protected $table = 'penduduk';
+    protected $fillable = [
+        'nama',
+        'noKK',
+        'tempatLahir',
+        'tanggalLahir',
+        'statusPerkawinan',
+        'jenisKelamin',
+        'kewarganegaraan',
+        'pekerjaan_id',
+        'agama',
+        'alamat',
+        'rt',
+        'rw',
+    ];
 
     public function pekerjaan(): BelongsTo
     {
