@@ -14,8 +14,9 @@
     <div class="container-form">
       <div class="signup-content">                
         <div class="signup-form">
-          <form action="{{ route('dataPenduduk.update', $penduduk->id) }}" method="POST" class="register-form" id="register-form">   
+          <form id="edit-form-{{$penduduk->id}}" class="edit-form" action="{{ route('dataPenduduk.update', $penduduk->id) }}" method="POST" >   
             @csrf
+            @method('PUT')
             <h2>Edit Data Warga</h2>                          
             <div class="form-group-full">
                 <label for="nik">NIK</label>
@@ -175,8 +176,8 @@
                 </div>
             </div>     
             <div class="form-submit">                               
-              <button type="button" class="kembali" onclick="window.history.back()">Kembali</button> 
-              <button class="submit" id="submit">Simpan</button>                                                                                    
+              <button type="button" class="kembali" onclick="window.history.back()">Kembali</button>               
+              <button class="submit submit-confirm" data-id="{{ $penduduk->id}}">Simpan</button>                                                                                    
             </div>
           </form>
         </div>
@@ -184,3 +185,27 @@
     </div>    
   </div>
 </x-layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.submit-confirm').addEventListener('click', function(event) {
+      event.preventDefault(); // Mencegah form submit secara langsung
+      let id = this.getAttribute('data-id'); // Mendapatkan ID dari atribut data-id      
+
+      Swal.fire({
+          title: 'Yakin ingin menyimpan perubahan?',
+          text: "Perubahan akan disimpan!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, simpan!',
+          cancelButtonText: 'Batal'
+      }).then((result) => {
+          if (result.isConfirmed) {                        
+              document.getElementById('edit-form-' + id).submit();
+          }
+      });
+    });
+  });
+</script>

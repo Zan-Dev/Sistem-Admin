@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/submit', 'submit')->name('dataPenduduk.submit');
 
             Route::get('/edit/{id}', 'edit')->name('dataPenduduk.edit');
-            Route::post('/update/{id}', 'update')->name('dataPenduduk.update');
+            Route::put('/update/{id}', 'update')->name('dataPenduduk.update');
 
             Route::delete('/delete/{id}', 'delete')->name('dataPenduduk.delete');
 

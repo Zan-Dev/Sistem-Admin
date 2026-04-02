@@ -60,8 +60,7 @@
                         <td>{{ $data['rw'] }}</td>
                         <td>
                           <a href="{{ route('dataPenduduk.edit', $data->id) }}"><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button></a> 
-                          | 
-                          <!-- <a href="{{ route('dataPenduduk.delete', $data->id) }}" class=""><button type="button" class="btn btn-danger btn-small"><i class="bx bxs-trash-alt"></i></button></a> -->                          
+                          |                           
                           <form id="delete-form-{{ $data->id }}" action="{{ route('dataPenduduk.delete', $data->id) }}" method="POST" style="display: inline">
                             @csrf
                             @method('DELETE')
