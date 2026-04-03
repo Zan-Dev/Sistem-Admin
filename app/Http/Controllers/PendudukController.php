@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 use App\Models\Penduduk;
 use App\Models\Pekerjaan;
+use App\Models\KK;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
  
 class PendudukController extends Controller
 {
@@ -19,23 +22,23 @@ class PendudukController extends Controller
         return view('pages.penduduk.tambah-penduduk', compact('pekerjaan'));
     }
 
-    function edit($id){
-        $penduduk = Penduduk::find($id);
+    function edit($nik){
+        $penduduk = Penduduk::find($nik);
         $pekerjaan = Pekerjaan::all();
         return view('pages.penduduk.edit-penduduk', compact('penduduk', 'pekerjaan'));
     }
 
-    function delete($id){
-        $penduduk = Penduduk::find($id);
+    function delete($nik){
+        $penduduk = Penduduk::find($nik);
         $penduduk->delete();
         return redirect()->route('dataPenduduk');
     }
 
-    function update(Request $request, $id){
-
+    function update(Request $request, $nik){        
         $validated = $request->validate([            
             'nama' => 'required',
-            'noKK' => 'required',
+            'kkId' => 'required',
+            'statusHubungan' => 'required',
             'tempatLahir' => 'required',
             'tanggalLahir' => 'required|date',
             'statusPerkawinan' => 'required',
@@ -50,44 +53,77 @@ class PendudukController extends Controller
             'required' => 'Field :attribute harus diisi.',
             'date' => 'Field :attribute harus berupa tanggal yang valid.',
         ]);
-        
+                
 
-        $penduduk = Penduduk::findOrfail($id);
+        $penduduk = Penduduk::findOrfail($nik);        
 
         $penduduk->update($validated);
 
         return redirect()->route('dataPenduduk')->with('success', 'Data penduduk berhasil diperbarui!');
     }
 
-    function submit(Request $request){         
-
-        $customMessages = [            
-            'nik.unique' => 'NIK sudah ada',
-            // tambahkan pesan kesalahan kustom lainnya jika perlu
-        ];
-
+    public function submit(Request $request){
+        // 1. Validasi
         $request->validate([
-            'nik' => 'required|unique:penduduk,nik',            
-        ], $customMessages);
+            'nik' => 'required|unique:penduduk,nik',
+            'kkId' => 'required',
+            'statusHubungan' => 'required',            
+        ], [
+            'nik.unique' => 'NIK sudah terdaftar.',
+        ]);
 
-        $penduduk = new Penduduk();        
-        $penduduk->nik = $request->nik;
-        $penduduk->nama = $request->nama;
-        $penduduk->noKK = $request->noKK;
-        $penduduk->tempatLahir = $request->tempatLahir;
-        $penduduk->tanggalLahir = $request->tanggalLahir;
-        $penduduk->statusPerkawinan = $request->statusPerkawinan;
-        $penduduk->jenisKelamin = $request->jenisKelamin;
-        $penduduk->kewarganegaraan = $request->kewarganegaraan;
-        $penduduk->pekerjaan_id = $request->pekerjaan;
-        $penduduk->agama = $request->agama;
-        $penduduk->alamat = $request->alamat;
-        $penduduk->rt = $request->rt;
-        $penduduk->rw = $request->rw;
-        $penduduk->save();
+        try {
+            DB::transaction(function () use ($request) {
+                $kk = KK::where('noKK', $request->kkId)->first();
 
-        return redirect()->route('dataPenduduk');
-        // return redirect()->back()->with('success', 'Form submitted successfully!');
+                // 2. Logika Pembuatan KK Baru
+                if (!$kk) {
+                    if ($request->statusHubungan !== 'Kepala Keluarga') {                        
+                        throw new \Exception('No KK tidak ditemukan. Pastikan No KK sudah terdaftar atau pilih status hubungan sebagai Kepala Keluarga.');                       
+                    }
+
+                    KK::create([                        
+                        'noKK' => $request->kkId,
+                        'nikKepalaKeluarga' => $request->nik,
+                        'alamat' => $request->alamat,
+                        'rt' => $request->rt,
+                        'rw' => $request->rw,
+                    ]);
+
+                } else {
+                    // 3. Cek jika Kepala Keluarga sudah ada
+                    if ($request->statusHubungan === 'Kepala Keluarga') {                                                
+                        throw new \Exception('No KK sudah memiliki Kepala Keluarga. Pilih status hubungan lain.');
+                    }                    
+                }
+
+                Penduduk::create([
+                    'nik' => $request->nik,
+                    'nama' => $request->nama,
+                    'kkId' => $request->kkId,
+                    'statusHubungan' => $request->statusHubungan,
+                    'tempatLahir' => $request->tempatLahir,
+                    'tanggalLahir' => $request->tanggalLahir,
+                    'statusPerkawinan' => $request->statusPerkawinan,
+                    'jenisKelamin' => $request->jenisKelamin,
+                    'kewarganegaraan' => $request->kewarganegaraan,
+                    'pekerjaan_id' => $request->pekerjaan,
+                    'agama' => $request->agama,
+                    'alamat' => $request->alamat,
+                    'rt' => $request->rt,
+                    'rw' => $request->rw,
+                ]);
+                
+            });
+
+            return redirect()->route('dataPenduduk')->with('success', 'Data berhasil disimpan.');
+
+        }catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()
+                ->with('error', $e->getMessage())
+                ->withInput();
+        }
     }
 }
 

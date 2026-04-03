@@ -29,8 +29,22 @@
                 <input type="text" name="nama" id="nama" required/>
             </div>                       
             <div class="form-group-full">
-                <label for="no-kk">No KK</label>
-                <input type="text" name="noKK" id="no-kk" required/>
+                <label for="kkId">No KK</label>
+                <input type="text" name="kkId" id="kkId" required/>
+            </div>
+            <div class="form-group-full">
+                <label for="statusHubungan">Status Hubungan Dalam Keluarga</label>
+                <select name="statusHubungan" id="statusHubungan" required>
+                  <option value="" disabled selected>-- Pilih Status --</option>
+                  <option value="Kepala Keluarga">Kepala Keluarga</option>
+                  <option value="Istri">Istri</option>
+                  <option value="Anak">Anak</option>
+                  <option value="Menantu">Menantu</option>
+                  <option value="Cucu">Cucu</option>
+                  <option value="Orang Tua">Orang Tua</option>
+                  <option value="Mertua">Mertua</option>
+                  <option value="Famili Lain">Famili Lain</option>
+                </select>
             </div>
             <div class="form-group-full">
                 <label for="tempat-lahir">Tempat Lahir</label>
@@ -46,7 +60,7 @@
               <div class="form-group">
                 <label for="agama">Agama</label>
                 <div class="form-select">
-                    <select name="agama" id="agama" required>                        
+                    <select name="agama" id="agama" required>                                                
                         <option value="Islam">Islam</option>
                         <option value="Hindu">Hindu</option>
                         <option value="Budha">Budha</option>
@@ -186,3 +200,14 @@
     </div>    
   </div>
 </x-layout>
+
+@if(session('error'))
+    <script>
+        Swal.fire({            
+            icon: 'error',
+            'title': 'Gagal Simpan',
+            text: '{{ session('error') }}',            
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif

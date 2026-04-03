@@ -47,7 +47,7 @@
                       <tr>
                         <td>{{ $data['nik'] }}</td>
                         <td>{{ $data['nama'] }}</td>
-                        <td>{{ $data['noKK'] }}</td>
+                        <td>{{ $data['kkId'] }}</td>
                         <td>{{ $data['tempatLahir'] }}</td>
                         <td>{{ Carbon::parse($data['tanggalLahir'])->translatedFormat('d F Y') }}</td>
                         <td>{{ $data['statusPerkawinan'] }}</td>                      
@@ -59,9 +59,9 @@
                         <td>{{ $data['rt'] }}</td>
                         <td>{{ $data['rw'] }}</td>
                         <td>
-                          <a href="{{ route('dataPenduduk.edit', $data->id) }}"><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button></a> 
+                          <a href="{{ route('dataPenduduk.edit', $data->nik) }}"><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button></a> 
                           |                           
-                          <form id="delete-form-{{ $data->id }}" action="{{ route('dataPenduduk.delete', $data->id) }}" method="POST" style="display: inline">
+                          <form id="delete-form-{{ $data->nik }}" action="{{ route('dataPenduduk.delete', $data->nik) }}" method="POST" style="display: inline">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-danger btn-small delete-confirm" data-id="{{ $data->id }}">
@@ -102,4 +102,24 @@
         });
     });
   });
+
+  @if(session('success'))
+    Swal.fire({
+        icon: 'success',
+        title: 'Sukses',
+        text: '{{ session('success') }}',
+        timer: 3000,
+        showConfirmButton: false
+    });
+  @endif
+
+  @if(session('error'))
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: '{{ session('error') }}',
+        timer: 3000,
+        showConfirmButton: false
+    });
+  @endif
 </script>

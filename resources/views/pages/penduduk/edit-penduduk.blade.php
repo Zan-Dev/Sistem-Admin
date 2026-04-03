@@ -14,7 +14,7 @@
     <div class="container-form">
       <div class="signup-content">                
         <div class="signup-form">
-          <form id="edit-form-{{$penduduk->id}}" class="edit-form" action="{{ route('dataPenduduk.update', $penduduk->id) }}" method="POST" >   
+          <form id="edit-form-{{$penduduk->nik}}" class="edit-form" action="{{ route('dataPenduduk.update', $penduduk->nik) }}" method="POST" >   
             @csrf
             @method('PUT')
             <h2>Edit Data Warga</h2>                          
@@ -30,9 +30,16 @@
                 @enderror
             </div>                       
             <div class="form-group-full">
-                <label for="no-kk">No KK</label>
-                <input type="text" name="noKK" id="no-kk" value="{{ $penduduk->noKK }}" required/>
+                <label for="kkId">No KK</label>
+                <input type="text" name="kkId" id="kkId" value="{{ $penduduk->kkId }}" required/>
                 @error('noKK')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group-full'>
+                <label for="statusHubungan">Status Hubungan</label>
+                <input type="text" name="statusHubungan" id="statusHubungan" value="{{ $penduduk->statusHubungan }}" required/>
+                @error('statusHubungan')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -213,7 +220,7 @@
             </div>     
             <div class="form-submit">                               
               <button type="button" class="kembali" onclick="window.history.back()">Kembali</button>               
-              <button class="submit submit-confirm" data-id="{{ $penduduk->id}}">Simpan</button>                                                                                    
+              <button class="submit submit-confirm" data-id="{{ $penduduk->nik}}">Simpan</button>                                                                                    
             </div>
           </form>
         </div>
@@ -239,7 +246,7 @@
           cancelButtonText: 'Batal'
       }).then((result) => {
           if (result.isConfirmed) {                        
-              document.getElementById('edit-form-' + id).submit();
+              document.getElementById('edit-form-' + id).submit();              
           }
       });
     });

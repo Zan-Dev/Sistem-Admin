@@ -12,10 +12,15 @@ class Penduduk extends Model
     use HasFactory;
 
     protected $table = 'penduduk';
+
+    protected $primaryKey = 'nik';
+    public $incrementing = false;
+    protected $keyType = 'BigInteger';
     
     protected $fillable = [
+        'nik',
         'nama',
-        'noKK',
+        'kkId',
         'tempatLahir',
         'tanggalLahir',
         'statusPerkawinan',
