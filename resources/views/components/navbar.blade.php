@@ -15,6 +15,13 @@
             <span>Data Penduduk</span>
           </a>        
         </li><!-- End Source Data Nav -->
+
+        <li class="nav-item">
+          <a class="{{ request()->is(['kartu-keluarga', 'kartu-keluarga*']) ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('dataKartuKeluarga') }}">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Data Kartu Keluarga</span>
+          </a>
+        </li>
       @endif  
       
       <li class="nav-item">

@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\KartuKeluargaKontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,15 @@ Route::middleware('auth')->group(function () {
 
             Route::delete('/delete/{id}', 'delete')->name('dataPenduduk.delete');
 
+        });
+
+        /*        
+        | Data Kartu Keluarga
+        */
+        Route::prefix('kartu-keluarga')->controller(KartuKeluargaKontroller::class)->group(function () {
+            Route::get('/', 'dataKartuKeluarga')->name('dataKartuKeluarga');
+            Route::get('/tambah', 'add')->name('tambahKartuKeluarga');
+            Route::post('/submit', 'submit')->name('dataKartuKeluarga.submit');
         });
 
         /*

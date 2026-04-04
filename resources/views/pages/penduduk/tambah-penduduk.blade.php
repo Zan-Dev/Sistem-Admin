@@ -19,7 +19,7 @@
             <h2>Tambah Data Warga</h2>                          
             <div class="form-group-full">
                 <label for="nik">NIK</label>
-                <input type="text" name="nik" id="nik" required/>
+                <input type="text" name="nik" id="nik" required value="{{ session('pending_kk.nik') ?? old('nik') }}"/>
                 @if ($errors->has('nik'))
                   <span class="text-danger">{{ $errors->first('nik') }}</span>
                 @endif
@@ -30,13 +30,13 @@
             </div>                       
             <div class="form-group-full">
                 <label for="kkId">No KK</label>
-                <input type="text" name="kkId" id="kkId" required/>
+                <input type="text" name="kkId" id="kkId" required value="{{ session('pending_kk.kkId') ?? old('kkId') }}" />
             </div>
             <div class="form-group-full">
                 <label for="statusHubungan">Status Hubungan Dalam Keluarga</label>
                 <select name="statusHubungan" id="statusHubungan" required>
                   <option value="" disabled selected>-- Pilih Status --</option>
-                  <option value="Kepala Keluarga">Kepala Keluarga</option>
+                  <option value="Kepala Keluarga" {{ old('statusHubungan') == 'Kepala Keluarga' ? 'selected' : '' }}>Kepala Keluarga</option>
                   <option value="Istri">Istri</option>
                   <option value="Anak">Anak</option>
                   <option value="Menantu">Menantu</option>
@@ -140,9 +140,9 @@
                     <div class="form-select">
                         <select name="alamat" id="alamat" onchange="setRW()" required>
                             <option value=""></option>
-                            <option value="Manggungmangu">Manggungmangu</option>
-                            <option value="Parakan">Parakan</option>
-                            <option value="Tambirejo">Tambirejo</option>
+                            <option value="Manggungmangu" {{ (old('alamat') ?? session('pending_kk.alamat')) == "Manggungmangu" ? 'selected' : '' }}>Manggungmangu</option>
+                            <option value="Parakan" {{ (old('alamat') ?? session('pending_kk.alamat')) == "Parakan" ? 'selected' : '' }}>Parakan</option>
+                            <option value="Tambirejo" {{ (old('alamat') ?? session('pending_kk.alamat')) == "Tambirejo" ? 'selected' : '' }}>Tambirejo</option>
                         </select>
                         <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                     </div>
@@ -152,9 +152,9 @@
                     <div class="form-select">
                         <select name="rw" id="rw" required>
                             <option value=""></option>
-                            <option id="rw1" value="1">1</option>
-                            <option id="rw2" value="2">2</option>
-                            <option id="rw3" value="3">3</option>
+                            <option id="rw1" value="1" {{ (old('rw') ?? session('pending_kk.rw')) == "1" ? 'selected' : '' }}>1</option>
+                            <option id="rw2" value="2" {{ (old('rw') ?? session('pending_kk.rw')) == "2" ? 'selected' : '' }}>2</option>
+                            <option id="rw3" value="3" {{ (old('rw') ?? session('pending_kk.rw')) == "3" ? 'selected' : '' }}>3</option>
                         </select>
                         <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                     </div>
@@ -164,27 +164,27 @@
                     <div class="form-select">
                         <select name="rt" id="rt" required>
                             <option value=""></option>
-                            <option id="rt1" value="1">1</option>
-                            <option id="rt2" value="2">2</option>
-                            <option id="rt3" value="3">3</option>
-                            <option id="rt4" value="4">4</option>
-                            <option id="rt5" value="5">5</option>
-                            <option id="rt6" value="6">6</option>
-                            <option id="rt7" value="7">7</option>
-                            <option id="rt8" value="8">8</option>
-                            <option id="rt9" value="9">9</option>
-                            <option id="rt10" value="10">10</option>
-                            <option id="rt11" value="11">11</option>
-                            <option id="rt12" value="12">12</option>
-                            <option id="rt13" value="13">13</option>
-                            <option id="rt14" value="14">14</option>
-                            <option id="rt15" value="15">15</option>
-                            <option id="rt16" value="16">16</option>
-                            <option id="rt17" value="17">17</option>
-                            <option id="rt18" value="18">18</option>
-                            <option id="rt19" value="19">19</option>
-                            <option id="rt20" value="20">20</option>
-                            <option id="rt21" value="21">21</option>
+                            <option id="rt1" value="1" {{ (old('rt') ?? session('pending_kk.rt')) == "1" ? 'selected' : '' }}>1</option>
+                            <option id="rt2" value="2" {{ (old('rt') ?? session('pending_kk.rt')) == "2" ? 'selected' : '' }}>2</option>
+                            <option id="rt3" value="3" {{ (old('rt') ?? session('pending_kk.rt')) == "3" ? 'selected' : '' }}>3</option>
+                            <option id="rt4" value="4" {{ (old('rt') ?? session('pending_kk.rt')) == "4" ? 'selected' : '' }}>4</option>
+                            <option id="rt5" value="5" {{ (old('rt') ?? session('pending_kk.rt')) == "5" ? 'selected' : '' }}>5</option>
+                            <option id="rt6" value="6" {{ (old('rt') ?? session('pending_kk.rt')) == "6" ? 'selected' : '' }}>6</option>
+                            <option id="rt7" value="7" {{ (old('rt') ?? session('pending_kk.rt')) == "7" ? 'selected' : '' }}>7</option>
+                            <option id="rt8" value="8" {{ (old('rt') ?? session('pending_kk.rt')) == "8" ? 'selected' : '' }}>8</option>
+                            <option id="rt9" value="9" {{ (old('rt') ?? session('pending_kk.rt')) == "9" ? 'selected' : '' }}>9</option>
+                            <option id="rt10" value="10" {{ (old('rt') ?? session('pending_kk.rt')) == "10" ? 'selected' : '' }}>10</option>
+                            <option id="rt11" value="11" {{ (old('rt') ?? session('pending_kk.rt')) == "11" ? 'selected' : '' }}>11</option>
+                            <option id="rt12" value="12" {{ (old('rt') ?? session('pending_kk.rt')) == "12" ? 'selected' : '' }}>12</option>
+                            <option id="rt13" value="13" {{ (old('rt') ?? session('pending_kk.rt')) == "13" ? 'selected' : '' }}>13</option>
+                            <option id="rt14" value="14" {{ (old('rt') ?? session('pending_kk.rt')) == "14" ? 'selected' : '' }}>14</option>
+                            <option id="rt15" value="15" {{ (old('rt') ?? session('pending_kk.rt')) == "15" ? 'selected' : '' }}>15</option>
+                            <option id="rt16" value="16" {{ (old('rt') ?? session('pending_kk.rt')) == "16" ? 'selected' : '' }}>16</option>
+                            <option id="rt17" value="17" {{ (old('rt') ?? session('pending_kk.rt')) == "17" ? 'selected' : '' }}>17</option>
+                            <option id="rt18" value="18" {{ (old('rt') ?? session('pending_kk.rt')) == "18" ? 'selected' : '' }}>18</option>
+                            <option id="rt19" value="19" {{ (old('rt') ?? session('pending_kk.rt')) == "19" ? 'selected' : '' }}>19</option>
+                            <option id="rt20" value="20" {{ (old('rt') ?? session('pending_kk.rt')) == "20" ? 'selected' : '' }}>20</option>
+                            <option id="rt21" value="21" {{ (old('rt') ?? session('pending_kk.rt')) == "21" ? 'selected' : '' }}>21</option>
                         </select>
                         <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                     </div>

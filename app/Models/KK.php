@@ -21,4 +21,9 @@ class KK extends Model
     protected $primaryKey = 'noKK';
     public $incrementing = false;
     protected $keyType = 'BigInteger';
+    
+    public function kepalaKeluarga()
+    {
+        return $this->hasOne(Penduduk::class, 'nik', 'nikKepalaKeluarga');
+    }
 }

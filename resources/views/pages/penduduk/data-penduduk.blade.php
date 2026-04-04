@@ -19,7 +19,7 @@
 
           <div class="card"> 
             <div class="card-body">
-              <h5 class="card-title">Datatables</h5>              
+              <h5 class="card-title">Database Penduduk</h5>              
               <a href="{{ route('tambahPenduduk') }}" type="button" class="btn btn-primary btn-small"><i class="bx bxs-plus-square"></i> Tambah Data</a>
               <div class="table-container">
                 <!-- Table with stripped rows -->

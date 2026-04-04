@@ -115,7 +115,7 @@ class PendudukController extends Controller
                 ]);
                 
             });
-
+            session()->forget('pending_kk');
             return redirect()->route('dataPenduduk')->with('success', 'Data berhasil disimpan.');
 
         }catch (\Exception $e) {
