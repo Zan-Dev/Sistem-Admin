@@ -9,11 +9,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Pegawai extends Model
 {
     use HasFactory;
-
     protected $table = 'pegawai';
+    protected $fillable = [
+        'id',
+        'jabatan',
+        'nik',
+    ];
 
-    public function penduduk(): HasMany
+    public function penduduk()
     {
-        return $this->hasMany(Penduduk::class);
+        return $this->belongsTo(Penduduk::class, 'nik', 'nik');
     }
 }

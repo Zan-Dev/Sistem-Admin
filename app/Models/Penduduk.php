@@ -38,7 +38,7 @@ class Penduduk extends Model
         return $this->belongsTo(Pekerjaan::class, 'pekerjaan_id', 'id');
     }
 
-    public function pegawai(): HasMany
+    public function pegawai()
     {
         return $this->hasMany(Pegawai::class, 'nik', 'nik');
     }
