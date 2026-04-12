@@ -24,9 +24,57 @@ class KartuKeluargaKontroller extends Controller
         return view('pages.kartu-keluarga.tambah-kartu-keluarga');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function edit($id)
+    {
+        $kk = KK::find($id);
+        return view('pages.kartu-keluarga.edit-kartu-keluarga', compact('kk'));
+    }
+
+    public function delete($id)
+    {
+        $kk = KK::find($id);
+        $kk->delete();
+        return redirect()->route('dataKartuKeluarga');
+    }
+
+    public function update(Request $request, $noKK)
+    {
+        $validated = request()->validate([
+            'noKK' => 'required|unique:kk,noKK, '.$noKK.',noKK',
+            'nikKepalaKeluarga' => 'required',
+            'alamat' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
+        ], [
+            'required' => 'Field :attribute harus diisi.',
+            'unique' => 'Nomor KK sudah ada.',
+        ]);
+
+        try{
+            DB::transaction(function () use ($validated, $noKK) {
+                if(Penduduk::where('nik', $validated['nikKepalaKeluarga'])->doesntExist()){                                        
+                    throw new \Exception("NIK Kepala Keluarga Belum Terdaftar di Database");                       
+                }
+                
+                $kk = KK::findOrFail($noKK);
+                $kk->update($validated);
+            });
+
+            return redirect()->route('dataKartuKeluarga')->with('success', 'Data Kartu Keluarga berhasil diperbarui!');
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
+            session()->put('pending_kk', [
+                'nik'    => $validated['nikKepalaKeluarga'],
+                'kkId'   => $validated['noKK'],
+                'alamat' => $validated['alamat'],
+                'rt'     => $validated['rt'],
+                'rw'     => $validated['rw'],
+            ]);
+
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
     public function submit(Request $request)
     {
         $validated = request()->validate([
@@ -68,44 +116,5 @@ class KartuKeluargaKontroller extends Controller
             //     ->withInput();
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    
 }

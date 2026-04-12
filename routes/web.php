@@ -61,6 +61,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'dataKartuKeluarga')->name('dataKartuKeluarga');
             Route::get('/tambah', 'add')->name('tambahKartuKeluarga');
             Route::post('/submit', 'submit')->name('dataKartuKeluarga.submit');
+
+            Route::get('/edit/{id}', 'edit')->name('dataKartuKeluarga.edit');
+            Route::put('/update/{id}', 'update')->name('dataKartuKeluarga.update');
+
+            Route::delete('/delete/{id}', 'delete')->name('dataKartuKeluarga.delete');
         });
 
         /*

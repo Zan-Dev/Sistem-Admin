@@ -1,3 +1,7 @@
+@php
+  use Carbon\Carbon;
+  Carbon::setLocale('id');
+@endphp
 <x-layout>        
 
     <div class="pagetitle">
@@ -18,7 +22,7 @@
                         <h5 class="card-title">Data Kartu Keluarga</h5>
                         <a href="{{ route('tambahKartuKeluarga') }}" class="btn btn-primary btn-small">Tambah Data</a>
                         <div class="table-container">
-                            <table class="table table-striped" id="table-1">
+                            <table id="example" class="display nowrap table data-table" id="table-1">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -42,7 +46,7 @@
                                             <td>{{ $kk->rt }}</td>
                                             <td>{{ $kk->rw }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('dataKartuKeluarga.edit', $kk->noKK) }}" class="btn btn-warning">Edit</a>
                                                 <form action="#" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')

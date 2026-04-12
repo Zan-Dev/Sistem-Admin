@@ -199,7 +199,11 @@
       </div>
     </div>    
   </div>
+  @if(session()->has('pending_kk'))
+    @php session()->forget('pending_kk'); @endphp
+  @endif
 </x-layout>
+
 
 @if(session('error'))
     <script>
@@ -211,3 +215,4 @@
         });
     </script>
 @endif
+
