@@ -64,7 +64,7 @@
                           <form id="delete-form-{{ $data->nik }}" action="{{ route('dataPenduduk.delete', $data->nik) }}" method="POST" style="display: inline">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="btn btn-danger btn-small delete-confirm" data-id="{{ $data->id }}">
+                            <button type="button" class="btn btn-danger btn-small delete-confirm" data-id="{{ $data->nik }}">
                               <i class="bx bxs-trash-alt"></i>
                             </button>
                           </form>                        

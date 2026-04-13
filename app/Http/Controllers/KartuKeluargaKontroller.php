@@ -34,7 +34,7 @@ class KartuKeluargaKontroller extends Controller
     {
         $kk = KK::find($id);
         $kk->delete();
-        return redirect()->route('dataKartuKeluarga');
+        return redirect()->route('dataKartuKeluarga')->with('success', 'Data Kartu Keluarga berhasil dihapus!');
     }
 
     public function update(Request $request, $noKK)
@@ -93,8 +93,11 @@ class KartuKeluargaKontroller extends Controller
                 if(Penduduk::where('nik', $validated['nikKepalaKeluarga'])->doesntExist()){                                        
                     throw new \Exception("NIK Kepala Keluarga Belum Terdaftar di Database");                       
                 }
-                else{
-                    throw new \Exception('NIK Kepala Keluarga sudah terdaftar sebagai penduduk.');
+                else if(KK::where('nikKepalaKeluarga', $validated['nikKepalaKeluarga'])->exists()){
+                    throw new \Exception('NIK Kepala Keluarga sudah terdaftar sebagai kepala keluarga lain.');  
+                } 
+                else if(Penduduk::where('nik', $validated['nikKepalaKeluarga'])->whereHas('kk')->exists()){
+                    throw new \Exception('NIK Kepala Keluarga sudah terdaftar sebagai anggota keluarga lain.');  
                 }
                 KK::create($validated);
             });

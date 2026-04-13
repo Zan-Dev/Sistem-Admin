@@ -47,10 +47,12 @@
                                             <td>{{ $kk->rw }}</td>
                                             <td>
                                                 <a href="{{ route('dataKartuKeluarga.edit', $kk->noKK) }}" class="btn btn-warning">Edit</a>
-                                                <form action="#" method="POST" style="display: inline-block;">
+                                                <form id="delete-form-{{ $kk->noKK }}" action="{{ route('dataKartuKeluarga.delete', $kk->noKK) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                                    <button type="button" class="btn btn-danger btn-small delete-confirm" data-id="{{ $kk->noKK }}">
+                                                        <i class="bx bxs-trash-alt"></i>
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -65,3 +67,44 @@
     </section>
     
 </x-layout>
+
+<script>
+  document.querySelectorAll('.delete-confirm').forEach(button => {
+    button.addEventListener('click', function() {
+        let id = this.getAttribute('data-id');
+
+        Swal.fire({
+            title: 'Yakin ingin menghapus?',
+            text: "Data yang dihapus tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        });
+    });
+  });
+
+  @if(session('success'))
+    Swal.fire({
+        icon: 'success',
+        title: 'Sukses',
+        text: '{{ session('success') }}',
+        timer: 3000,
+        showConfirmButton: false
+    });
+  @endif
+
+  @if(session('error'))
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: '{{ session('error') }}',
+        timer: 3000,
+        showConfirmButton: false
+    });
+  @endif
+</script>

@@ -31,7 +31,7 @@ class PendudukController extends Controller
     function delete($nik){
         $penduduk = Penduduk::find($nik);
         $penduduk->delete();
-        return redirect()->route('dataPenduduk');
+        return redirect()->route('dataPenduduk')->with('success', 'Data penduduk berhasil dihapus!');
     }
 
     function update(Request $request, $nik){        

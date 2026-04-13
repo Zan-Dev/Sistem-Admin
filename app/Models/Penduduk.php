@@ -24,6 +24,7 @@ class Penduduk extends Model
         'tempatLahir',
         'tanggalLahir',
         'statusPerkawinan',
+        'statusHubungan',
         'jenisKelamin',
         'kewarganegaraan',
         'pekerjaan_id',
