@@ -10,7 +10,7 @@
 
       @if (Auth::user()->role == 'Admin')
         <li class="nav-item">
-          <a class="{{ request()->is(['dataPenduduk', 'dataPenduduk*']) ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('dataPenduduk') }}">
+          <a class="{{ request()->is(['data-penduduk', 'data-penduduk*']) ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('dataPenduduk') }}">
             <i class="bi bi-menu-button-wide"></i>
             <span>Data Penduduk</span>
           </a>        
