@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\KK;
+use App\Models\Pekerjaan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PendudukFactory extends Factory
@@ -20,7 +22,7 @@ class PendudukFactory extends Factory
             'tempatLahir' => fake('id_ID')->city(),
             'tanggalLahir' => fake()->date(),
             'statusPerkawinan' => fake()->randomElement(['Sudah', 'Belum', 'Pernah']),
-            'statusHubungan' => fake()->randomElement(['Anak', 'Istri', 'Kepala Keluarga', 'Menantu', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lain']),
+            'statusHubungan' => fake()->randomElement(['Anak', 'Istri', 'Kepala Keluarga', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lain']),
             'jenisKelamin' => fake()->randomElement(['Laki-laki', 'Perempuan']),
             'kewarganegaraan' => 'Indonesia',
             'pekerjaan_id' => Pekerjaan::inRandomOrder()->first()->id, // Otomatis cari ID Pekerjaan

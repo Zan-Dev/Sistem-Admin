@@ -18,7 +18,7 @@ class KKFactory extends Factory
     {
         return [
             'noKK' => fake()->unique()->numerify('################'),
-            'alamat' => fake('id_ID')->address(),
+            'alamat' => fake()->randomElement(['Manggungmangu', 'Parakan', 'Tambirejo']),
             'rt' => fake()->numerify('0##'),
             'rw' => fake()->numerify('0##'),
         ];

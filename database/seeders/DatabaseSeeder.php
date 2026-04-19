@@ -5,6 +5,12 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Penduduk;
 use Illuminate\Database\Seeder;
+use Database\Seeders\PekerjaanSeeder;
+use Database\Seeders\KKSeeder;
+use Database\Seeders\PendudukSeeder;
+use Database\Seeders\PegawaiSeeder;
+use Database\Seeders\UserSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             KKSeeder::class,
             PendudukSeeder::class,
+            PegawaiSeeder::class,
         ]);    
 
     }
