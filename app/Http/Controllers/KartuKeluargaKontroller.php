@@ -19,6 +19,25 @@ class KartuKeluargaKontroller extends Controller
         return view('pages.kartu-keluarga.data-kartu-keluarga', compact('dataKK'));
     }
 
+    public function searchKK(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Jika input kosong, jangan bebanin database
+        if (empty($query)) {
+            return response()->json([]);
+        }
+
+        $dataKK = KK::where(function($q) use ($query) {
+                    $q->where('noKK', 'like', '%' . $query . '%');                  
+                })
+                ->with('kepalaKeluarga')
+                ->limit(10)
+                ->get();
+
+        return response()->json($dataKK);
+    }
+
     public function add()
     {
         return view('pages.kartu-keluarga.tambah-kartu-keluarga');
@@ -39,38 +58,22 @@ class KartuKeluargaKontroller extends Controller
 
     public function update(Request $request, $noKK)
     {
-        $validated = request()->validate([
-            'noKK' => 'required|unique:kk,noKK, '.$noKK.',noKK',
-            'nikKepalaKeluarga' => 'required',
+        $validated = request()->validate([            
             'alamat' => 'required',
             'rt' => 'required',
-            'rw' => 'required',
+            'rw' => 'required',            
         ], [
-            'required' => 'Field :attribute harus diisi.',
-            'unique' => 'Nomor KK sudah ada.',
+            'required' => 'Field :attribute harus diisi.',            
         ]);
 
         try{
-            DB::transaction(function () use ($validated, $noKK) {
-                if(Penduduk::where('nik', $validated['nikKepalaKeluarga'])->doesntExist()){                                        
-                    throw new \Exception("NIK Kepala Keluarga Belum Terdaftar di Database");                       
-                }
-                
-                $kk = KK::findOrFail($noKK);
+            DB::transaction(function () use ($validated, $noKK) {                                                
                 $kk->update($validated);
             });
 
             return redirect()->route('dataKartuKeluarga')->with('success', 'Data Kartu Keluarga berhasil diperbarui!');
         }catch (\Exception $e){
-            Log::error($e->getMessage());
-            session()->put('pending_kk', [
-                'nik'    => $validated['nikKepalaKeluarga'],
-                'kkId'   => $validated['noKK'],
-                'alamat' => $validated['alamat'],
-                'rt'     => $validated['rt'],
-                'rw'     => $validated['rw'],
-            ]);
-
+            Log::error($e->getMessage());            
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -78,45 +81,30 @@ class KartuKeluargaKontroller extends Controller
     public function submit(Request $request)
     {
         $validated = request()->validate([
-            'noKK' => 'required|unique:kk,noKK',
-            'nikKepalaKeluarga' => 'required',
+            'noKK' => 'required|unique:kk,noKK',           
             'alamat' => 'required',
             'rt' => 'required',
             'rw' => 'required',
+            'tanggalDibuat' => 'required',
         ], [
             'required' => 'Field :attribute harus diisi.',
-            'unique' => 'Nomor KK sudah ada.',
+            'unique' => 'Nomor KK sudah ada.',  
         ]);
 
         try{
             DB::transaction(function () use ($validated) {
-                if(Penduduk::where('nik', $validated['nikKepalaKeluarga'])->doesntExist()){                                        
-                    throw new \Exception("NIK Kepala Keluarga Belum Terdaftar di Database");                       
+                // Validasi untuk memastikan Nomor KK belum terdaftar di database
+                if(KK::where('noKK', $validated['noKK'])->exists()) {
+                    throw new \Exception("Nomor KK sudah terdaftar di database.");
                 }
-                else if(KK::where('nikKepalaKeluarga', $validated['nikKepalaKeluarga'])->exists()){
-                    throw new \Exception('NIK Kepala Keluarga sudah terdaftar sebagai kepala keluarga lain.');  
-                } 
-                else if(Penduduk::where('nik', $validated['nikKepalaKeluarga'])->whereHas('kk')->exists()){
-                    throw new \Exception('NIK Kepala Keluarga sudah terdaftar sebagai anggota keluarga lain.');  
-                }
+                
                 KK::create($validated);
             });
 
             return redirect()->route('dataKartuKeluarga')->with('success', 'Data Kartu Keluarga berhasil ditambahkan!');
         }catch (\Exception $e){
-            Log::error($e->getMessage());
-            session()->put('pending_kk', [
-                'nik'    => $validated['nikKepalaKeluarga'],
-                'kkId'   => $validated['noKK'],
-                'alamat' => $validated['alamat'],
-                'rt'     => $validated['rt'],
-                'rw'     => $validated['rw'],
-            ]);
-
-            return redirect()->back()->with('error', $e->getMessage());
-            // return redirect()->back()
-            //     ->with('error', $e->getMessage())
-            //     ->withInput();
+            Log::error($e->getMessage());        
+            return redirect()->back()->with('error', $e->getMessage());        
         }
     }
     

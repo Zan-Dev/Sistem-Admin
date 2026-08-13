@@ -2,7 +2,7 @@
   use Carbon\Carbon;
   Carbon::setLocale('id');
 @endphp
-<x-layout>        
+<x-layout>
 
     <div class="pagetitle">
       <h1>Data Kartu Keluarga</h1>
@@ -12,7 +12,8 @@
           <li class="breadcrumb-item active">Kartu Keluarga</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div>
+<!-- End Page Title -->
 
     <section>
         <div class="row">
@@ -40,8 +41,8 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $kk->noKK }}</td>                                
-                                            <td>{{ $kk->nikKepalaKeluarga }}</td>
-                                            <td>{{ $kk->kepalaKeluarga?->nama ?? "Null"}}</td>
+                                            <td>{{ $kk->kepalaKeluarga->nik ?? "Belum Terdaftar" }}</td>
+                                            <td>{{ $kk->kepalaKeluarga->nama ?? "Belum Terdaftar"}}</td>
                                             <td>{{ $kk->alamat }}</td>
                                             <td>{{ $kk->rt }}</td>
                                             <td>{{ $kk->rw }}</td>
@@ -65,7 +66,6 @@
             </div>
         </div>
     </section>
-    
 </x-layout>
 
 <script>

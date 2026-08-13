@@ -15,7 +15,7 @@ class PendudukController extends Controller
     function dataPenduduk(){
         $penduduk = Penduduk::get();
         return view('pages.penduduk.data-penduduk', compact('penduduk'));
-    }
+    }    
 
     function add(){
         $pekerjaan = Pekerjaan::all();
@@ -35,90 +35,135 @@ class PendudukController extends Controller
     }
 
     function update(Request $request, $nik){        
-        $validated = $request->validate([            
-            'nama' => 'required',
+        $validated = $request->validate([  
             'kkId' => 'required',
-            'statusHubungan' => 'required',
+            'nama' => 'required|string|max:255',                        
             'tempatLahir' => 'required',
             'tanggalLahir' => 'required|date',
             'statusPerkawinan' => 'required',
+            'statusHubungan' => 'required',
+            'statusHidup' => 'required',
+            'tanggalMeninggal' => 'nullable|date',
             'jenisKelamin' => 'required',
             'kewarganegaraan' => 'required',
             'pekerjaan' => 'required',
-            'agama' => 'required',
-            'alamat' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
+            'agama' => 'required',            
         ], [
             'required' => 'Field :attribute harus diisi.',
             'date' => 'Field :attribute harus berupa tanggal yang valid.',
         ]);
-                
 
-        $penduduk = Penduduk::findOrfail($nik);        
-
-        $penduduk->update($validated);
-
-        return redirect()->route('dataPenduduk')->with('success', 'Data penduduk berhasil diperbarui!');
+        try {            
+            DB::transaction(function () use ($validated, $nik) {                   
+                $isKkIdExists = KK::where('noKK', $validated['kkId'])->exists();
+                $hasDuplicateHead = Penduduk::where('kkId', $validated['kkId'])->where('statusHubungan', 'Kepala Keluarga')->where('nik', '!=', $nik)->exists();            
+                // CEK APAKAH KK ID YANG DIPILIH ADA DI DATABASE
+                if ($isKkIdExists) {
+                    // CEK DUPLIKASI KEPALA KELUARGA DI KK YANG SAMA, KECUALI DIRI SENDIRI
+                    if (!$hasDuplicateHead || ($hasDuplicateHead && $validated['statusHubungan'] != 'Kepala Keluarga')) {
+                        $penduduk = Penduduk::find($nik);
+                        $penduduk->update([
+                            'kkId' => $validated['kkId'],
+                            'nama' => $validated['nama'],                                    
+                            'tempatLahir' => $validated['tempatLahir'],
+                            'tanggalLahir' => $validated['tanggalLahir'],
+                            'statusPerkawinan' => $validated['statusPerkawinan'],
+                            'statusHubungan' => $validated['statusHubungan'],
+                            'statusHidup' => $validated['statusHidup'],
+                            'tanggalMeninggal' => $validated['tanggalMeninggal'] ? Carbon::parse($validated['tanggalMeninggal'])->format('Y-m-d') : null,
+                            'jenisKelamin' => $validated['jenisKelamin'],
+                            'kewarganegaraan' => $validated['kewarganegaraan'],
+                            'pekerjaan_id' => $validated['pekerjaan'],
+                            'agama' => $validated['agama'],
+                        ]);                        
+                    } else {
+                        throw new \Exception("Sudah ada Kepala Keluarga untuk KK ID: " . $validated['kkId']);
+                    }
+                } else {
+                    throw new \Exception("Nomor KK yang dipilih belum ada di database.");
+                }                        
+            });          
+            return redirect()->route('dataPenduduk')->with('success', 'Data penduduk berhasil diperbarui!');  
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()
+                ->with('error', $e->getMessage())
+                ->withInput();
+        }
     }
 
-    public function submit(Request $request){
-        // 1. Validasi
+    public function submit(Request $request){        
+        // 1. Validasi                   
         $request->validate([
-            'nik' => 'required|unique:penduduk,nik',
-            'kkId' => 'required',
-            'statusHubungan' => 'required',            
+            'nik'               => 'required|unique:penduduk,nik',
+            'nama'              => 'required|string|max:255',
+            'kkId'              => 'required',            
+            'statusHubungan'    => 'required',
+            'tempatLahir'       => 'required',
+            'tanggalLahir'      => 'required|date',
+            'agama'             => 'required',     
+            'jenisKelamin'      => 'required',     
+            'statusPerkawinan'  => 'required',
+            'pekerjaan'         => 'required',       
+            'kewarganegaraan'   => 'required',   
+            // 'statusHidup'       => 'required|in:Hidup,Meninggal|default:Hidup',
+            // 'tanggalMeninggal'  => 'nullable|date',                                      
         ], [
             'nik.unique' => 'NIK sudah terdaftar.',
-        ]);
+            'required' => 'Field :attribute harus diisi.',
+            'date' => 'Field :attribute harus berupa tanggal yang valid.',
+        ]);    
+        
+        $isNikExists = Penduduk::where('nik', $request->nik)->exists();                
+        $isKkIdExists = KK::where('noKK', $request->kkId)->exists();
+        $hasDuplicateHead = Penduduk::where('kkId', $request->kkId)->where('statusHubungan', 'Kepala Keluarga')->exists();                                
+        
+        if(!$isKkIdExists && $request->kk_dummy_number !='1') {
+            return redirect()->route('tambahPenduduk')
+                ->withInput()
+                ->with('confirm_dummy_kk', 'Nomor KK <b>'. $request->kkId . '</b> Belum Terdaftar di Database. <br>Simpan Sementara Dengan Nommor Dummy');
+        }     
 
         try {
-            DB::transaction(function () use ($request) {
-                $kk = KK::where('noKK', $request->kkId)->first();
-
-                // 2. Logika Pembuatan KK Baru
-                if (!$kk) {
-                    if ($request->statusHubungan !== 'Kepala Keluarga') {                        
-                        throw new \Exception('No KK tidak ditemukan. Pastikan No KK sudah terdaftar atau pilih status hubungan sebagai Kepala Keluarga.');                       
-                    }
-
-                    KK::create([                        
-                        'noKK' => $request->kkId,
-                        'nikKepalaKeluarga' => $request->nik,
-                        'alamat' => $request->alamat,
-                        'rt' => $request->rt,
-                        'rw' => $request->rw,
-                    ]);
-
-                } else {
-                    // 3. Cek jika Kepala Keluarga sudah ada
-                    if ($request->statusHubungan === 'Kepala Keluarga') {                                                
-                        throw new \Exception('No KK sudah memiliki Kepala Keluarga. Pilih status hubungan lain.');
+            DB::transaction(function () use ($request) {  
+                $dummyKkId = '1000000000000001'; // Nomor KK dummy yang akan digunakan jika KK ID tidak ditemukan
+                $isNikExists = Penduduk::where('nik', $request->nik)->exists();                
+                $isKkIdExists = KK::where('noKK', $request->kkId)->exists();
+                $hasDuplicateHead = Penduduk::where('kkId', $request->kkId)->where('statusHubungan', 'Kepala Keluarga')->exists();                                                         
+                // 2. CEK DUPLIKASI NIK
+                // CEK APAKAH SUDAH ADA NIK YANG SAMA DI DATABASE                
+                if (!$isNikExists) {
+                    $kk = $request->kkId;
+                    if (!$isKkIdExists && $request->kk_dummy_number == '1') {
+                        $kk = $dummyKkId;
                     }                    
-                }
-
-                Penduduk::create([
-                    'nik' => $request->nik,
-                    'nama' => $request->nama,
-                    'kkId' => $request->kkId,
-                    'statusHubungan' => $request->statusHubungan,
-                    'tempatLahir' => $request->tempatLahir,
-                    'tanggalLahir' => $request->tanggalLahir,
-                    'statusPerkawinan' => $request->statusPerkawinan,
-                    'jenisKelamin' => $request->jenisKelamin,
-                    'kewarganegaraan' => $request->kewarganegaraan,
-                    'pekerjaan_id' => $request->pekerjaan,
-                    'agama' => $request->agama,
-                    'alamat' => $request->alamat,
-                    'rt' => $request->rt,
-                    'rw' => $request->rw,
-                ]);
-                
-            });
-            session()->forget('pending_kk');
+                    // CEK DUPLIKASI KEPALA KELUARGA DI KK YANG SAMA
+                    if(!$hasDuplicateHead || ($hasDuplicateHead && $request->statusHubungan != 'Kepala Keluarga') || ($hasDuplicateHead && $request->kk_dummy_number == '1')) {
+                        Penduduk::create([
+                            'nik'               => $request->nik,
+                            'kkId'              => $kk,
+                            'nama'              => $request->nama,                                                                    
+                            'statusHubungan'    => $request->statusHubungan,                                                        
+                            'tempatLahir'       => $request->tempatLahir,
+                            'tanggalLahir'      => $request->tanggalLahir,                                
+                            'agama'             => $request->agama,
+                            'jenisKelamin'      => $request->jenisKelamin,                                
+                            'statusPerkawinan'  => $request->statusPerkawinan,
+                            'pekerjaan_id'      => $request->pekerjaan,
+                            'kewarganegaraan'   => $request->kewarganegaraan,                                
+                            'statusHidup'       => "Hidup", // ATUR DEFAULT STATUS HIDUP MENJADI "Hidup" SAAT PENAMBAHAN DATA PENDUDUK BARU
+                            'tanggalMeninggal'  => null, // ATUR DEFAULT TANGGAL MENINGGAL MENJADI NULL SAAT PENAMBAHAN DATA PENDUDUK BARU
+                        ]);
+                    } elseif ($hasDuplicateHead && $request->statusHubungan == 'Kepala Keluarga') {
+                        throw new \Exception("Sudah ada Kepala Keluarga untuk KK ID: " . $request->kkId);
+                    }                                                                                  
+                } else {
+                    throw new \Exception("NIK sudah terdaftar di database.");
+                }   
+            });            
             return redirect()->route('dataPenduduk')->with('success', 'Data berhasil disimpan.');
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()
                 ->with('error', $e->getMessage())
@@ -126,4 +171,3 @@ class PendudukController extends Controller
         }
     }
 }
-

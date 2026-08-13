@@ -55,9 +55,9 @@
                         <td>{{ $data['kewarganegaraan'] }}</td>
                         <td>{{ $data['agama'] }}</td>
                         <td>{{ $data->pekerjaan->pekerjaan }}</td>
-                        <td>{{ $data['alamat'] }}</td>
-                        <td>{{ $data['rt'] }}</td>
-                        <td>{{ $data['rw'] }}</td>
+                        <td>{{ $data->kk->alamat }}</td>
+                        <td>{{ $data->kk->rt }}</td>
+                        <td>{{ $data->kk->rw }}</td>
                         <td>
                           <a href="{{ route('dataPenduduk.edit', $data->nik) }}"><button type="button" class="btn btn-warning btn-small"><i class="bx bx-edit"></i></button></a> 
                           |                           

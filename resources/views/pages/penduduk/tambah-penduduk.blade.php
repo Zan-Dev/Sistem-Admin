@@ -15,204 +15,201 @@
       <div class="signup-content">                
         <div class="signup-form">
           <form action="{{ route('dataPenduduk.submit') }}" method="POST" class="register-form" id="register-form">   
-            @csrf
-            <h2>Tambah Data Warga</h2>                          
+            @csrf        
+            <h2>Tambah Data Warga</h2>      
+            
+            <!-- DUMMY -->
+            <input type="hidden" name="kk_dummy_number" id="kk_dummy_number" value="0" />
+
+            <!-- NIK -->
             <div class="form-group-full">
                 <label for="nik">NIK</label>
-                <input type="text" name="nik" id="nik" required value="{{ session('pending_kk.nik') ?? old('nik') }}"/>
+                <input type="text" name="nik" id="nik" value="{{ old('nik') }}" required/>
                 @if ($errors->has('nik'))
                   <span class="text-danger">{{ $errors->first('nik') }}</span>
                 @endif
-            </div>                                                  
+            </div>
+            
+            <!-- NAMA -->
             <div class="form-group-full">
                 <label for="nama">Nama</label>
-                <input type="text" name="nama" id="nama" required/>
-            </div>                       
+                <input type="text" name="nama" id="nama" value="{{ old('nama') }}" required/>
+            </div>      
+            
+            <!-- NO KK -->
             <div class="form-group-full">
                 <label for="kkId">No KK</label>
-                <input type="text" name="kkId" id="kkId" required value="{{ session('pending_kk.kkId') ?? old('kkId') }}" />
+                <input type="text" name="kkId" id="kkId" required value="{{ old('kkId') }}" />
             </div>
+
+            <!-- STATUS HUBUNGAN -->
             <div class="form-group-full">
                 <label for="statusHubungan">Status Hubungan Dalam Keluarga</label>
                 <select name="statusHubungan" id="statusHubungan" required>
                   <option value="" disabled selected>-- Pilih Status --</option>
                   <option value="Kepala Keluarga" {{ old('statusHubungan') == 'Kepala Keluarga' ? 'selected' : '' }}>Kepala Keluarga</option>
-                  <option value="Istri">Istri</option>
-                  <option value="Anak">Anak</option>
-                  <option value="Menantu">Menantu</option>
-                  <option value="Cucu">Cucu</option>
-                  <option value="Orang Tua">Orang Tua</option>
+                  <option value="Istri" {{ old('statusHubungan') == 'Istri' ? 'selected' : '' }}>Istri</option>
+                  <option value="Anak" {{ old('statusHubungan') == 'Anak' ? 'selected' : '' }}>Anak</option>
+                  <option value="Menantu" {{ old('statusHubungan') == 'Menantu' ? 'selected' : '' }}>Menantu</option>
+                  <option value="Cucu" {{ old('statusHubungan') == 'Cucu' ? 'selected' : '' }}>Cucu</option>
+                  <option value="Orang Tua" {{ old('statusHubungan') == 'Orang Tua' ? 'selected' : '' }}>Orang Tua</option>
                   <option value="Mertua">Mertua</option>
                   <option value="Famili Lain">Famili Lain</option>
                 </select>
             </div>
+
+            <!-- TEMPAT LAHIR -->
             <div class="form-group-full">
                 <label for="tempat-lahir">Tempat Lahir</label>
-                <input type="text" name="tempatLahir" id="tempat-lahir" required/>
+                <input type="text" name="tempatLahir" id="tempat-lahir" value="{{ old('tempatLahir') }}" required/>
             </div>
+            
             <div class="form-row">
+
+              <!-- TANGGAL LAHIR -->
               <div class="form-group">
                 <label for="tanggalLahir">Tanggal Lahir</label>
                 <div class="col-sm-10">
-                    <input type="date" name="tanggalLahir" class="form-control" required>
+                    <input type="date" name="tanggalLahir" class="form-control" value="{{ old('tanggalLahir') }}" required>
                 </div>
               </div>
+
+              <!-- AGAMA  -->
               <div class="form-group">
                 <label for="agama">Agama</label>
                 <div class="form-select">
                     <select name="agama" id="agama" required>                                                
-                        <option value="Islam">Islam</option>
-                        <option value="Hindu">Hindu</option>
-                        <option value="Budha">Budha</option>
-                        <option value="Kristen">Kristen</option>
-                        <option value="Katholik">Katholik</option>
-                        <option value="Konghucu">Konghucu</option>                                            
+                        <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                        <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                        <option value="Budha" {{ old('agama') == 'Budha' ? 'selected' : '' }}>Budha</option>
+                        <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                        <option value="Katholik" {{ old('agama') == 'Katholik' ? 'selected' : '' }}>Katholik</option>
+                        <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>                                            
                     </select>
                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                 </div>
               </div>
-            </div>            
+            </div>    
+            
+            <!-- JENIS KELAMIN -->
             <div class="form-radio">
                 <div class="label-form-radio">
                   <label for="gender" class="radio-label">Jenis Kelamin</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="jenisKelamin" id="gridRadios1" value="Laki-laki" checked>
+                    <input class="form-check-input" type="radio" name="jenisKelamin" id="gridRadios1" value="Laki-laki" {{ old('jenisKelamin') == 'Laki-laki' ? 'checked' : '' }} required>
                     <label class="form-check-label" for="gridRadios1">
                       Laki-laki
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="jenisKelamin" id="gridRadios2" value="Perempuan">
+                    <input class="form-check-input" type="radio" name="jenisKelamin" id="gridRadios2" value="Perempuan" {{ old('jenisKelamin') == 'Perempuan' ? 'checked' : '' }} required>
                     <label class="form-check-label" for="gridRadios2">
                       Perempuan
                     </label>
                   </div>                                  
-            </div>              
+            </div>    
+            
+            <!-- STATUS PERKAWINAN -->
             <div class="form-radio">
                 <div class="label-form-radio">
                   <label for="status-perkawinan" class="radio-label">Status Perkawinan</label>
                 </div>                
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="statusPerkawinan" id="gridRadios1" value="Sudah" checked>
+                  <input class="form-check-input" type="radio" name="statusPerkawinan" id="gridRadios1" value="Sudah" {{ old('statusPerkawinan') == 'Sudah' ? 'checked' : '' }} required>
                   <label class="form-check-label" for="gridRadios1">
                     Sudah
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="statusPerkawinan" id="gridRadios2" value="Belum">
+                  <input class="form-check-input" type="radio" name="statusPerkawinan" id="gridRadios2" value="Belum" {{ old('statusPerkawinan') == 'Belum' ? 'checked' : '' }} required>
                   <label class="form-check-label" for="gridRadios2">
                     Belum
                   </label>
                 </div>   
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="gridRadios2" value="Pernah">
+                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="gridRadios2" value="Pernah" {{ old('statusPerkawinan') == 'Pernah' ? 'checked' : '' }} required>
                     <label class="form-check-label" for="gridRadios2">
                       Pernah
                     </label>
                   </div>                                                
-            </div>         
+            </div>      
+                      
             <div class="form-row">
+
+              <!-- PEKERJAAN -->
               <div class="form-group">
                 <label for="pekerjaan">Pekerjaan</label>
                 <div class="form-select">
                     <select name="pekerjaan" id="pekerjaan" required>
                         @foreach($pekerjaan as $kerja)
-                            <option value="{{ $kerja->id }}">{{ $kerja->pekerjaan }}</option>
+                            <option value="{{ $kerja->id }}" {{ old('pekerjaan') == $kerja->id ? 'selected' : '' }}>{{ $kerja->pekerjaan }}</option>
                         @endforeach
                     </select>
                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                 </div>
               </div>
+
+              <!-- KEWARGANEGARAAN -->
               <div class="form-group">
                   <label for="kewarganegaraan">Kewarganegaraan</label>
                   <div class="form-select">
                     <select name="kewarganegaraan" id="kewarganegaraan" required>                    
-                        <option id="idn" value="Indonesia">Indonesia</option>
-                        <option id="wna" value="WNA">WNA</option>                    
+                        <option id="idn" value="Indonesia" {{ old('kewarganegaraan') == 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
+                        <option id="wna" value="WNA" {{ old('kewarganegaraan') == 'WNA' ? 'selected' : '' }}>WNA</option>                    
                     </select>                  
                   </div>
               </div>
-            </div>               
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <div class="form-select">
-                        <select name="alamat" id="alamat" onchange="setRW()" required>
-                            <option value=""></option>
-                            <option value="Manggungmangu" {{ (old('alamat') ?? session('pending_kk.alamat')) == "Manggungmangu" ? 'selected' : '' }}>Manggungmangu</option>
-                            <option value="Parakan" {{ (old('alamat') ?? session('pending_kk.alamat')) == "Parakan" ? 'selected' : '' }}>Parakan</option>
-                            <option value="Tambirejo" {{ (old('alamat') ?? session('pending_kk.alamat')) == "Tambirejo" ? 'selected' : '' }}>Tambirejo</option>
-                        </select>
-                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                    </div>
-                </div>
-                <div class="form-group-rw">
-                    <label for="rw">RW</label>
-                    <div class="form-select">
-                        <select name="rw" id="rw" required>
-                            <option value=""></option>
-                            <option id="rw1" value="1" {{ (old('rw') ?? session('pending_kk.rw')) == "1" ? 'selected' : '' }}>1</option>
-                            <option id="rw2" value="2" {{ (old('rw') ?? session('pending_kk.rw')) == "2" ? 'selected' : '' }}>2</option>
-                            <option id="rw3" value="3" {{ (old('rw') ?? session('pending_kk.rw')) == "3" ? 'selected' : '' }}>3</option>
-                        </select>
-                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                    </div>
-                </div>
-                <div class="form-group-rt" >
-                    <label for="rt">RT</label>
-                    <div class="form-select">
-                        <select name="rt" id="rt" required>
-                            <option value=""></option>
-                            <option id="rt1" value="1" {{ (old('rt') ?? session('pending_kk.rt')) == "1" ? 'selected' : '' }}>1</option>
-                            <option id="rt2" value="2" {{ (old('rt') ?? session('pending_kk.rt')) == "2" ? 'selected' : '' }}>2</option>
-                            <option id="rt3" value="3" {{ (old('rt') ?? session('pending_kk.rt')) == "3" ? 'selected' : '' }}>3</option>
-                            <option id="rt4" value="4" {{ (old('rt') ?? session('pending_kk.rt')) == "4" ? 'selected' : '' }}>4</option>
-                            <option id="rt5" value="5" {{ (old('rt') ?? session('pending_kk.rt')) == "5" ? 'selected' : '' }}>5</option>
-                            <option id="rt6" value="6" {{ (old('rt') ?? session('pending_kk.rt')) == "6" ? 'selected' : '' }}>6</option>
-                            <option id="rt7" value="7" {{ (old('rt') ?? session('pending_kk.rt')) == "7" ? 'selected' : '' }}>7</option>
-                            <option id="rt8" value="8" {{ (old('rt') ?? session('pending_kk.rt')) == "8" ? 'selected' : '' }}>8</option>
-                            <option id="rt9" value="9" {{ (old('rt') ?? session('pending_kk.rt')) == "9" ? 'selected' : '' }}>9</option>
-                            <option id="rt10" value="10" {{ (old('rt') ?? session('pending_kk.rt')) == "10" ? 'selected' : '' }}>10</option>
-                            <option id="rt11" value="11" {{ (old('rt') ?? session('pending_kk.rt')) == "11" ? 'selected' : '' }}>11</option>
-                            <option id="rt12" value="12" {{ (old('rt') ?? session('pending_kk.rt')) == "12" ? 'selected' : '' }}>12</option>
-                            <option id="rt13" value="13" {{ (old('rt') ?? session('pending_kk.rt')) == "13" ? 'selected' : '' }}>13</option>
-                            <option id="rt14" value="14" {{ (old('rt') ?? session('pending_kk.rt')) == "14" ? 'selected' : '' }}>14</option>
-                            <option id="rt15" value="15" {{ (old('rt') ?? session('pending_kk.rt')) == "15" ? 'selected' : '' }}>15</option>
-                            <option id="rt16" value="16" {{ (old('rt') ?? session('pending_kk.rt')) == "16" ? 'selected' : '' }}>16</option>
-                            <option id="rt17" value="17" {{ (old('rt') ?? session('pending_kk.rt')) == "17" ? 'selected' : '' }}>17</option>
-                            <option id="rt18" value="18" {{ (old('rt') ?? session('pending_kk.rt')) == "18" ? 'selected' : '' }}>18</option>
-                            <option id="rt19" value="19" {{ (old('rt') ?? session('pending_kk.rt')) == "19" ? 'selected' : '' }}>19</option>
-                            <option id="rt20" value="20" {{ (old('rt') ?? session('pending_kk.rt')) == "20" ? 'selected' : '' }}>20</option>
-                            <option id="rt21" value="21" {{ (old('rt') ?? session('pending_kk.rt')) == "21" ? 'selected' : '' }}>21</option>
-                        </select>
-                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                    </div>
-                </div>
-            </div>     
+            </div>                           
             <div class="form-submit">                               
               <button type="button" class="kembali" onclick="window.history.back()">Kembali</button> 
-              <button class="submit" id="submit">Tambah</button>                                                                                    
+              <button class="submit" id="btn-submit">Tambah</button>                                                                                    
             </div>
           </form>
         </div>
       </div>
     </div>    
   </div>
-  @if(session()->has('pending_kk'))
-    @php session()->forget('pending_kk'); @endphp
-  @endif
-</x-layout>
+  </x-layout>
 
-
-@if(session('error'))
-    <script>
+  <script>
+      @if(session('error'))    
         Swal.fire({            
             icon: 'error',
             'title': 'Gagal Simpan',
             text: '{{ session('error') }}',            
             confirmButtonText: 'OK'
+        });    
+      @endif
+
+      @if(session('confirm_dummy_kk'))    
+        Swal.fire({            
+          icon: 'warning',
+          title: 'KK Tidak Ditemukan',
+          html: @json(session('confirm_dummy_kk')),
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Simpan',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // 1. Ubah nilai hidden input menjadi 1 (setuju)
+            document.getElementById('kk_dummy_number').value = '1';
+            
+            // 2. Submit ulang form secara otomatis
+            document.getElementById('register-form').submit();
+          }
         });
-    </script>
-@endif
+      @endif  
+
+      @if ($errors->any())
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal Validasi',
+            html: '{!! implode("<br>", $errors->all()) !!}',
+            confirmButtonText: 'OK'
+        });
+      @endif
+  </script>
 

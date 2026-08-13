@@ -17,19 +17,15 @@ class PendudukFactory extends Factory
     {
         return [
             'nik' => fake()->unique()->numerify('################'),
-            'nama' => fake('id_ID')->name(),
-            'kkId' => KK::inRandomOrder()->first()->id, // Otomatis cari ID KK yang ada
+            'nama' => fake('id_ID')->name(),      
+            'kkId' => KK::inRandomOrder()->first()->noKK,
             'tempatLahir' => fake('id_ID')->city(),
             'tanggalLahir' => fake()->date(),
-            'statusPerkawinan' => fake()->randomElement(['Sudah', 'Belum', 'Pernah']),
-            'statusHubungan' => fake()->randomElement(['Anak', 'Istri', 'Kepala Keluarga', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lain']),
+            'statusPerkawinan' => fake()->randomElement(['Sudah', 'Belum', 'Pernah']),                        
             'jenisKelamin' => fake()->randomElement(['Laki-laki', 'Perempuan']),
             'kewarganegaraan' => 'Indonesia',
             'pekerjaan_id' => Pekerjaan::inRandomOrder()->first()->id, // Otomatis cari ID Pekerjaan
-            'agama' => fake()->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu']),
-            'alamat' => fake()->randomElement(['Manggungmangu', 'Parakan', 'Tambirejo']),
-            'rt' => fake()->numerify('0##'),
-            'rw' => fake()->numerify('0##'),
+            'agama' => fake()->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu']),            
         ];
     }
 }

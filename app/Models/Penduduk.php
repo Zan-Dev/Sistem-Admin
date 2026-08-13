@@ -25,13 +25,12 @@ class Penduduk extends Model
         'tanggalLahir',
         'statusPerkawinan',
         'statusHubungan',
+        'statusHidup',
+        'tanggalMeninggal',
         'jenisKelamin',
         'kewarganegaraan',
         'pekerjaan_id',
-        'agama',
-        'alamat',
-        'rt',
-        'rw',
+        'agama',    
     ];
 
     public function pekerjaan(): BelongsTo
@@ -42,5 +41,10 @@ class Penduduk extends Model
     public function pegawai()
     {
         return $this->hasMany(Pegawai::class, 'nik', 'nik');
+    }
+
+    public function kk(): BelongsTo
+    {
+        return $this->belongsTo(KK::class, 'kkId', 'noKK');
     }
 }

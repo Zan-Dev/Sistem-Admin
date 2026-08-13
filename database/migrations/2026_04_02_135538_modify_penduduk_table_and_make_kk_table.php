@@ -12,29 +12,34 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('penduduk', function (Blueprint $table) {
+            $table->String('statusHidup')->default('Hidup')->after('shdk');
+            $table->date('tanggalMeninggal')->nullable()->after('statusHidup');
             $table->dropColumn('id');
+            $table->dropColumn('alamat');
+            $table->dropColumn('rt');
+            $table->dropColumn('rw');
 
             $table->primary('nik');
         });
 
         Schema::create('kk', function (Blueprint $table) {            
-            $table->bigInteger('noKK')->unique();
-            $table->bigInteger('nikKepalaKeluarga')->nullable();
+            $table->bigInteger('noKK')->unique();            
             $table->string('alamat');
             $table->Integer('rt');
             $table->Integer('rw');
+            $table->date('tanggalDibuat')->default(now());
             $table->timestamps();
             $table->primary('noKK');            
         });
 
         Schema::table('penduduk', function (Blueprint $table) {
             $table->dropColumn('noKK');
-            $table->BigInteger('kkId')->nullable()->after('nama');
+            $table->BigInteger('kkId')->after('nama');
 
             $table  ->foreign('kkId')
                     ->references('noKK')
                     ->on('kk')
-                    ->onDelete('set null')
+                    ->onDelete('cascade')
                     ->onUpdate('cascade');
 
             $table->renameColumn('shdk', 'statusHubungan')->nullable()->change();
@@ -57,11 +62,16 @@ return new class extends Migration
      */
     public function down(): void
     {        
-        Schema::table('penduduk', function (Blueprint $table) {            
+        Schema::table('penduduk', function (Blueprint $table) {     
+            $table->dropColumn('statusHidup');
+            $table->dropColumn('tanggalMeninggal');                   
             $table->dropForeign(['kkId']);
             $table->dropColumn('kkId');            
             $table->renameColumn('statusHubungan', 'shdk');                    
-            $table->string('shdk')->change(); 
+            $table->string('shdk')->change();                 
+            $table->string('alamat')->after('nama');
+            $table->Integer('rt')->after('alamat');
+            $table->Integer('rw')->after('rt');
         });
         
         Schema::dropIfExists('kk');

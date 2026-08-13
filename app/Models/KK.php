@@ -11,19 +11,25 @@ class KK extends Model
     protected $table = 'kk';
 
     protected $fillable = [
-        'noKK',
-        'nikKepalaKeluarga',
+        'noKK',        
         'alamat',
         'rt',
         'rw',
+        'tanggalDibuat',
     ];
 
     protected $primaryKey = 'noKK';
     public $incrementing = false;
     protected $keyType = 'BigInteger';
-    
+       
+
+    public function anggotaKeluarga()
+    {
+        return $this->hasMany(Penduduk::class, 'kkId', 'noKK');
+    }
+
     public function kepalaKeluarga()
     {
-        return $this->hasOne(Penduduk::class, 'nik', 'nikKepalaKeluarga');
+        return $this->hasOne(Penduduk::class, 'kkId', 'noKK')->where('statusHubungan', 'Kepala Keluarga');
     }
 }

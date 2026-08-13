@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/edit/{id}', 'edit')->name('dataPenduduk.edit');
             Route::put('/update/{id}', 'update')->name('dataPenduduk.update');
+            
 
             Route::delete('/delete/{id}', 'delete')->name('dataPenduduk.delete');
 
@@ -64,6 +65,8 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/edit/{id}', 'edit')->name('dataKartuKeluarga.edit');
             Route::put('/update/{id}', 'update')->name('dataKartuKeluarga.update');
+
+            Route::get('search', 'searchKK')->name('dataKartuKeluarga.search');
 
             Route::delete('/delete/{id}', 'delete')->name('dataKartuKeluarga.delete');
         });

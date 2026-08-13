@@ -31,18 +31,53 @@
             </div>                       
             <div class="form-group-full">
                 <label for="kkId">No KK</label>
-                <input type="text" name="kkId" id="kkId" value="{{ $penduduk->kkId }}" required/>
+                <input type="text" name="kkId" id="kkId" value="{{ $penduduk->kkId }}" autocomplete="off" required/>
+                <div id="kkList" style="position: absolute; width: parent;"></div>
                 @error('noKK')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form-group-full'>
-                <label for="statusHubungan">Status Hubungan</label>
-                <input type="text" name="statusHubungan" id="statusHubungan" value="{{ $penduduk->statusHubungan }}" required/>
+            <div class="form-group-full">                
+                <label for="statusHubungan">Status Hubungan Dalam Keluarga</label>                
+                <select name="statusHubungan" id="statusHubungan" required>
+                  <option value="" disabled selected>-- Pilih Status --</option>
+                  <option value="Kepala Keluarga" {{ $penduduk->statusHubungan === 'Kepala Keluarga' ? 'selected' : '' }}>Kepala Keluarga</option>
+                  <option value="Istri" {{ $penduduk->statusHubungan === 'Istri' ? 'selected' : '' }}>Istri</option>
+                  <option value="Anak" {{ $penduduk->statusHubungan === 'Anak' ? 'selected' : '' }}>Anak</option>                  
+                  <option value="Cucu" {{ $penduduk->statusHubungan === 'Cucu' ? 'selected' : '' }}>Cucu</option>
+                  <option value="Orang Tua" {{ $penduduk->statusHubungan === 'Orang Tua' ? 'selected' : '' }}>Orang Tua</option>
+                  <option value="Mertua" {{ $penduduk->statusHubungan === 'Mertua' ? 'selected' : '' }}>Mertua</option>
+                  <option value="Famili Lain" {{ $penduduk->statusHubungan === 'Famili Lain' ? 'selected' : '' }}>Famili Lain</option>
+                </select>
                 @error('statusHubungan')
                   <div class="text-danger">{{ $message }}</div>
-                @enderror
+                @enderror 
             </div>
+
+            <div class="form-row">
+                <div class="form-group-full">                                               
+                  <label for="statusHidup">Status Hidup</label>
+                  <select name="statusHidup" id="statusHidup" required>
+                    <option value="" disabled selected>-- Pilih Status --</option>
+                    <option value="Hidup" {{ $penduduk->statusHidup === 'Hidup' ? 'selected' : '' }}>Hidup</option>
+                    <option value="Meninggal" {{ $penduduk->statusHidup === 'Meninggal' ? 'selected' : '' }}>Meninggal</option>
+                  </select>
+                  @error('statusHidup')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                
+                <div class="form-group" style="margin-left: 15px;">
+                  <label for="tanggalMeninggal">Tanggal Meninggal</label>
+                  <div class="col-sm-10">
+                      <input type="date" name="tanggalMeninggal" class="form-control" value="{{ $penduduk->tanggalMeninggal }}" required>
+                      @error('tanggalMeninggal')
+                        <div class="text-danger">{{ $message }}</div>
+                      @enderror
+                  </div>
+                </div>
+            </div>
+            
             <div class="form-group-full">
                 <label for="tempat-lahir">Tempat Lahir</label>
                 <input type="text" name="tempatLahir" id="tempat-lahir" value="{{ $penduduk->tempatLahir }}" required/>
@@ -152,71 +187,7 @@
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
               </div>              
-            </div>            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <div class="form-select">
-                        <select name="alamat" id="alamat" onchange="setRW()" required>
-                            <option value=""></option>
-                            <option value="Manggungmangu" {{ $penduduk->alamat === 'Manggungmangu' ? 'selected' : '' }}>Manggungmangu</option>
-                            <option value="Parakan" {{ $penduduk->alamat === 'Parakan' ? 'selected' : '' }}>Parakan</option>
-                            <option value="Tambirejo" {{ $penduduk->alamat === 'Tambirejo' ? 'selected' : '' }}>Tambirejo</option>
-                        </select>
-                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                    </div>
-                    @error('alamat')
-                      <div class="text-danger">{{ $message }}</div>
-                    @enderror 
-                </div>
-                <div class="form-group-rw">
-                    <label for="rw">RW</label>
-                    <div class="form-select">
-                        <select name="rw" id="rw" required>
-                            <option value=""></option>
-                            <option id="rw1" value="1" {{ $penduduk->rw === 1 ? 'selected' : '' }}>1</option>
-                            <option id="rw2" value="2" {{ $penduduk->rw === 2 ? 'selected' : '' }}>2</option>
-                            <option id="rw3" value="3" {{ $penduduk->rw === 3 ? 'selected' : '' }}>3</option>
-                        </select>
-                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                    </div>
-                    @error('rw')
-                      <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group-rt" >
-                    <label for="rt">RT</label>
-                    <div class="form-select">
-                        <select name="rt" id="rt" required>
-                            <option value=""></option>
-                            <option id="rt1" value="1" {{ $penduduk->rt === 1 ? 'selected' : '' }}>1</option>
-                            <option id="rt2" value="2" {{ $penduduk->rt === 2 ? 'selected' : '' }}>2</option>
-                            <option id="rt3" value="3" {{ $penduduk->rt === 3 ? 'selected' : '' }}>3</option>
-                            <option id="rt4" value="4" {{ $penduduk->rt === 4 ? 'selected' : '' }}>4</option>
-                            <option id="rt5" value="5" {{ $penduduk->rt === 5 ? 'selected' : '' }}>5</option>
-                            <option id="rt6" value="6" {{ $penduduk->rt === 6 ? 'selected' : '' }}>6</option>
-                            <option id="rt7" value="7" {{ $penduduk->rt === 7 ? 'selected' : '' }}>7</option>
-                            <option id="rt8" value="8" {{ $penduduk->rt === 8 ? 'selected' : '' }}>8</option>
-                            <option id="rt9" value="9" {{ $penduduk->rt === 9 ? 'selected' : '' }}>9</option>
-                            <option id="rt10" value="10" {{ $penduduk->rt === 10 ? 'selected' : '' }}>10</option>
-                            <option id="rt11" value="11" {{ $penduduk->rt === 11 ? 'selected' : '' }}>11</option>
-                            <option id="rt12" value="12" {{ $penduduk->rt === 12 ? 'selected' : '' }}>12</option>
-                            <option id="rt13" value="13" {{ $penduduk->rt === 13 ? 'selected' : '' }}>13</option>
-                            <option id="rt14" value="14" {{ $penduduk->rt === 14 ? 'selected' : '' }}>14</option>
-                            <option id="rt15" value="15" {{ $penduduk->rt === 15 ? 'selected' : '' }}>15</option>
-                            <option id="rt16" value="16" {{ $penduduk->rt === 16 ? 'selected' : '' }}>16</option>
-                            <option id="rt17" value="17" {{ $penduduk->rt === 17 ? 'selected' : '' }}>17</option>
-                            <option id="rt18" value="18" {{ $penduduk->rt === 18 ? 'selected' : '' }}>18</option>
-                            <option id="rt19" value="19" {{ $penduduk->rt === 19 ? 'selected' : '' }}>19</option>
-                            <option id="rt20" value="20" {{ $penduduk->rt === 20 ? 'selected' : '' }}>20</option>
-                            <option id="rt21" value="21" {{ $penduduk->rt === 21 ? 'selected' : '' }}>21</option>
-                        </select>
-                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                    </div>
-                    @error('rt')
-                      <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+            </div>                        
             </div>     
             <div class="form-submit">                               
               <button type="button" class="kembali" onclick="window.history.back()">Kembali</button>               
@@ -251,4 +222,65 @@
       });
     });
   });
+
+  @if(session('success'))
+      Swal.fire({
+          icon: 'success',
+          title: 'Sukses',
+          text: '{{ session('success') }}',
+      });
+  @endif
+  
+  @if(session('error'))
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: '{{ session('error') }}',
+      });
+  @endif
+
+  // --- Logika Autocomplete No KK ---
+  $('#kkId').on('keyup', function() {
+      let query = $(this).val();
+      if (query.length > 2) { // Mulai mencari setelah mengetik minimal 3 karakter
+          $.ajax({
+              url: "{{ route('dataKartuKeluarga.search') }}", // Pastikan nama route ini sesuai
+              method: "GET",
+              data: { query: query },
+              success: function(data) {
+                  let html = '<ul class="dropdown-menu" style="display:block; width:100%; border: 1px solid #ccc; background: #812c2c; list-style: none; padding: 0; margin: 0;">';
+                  
+                  if(data.length > 0) {
+                      data.forEach(function(item) {
+                          let namaKepala = item.kepala_keluarga ? ` - <small>(${item.kepala_keluarga.nama})</small>` : '';
+                          html += `<li class="p-2 search-item" style="cursor:pointer; padding: 10px; border-bottom: 1px solid #eee;" data-kk="${item.noKK}">
+                                      <strong>${item.noKK}</strong> ${namaKepala}
+                                   </li>`;
+                      });
+                  } else {
+                      html += '<li class="p-2" style="padding: 10px;">Data tidak ditemukan</li>';
+                  }
+                  
+                  html += '</ul>';
+                  $('#kkList').fadeIn().html(html);
+              }
+          });
+      } else {
+          $('#kkList').fadeOut();
+      }
+  });
+
+  // Pilih data saat diklik
+  $(document).on('click', '.search-item', function() {
+      let selectedKK = $(this).attr('data-kk');
+      $('#kkId').val(selectedKK); // Masukkan ke input
+      $('#kkList').fadeOut(); // Sembunyikan list
+  });
+
+  // Sembunyikan list jika klik di mana saja selain input
+  $(document).click(function(e) {
+      if (!$(e.target).closest('#kkId').length) {
+          $('#kkList').fadeOut();
+      }
+  });  
 </script>
