@@ -297,14 +297,22 @@
   // })
 
   $(document).ready(function() {
-    var table = $('#example').DataTable({
+    var table = $('#data-table').DataTable({
       "scrollX": true,
       "paging": true,
       "searching": true,
       "lengthMenu": [5, 10, 25, 50, 100],
       fixedHeader: true,
-      fixedColumns: true
-  });
+      fixedColumns: true,
+      autoWidht: true
+    });
+
+    $(window).on('resize', function () {
+        setTimeout(function () {
+            table.columns.adjust();
+            table.fixedHeader.adjust();
+        }, 100);
+    });
 });
 
   /**

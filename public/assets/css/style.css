@@ -985,77 +985,16 @@ h6 {
   margin-left: 95px;
 }
 
-/* Recent Sales */
-.dashboard .recent-sales {
-  font-size: 14px;
-}
-
-.dashboard .recent-sales .table thead {
-  background: #f6f6fe;
-}
-
-.dashboard .recent-sales .table thead th {
-  border: 0;
-}
-
-.dashboard .recent-sales .dataTable-top {
-  padding: 0 0 10px 0;
-}
-
-
-
-.dashboard .recent-sales .dataTable-bottom {
-  padding: 10px 0 0 0;
-}
-
-/* Top Selling */
-.dashboard .top-selling {
-  font-size: 14px;
-}
-
-.dashboard .top-selling .table thead {
-  background: #f6f6fe;
-}
-
-.table-font{
-  font-size: 15px;
-}
-
-.table-container{
+.table-container{  
+  max-width: 100%;
   overflow-x: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  font-size: 15px;
+}
+
+#data-table {
+    width: 100% !important;    
 }
 
 
-.datatable th, .datatable td {
-  white-space: nowrap; /* Prevent text wrapping */
-}
-
-/* .datatable th:nth-child(1), .datatable td:nth-child(1) { width: 150px; } NIK */
-/* .datatable th:nth-child(2), .datatable td:nth-child(2) { width: 100px; } Nama */
-/* .datatable th:nth-child(3), .datatable td:nth-child(3) { width: 150px; } No KK */
-/* .datatable th:nth-child(4), .datatable td:nth-child(4) { width: 100px; } Tempat Lahir */
-/* .datatable th:nth-child(5), .datatable td:nth-child(5) { width: 150px; } Tanggal Lahir */
-/* .datatable th:nth-child(6), .datatable td:nth-child(6) { width: 50px; } Status Perkawinan */
-/* .datatable th:nth-child(7), .datatable td:nth-child(7) { width: 50px; } Jenis Kelamin */
-/* .datatable th:nth-child(8), .datatable td:nth-child(8) { width: 200px; } Alamat */
-/* .datatable th:nth-child(9), .datatable td:nth-child(9) { width: 50px; }  RT */
-/* .datatable th:nth-child(10), .datatable td:nth-child(10) { width: 50px; } RW */
-
-.dashboard .top-selling .table thead th {
-  border: 0;
-}
-
-.dashboard .top-selling .table tbody td {
-  vertical-align: middle;
-}
-
-.dashboard .top-selling img {
-  border-radius: 5px;
-  max-width: 60px;
-}
 
 /*--------------------------------------------------------------
 # Icons list page
@@ -1116,8 +1055,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  min-height: 80vh;  
 }
 
 .signup-content {
@@ -1125,8 +1063,8 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
+  width: max-content;
+  max-width: 100%;
 }
 
 .signup-form {
@@ -1134,6 +1072,12 @@ body {
 }
 
 h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+h3 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;

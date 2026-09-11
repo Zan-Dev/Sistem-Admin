@@ -20,10 +20,15 @@
             <div class="col-lg 12">
                 <div class="card">            
                     <div class="card-body">
+                        @if($dataKK->contains(fn($kk) => $kk->kepalaKeluarga === null))
+                            <div class="alert alert-warning" role="alert">
+                                <strong>Perhatian!</strong> Ada Data Kartu Keluarga Yang Belum Memiliki Kepala Keluarga <strong>Mohon Segera Dilengkapi</strong>.
+                            </div>
+                        @endif                       
                         <h5 class="card-title">Data Kartu Keluarga</h5>
                         <a href="{{ route('tambahKartuKeluarga') }}" class="btn btn-primary btn-small">Tambah Data</a>
                         <div class="table-container">
-                            <table id="example" class="display nowrap table data-table" id="table-1">
+                            <table id="data-table" class="display nowrap table data-table" >
                                 <thead>
                                     <tr>
                                         <th>No</th>

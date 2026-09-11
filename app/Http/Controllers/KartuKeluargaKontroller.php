@@ -45,7 +45,7 @@ class KartuKeluargaKontroller extends Controller
 
     public function edit($id)
     {
-        $kk = KK::find($id);
+        $kk = KK::where('noKK',$id)->first();
         return view('pages.kartu-keluarga.edit-kartu-keluarga', compact('kk'));
     }
 
@@ -59,11 +59,11 @@ class KartuKeluargaKontroller extends Controller
     public function update(Request $request, $noKK)
     {
         $validated = request()->validate([            
-            'alamat' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',            
+            'alamat'    => 'required',
+            'rt'        => 'required',
+            'rw'        => 'required',            
         ], [
-            'required' => 'Field :attribute harus diisi.',            
+            'required'  => 'Field :attribute harus diisi.',            
         ]);
 
         try{
@@ -80,25 +80,31 @@ class KartuKeluargaKontroller extends Controller
 
     public function submit(Request $request)
     {
+        dd($validated);
         $validated = request()->validate([
-            'noKK' => 'required|unique:kk,noKK',           
-            'alamat' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
-            'tanggalDibuat' => 'required',
+            'noKK'              => 'required|unique:kk,noKK',            
+            'alamat'            => 'required',
+            'rt'                => 'required|integer',
+            'rw'                => 'required|integer',            
         ], [
-            'required' => 'Field :attribute harus diisi.',
-            'unique' => 'Nomor KK sudah ada.',  
+            'required'      => 'Field :attribute harus diisi.',
+            'unique'        => 'Nomor KK sudah ada.',  
         ]);
-
+        dd($validated);
         try{
             DB::transaction(function () use ($validated) {
                 // Validasi untuk memastikan Nomor KK belum terdaftar di database
                 if(KK::where('noKK', $validated['noKK'])->exists()) {
                     throw new \Exception("Nomor KK sudah terdaftar di database.");
                 }
-                
-                KK::create($validated);
+                                
+                KK::create([
+                    'noKK'          => $validated['noKK'],
+                    'alamat'        => $validated['alamat'],
+                    'rt'            => $validated['rt'],
+                    'rw'            => $validated['rw'],
+                    'tanggalDibuat' => now(),
+                ]);
             });
 
             return redirect()->route('dataKartuKeluarga')->with('success', 'Data Kartu Keluarga berhasil ditambahkan!');

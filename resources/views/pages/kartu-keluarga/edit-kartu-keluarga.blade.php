@@ -12,27 +12,24 @@
 
   <div class="section">
     <div class="container-form">
-      <div class="signup-content">                
-        <div class="signup-form">
-          <form id="edit-form-{{$kk->noKK}}" class="edit-form" action="{{ route('dataKartuKeluarga.update', $kk->noKK) }}" method="POST" >   
-            @csrf
-            @method('PUT')
-            <h2>Edit Data Kartu Keluarga</h2>                          
-            <div class="form-group-full">
-                <label for="noKK">Nomor KK</label>
-                <input type="text" name="noKK" id="noKK" value="{{$kk->noKK}}" readonly />
-                @if ($errors->has('noKK'))
-                <span class="text-danger">{{ $errors->first('noKK') }}</span>
-                @endif
-            </div>                                                  
-            <div class="form-group-full">
-                <label for="nikKepalaKeluarga">NIK Kepala Keluarga</label>
-                <input type="text" name="nikKepalaKeluarga" id="nikKepalaKeluarga" value="{{ $kk->nikKepalaKeluarga }}" required/>
-                @if ($errors->has('nikKepalaKeluarga'))
-                <span class="text-danger">{{ $errors->first('nikKepalaKeluarga') }}</span>
-                @endif
-            </div>    
+      <div class="signup-content" >                        
+            <form id="edit-form-{{$kk->noKK}}" class="edit-form" action="{{ route('dataKartuKeluarga.update', $kk->noKK) }}" method="POST" >   
+                @csrf
+                @method('PUT')
+                <h2>Edit Data Kartu Keluarga</h2>                          
+
+                <!-- NO KK -->
+                <div class="form-group-full">
+                    <label for="noKK">Nomor KK</label>
+                    <input type="text" name="noKK" id="noKK" value="{{$kk->noKK}}" readonly />
+                    @if ($errors->has('noKK'))
+                    <span class="text-danger">{{ $errors->first('noKK') }}</span>
+                    @endif
+                </div>                               
+
                 <div class="form-row">
+
+                    <!-- ALAMAT -->
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <div class="form-select">
@@ -45,58 +42,78 @@
                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                         </div>
                     </div>
+
+                    <!-- RW -->
                     <div class="form-group-rw">
                         <label for="rw">RW</label>
                         <div class="form-select">
                             <select name="rw" id="rw" required>
-                                <option value=""></option>
-                                <option id="rw1" value="1" {{ $kk->rw === 1 ? 'selected' : '' }}>1</option>
-                                <option id="rw2" value="2" {{ $kk->rw === 2 ? 'selected' : '' }}>2</option>
-                                <option id="rw3" value="3" {{ $kk->rw === 3 ? 'selected' : '' }}>3</option>
+                                @for ($i=1; $i <= 3; $i++)
+                                    <option value="{{ $i }}" {{ $kk->rw == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor                                                                
                             </select>
                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                         </div>
                     </div>
+
+                    <!-- RT -->
                     <div class="form-group-rt" >
                         <label for="rt">RT</label>
                         <div class="form-select">
                             <select name="rt" id="rt" required>
-                                <option value=""></option>
-                                <option id="rt1" value="1" {{ $kk->rt === 1 ? 'selected' : '' }}>1</option>
-                                <option id="rt2" value="2" {{ $kk->rt === 2 ? 'selected' : '' }}>2</option>
-                                <option id="rt3" value="3" {{ $kk->rt === 3 ? 'selected' : '' }}>3</option>
-                                <option id="rt4" value="4" {{ $kk->rt === 4 ? 'selected' : '' }}>4</option>
-                                <option id="rt5" value="5" {{ $kk->rt === 5 ? 'selected' : '' }}>5</option>
-                                <option id="rt6" value="6" {{ $kk->rt === 6 ? 'selected' : '' }}>6</option>
-                                <option id="rt7" value="7" {{ $kk->rt === 7 ? 'selected' : '' }}>7</option>
-                                <option id="rt8" value="8" {{ $kk->rt === 8 ? 'selected' : '' }}>8</option>
-                                <option id="rt9" value="9" {{ $kk->rt === 9 ? 'selected' : '' }}>9</option>
-                                <option id="rt10" value="10" {{ $kk->rt === 10 ? 'selected' : '' }}>10</option>
-                                <option id="rt11" value="11" {{ $kk->rt === 11 ? 'selected' : '' }}>11</option>
-                                <option id="rt12" value="12" {{ $kk->rt === 12 ? 'selected' : '' }}>12</option>
-                                <option id="rt13" value="13" {{ $kk->rt === 13 ? 'selected' : '' }}>13</option>
-                                <option id="rt14" value="14" {{ $kk->rt === 14 ? 'selected' : '' }}>14</option>
-                                <option id="rt15" value="15" {{ $kk->rt === 15 ? 'selected' : '' }}>15</option>
-                                <option id="rt16" value="16" {{ $kk->rt === 16 ? 'selected' : '' }}>16</option>
-                                <option id="rt17" value="17" {{ $kk->rt === 17 ? 'selected' : '' }}>17</option>
-                                <option id="rt18" value="18" {{ $kk->rt === 18 ? 'selected' : '' }}>18</option>
-                                <option id="rt19" value="19" {{ $kk->rt === 19 ? 'selected' : '' }}>19</option>
-                                <option id="rt20" value="20" {{ $kk->rt === 20 ? 'selected' : '' }}>20</option>
-                                <option id="rt21" value="21" {{ $kk->rt === 21 ? 'selected' : '' }}>21</option>
-                            </select>
+                                @for ($i=1; $i <= 21; $i++)
+                                    <option value="{{ $i }}" {{ $kk->rt == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor
+                            </select>                               
                             <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                         </div>
                     </div>
-                </div>
+                </div>                
+                
+                <h3>Anggota Keluaga</h3>
+                <div class="table-container">
+                  <table id="example" class="display nowrap table data-table" id="table-1">
+                      <thead>
+                          <tr>
+                              <th>No</th>
+                              <th>NIK</th>
+                              <th>Nama</th>
+                              <th>Status Hubungan</th>                                                            
+                              <th>Aksi</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($kk->anggotaKeluarga as $anggota)
+                              <tr>
+                                  <td>{{ $loop->iteration }}</td>
+                                  <td>{{ $anggota->nik }}</td>
+                                  <td>{{ $anggota->nama }}</td>
+                                  <td>{{ $anggota->statusHubungan }}</td>
+                                  <td>
+                                      <a href="{{ route('dataPenduduk.edit', $anggota->nik) }}" class="btn btn-warning">Edit</a>
+                                      <form id="delete-form-{{ $anggota->nik }}" action="{{ route('dataPenduduk.delete', $anggota->nik) }}" method="POST" style="display: inline-block;">
+                                          @csrf
+                                          @method('DELETE')
+                                          <button type="button" class="btn btn-danger btn-small delete-confirm" data-id="{{ $anggota->nik }}">
+                                              <i class="bx bxs-trash-alt"></i>
+                                          </button>
+                                      </form>
+                                  </td>
+                              </tr>
+                          @endforeach
+                      </tbody>
+                  </table>
+                </div>                
+
                 <div class="form-submit">
                     <button type="button" class="kembali" onclick="window.history.back()">Kembali</button>               
                     <button class="submit submit-confirm" data-id="{{$kk->noKK}}">Simpan</button>                           
                 </div>
             </form>
-        </div>
-      </div>
+        </div>      
     </div>    
-  </div>
+  </div>  
+</div>
 </x-layout>
 
 <script>
@@ -115,7 +132,7 @@
           confirmButtonText: 'Ya, simpan!',
           cancelButtonText: 'Batal'
       }).then((result) => {
-          if (result.isConfirmed) {                        
+          if (result.isConfirmed) {
               document.getElementById('edit-form-' + id).submit();              
           }
       });

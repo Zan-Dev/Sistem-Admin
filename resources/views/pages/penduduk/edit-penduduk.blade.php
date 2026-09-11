@@ -244,7 +244,7 @@
       let query = $(this).val();
       if (query.length > 2) { // Mulai mencari setelah mengetik minimal 3 karakter
           $.ajax({
-              url: "{{ route('dataKartuKeluarga.search') }}", // Pastikan nama route ini sesuai
+              url: "{{ route('dataKartuKeluarga.search') }}",
               method: "GET",
               data: { query: query },
               success: function(data) {

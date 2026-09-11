@@ -19,11 +19,18 @@
 
           <div class="card"> 
             <div class="card-body">
+
+              @if($penduduk->contains(fn($data) => $data->kkId === 1000000000000001))
+                <div class="alert alert-warning" role="alert">
+                  <strong>Perhatian!</strong> Ada Data Penduduk Yang Belum Memiliki Kartu Keluarga/Masih Menggunakan Dummy <strong>Mohon Segera Dilengkapi</strong>.
+                </div>
+              @endif
+
               <h5 class="card-title">Database Penduduk</h5>              
               <a href="{{ route('tambahPenduduk') }}" type="button" class="btn btn-primary btn-small"><i class="bx bxs-plus-square"></i> Tambah Data</a>
               <div class="table-container">
                 <!-- Table with stripped rows -->
-                <table id="example" class="display nowrap table datatable table-font" style="width:100%">
+                <table id="data-table" class="display nowrap table datatable">
                   <thead>
                     <tr>
                       <th>NIK</th>
