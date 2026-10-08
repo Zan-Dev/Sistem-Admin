@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Log;
  
 class PendudukController extends Controller
 {
+    function search(Request $request){
+        $search = $request->input('search');
+
+        $penduduk = Penduduk::where('nik', 'like', "%$search%")
+            ->orWhere('nama', 'like', "%$search%")
+            ->get();
+        return response()->json($penduduk);
+    }
+
     function dataPenduduk(){
         $penduduk = Penduduk::get();
         return view('pages.penduduk.data-penduduk', compact('penduduk'));

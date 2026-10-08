@@ -24,7 +24,8 @@
                             <h2>Buat Surat Keterangan Usaha</h2>                          
                             <div class="form-group-full">
                               <label for="nik_1">NIK</label>
-                              <input type="text" name="nik_1" id="nik_1" list="NIKList" onchange="auto_fill_1()" required/>
+                              <input type="text" name="nik_1" id="search_nik" required/>
+                              <div id="searchResult"></div>
                               <datalist id="NIKList">
                                 @foreach($penduduk as $data)
                                 <option value="{{ $data->nik }}">{{ $data->nik }}</option>

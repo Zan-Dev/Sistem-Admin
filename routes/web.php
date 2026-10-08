@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('data-penduduk')->controller(PendudukController::class)->group(function () {
 
             Route::get('/', 'dataPenduduk')->name('dataPenduduk');
+            Route::get('/search', 'search')->name('searchPenduduk');
             Route::get('/tambah', 'add')->name('tambahPenduduk');
             Route::post('/submit', 'submit')->name('dataPenduduk.submit');
 
